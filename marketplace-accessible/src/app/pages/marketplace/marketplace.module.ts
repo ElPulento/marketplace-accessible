@@ -6,18 +6,44 @@ import { CreateNewProductComponent } from './components/create-new-product/creat
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-
+import { ThemeModule } from '../../@theme/@theme.module';
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbContextMenuModule,
+  NbIconModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbSearchModule,
+  NbSelectModule,
+  NbSidebarModule,
+  NbUserModule,
+} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
     CreateNewProductComponent,
     ListProductsComponent,
     ViewProductComponent,
-    MainPageComponent
+    MainPageComponent,
   ],
   imports: [
     CommonModule,
-    MarketplaceRoutingModule
-  ]
+    MarketplaceRoutingModule,
+    ThemeModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbUserModule,
+    NbActionsModule,
+    NbSearchModule,
+    NbSidebarModule,
+    NbContextMenuModule,
+    NbSelectModule,
+    NbButtonModule,
+    NbSelectModule,
+    NbIconModule,
+    NbEvaIconsModule,
+  ],
 })
-export class MarketplaceModule { }
+export class MarketplaceModule {}
