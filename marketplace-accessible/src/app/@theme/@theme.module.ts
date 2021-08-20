@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import {
   NbActionsModule,
   NbButtonModule,
+  NbCardModule,
   NbContextMenuModule,
   NbIconModule,
   NbLayoutModule,
@@ -14,11 +14,12 @@ import {
   NbSidebarModule,
   NbUserModule,
 } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, SidebarComponent],
+  declarations: [FooterComponent, SidebarComponent, HeaderComponent],
   imports: [
     CommonModule,
     NbLayoutModule,
@@ -32,7 +33,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NbButtonModule,
     NbSelectModule,
     NbIconModule,
-    NbEvaIconsModule,
+    NbCardModule,
   ],
 })
 export class ThemeModule {}
