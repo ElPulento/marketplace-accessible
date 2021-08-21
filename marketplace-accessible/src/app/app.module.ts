@@ -9,20 +9,28 @@ import {
   NbLayoutModule,
   NbIconModule,
   NbButtonModule,
+  NbCardModule,
 } from '@nebular/theme';
+import { HeaderComponent } from './@theme/header/header.component';
+import { FooterComponent } from './@theme/footer/footer.component';
+import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
     ThemeModule,
+    MarketplaceModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbIconModule,
     NbButtonModule,
+    NbCardModule,
   ],
+  exports: [HeaderComponent, FooterComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

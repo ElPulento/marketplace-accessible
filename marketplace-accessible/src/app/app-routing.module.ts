@@ -14,8 +14,9 @@ const routes: Routes = [
       ),
   },
   {
-    path: '**', // dashboard
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    path: '',
+    redirectTo: 'marketplace/main-page',
+    pathMatch: 'full',
   },
 ];
 
