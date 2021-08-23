@@ -1,9 +1,15 @@
 .navbar-light {
   background-color: rgb(139, 110, 177);
 }
-.text {
-  color: aliceblue;
+.text{
+  color: aliceblue !important;
   font-family: 'Roboto Slab';
   font-size: large;
+  font-weight: 100;
+  text-decoration: none;
+}
+
+.container {
+  justify-content: center;
 }
 
