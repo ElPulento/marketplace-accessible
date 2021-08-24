@@ -34,6 +34,7 @@ import { HeaderComponent } from './header/header.component';
     NbSelectModule,
     NbIconModule,
     NbCardModule,
+    NbButtonModule,
   ],
 })
 export class ThemeModule {}

@@ -19,4 +19,13 @@ export class MainPageComponent implements OnInit {
   goToInformation() {
     this.router.navigateByUrl(`marketplace/create-product`);
   }
+
+  change() {
+    const xd = document.getElementById('myAppView');
+
+    if (xd !== null) {
+      console.log('ddddddddddddddddddddddd');
+      xd.style.fontSize = '1000%';
+    }
+  }
 }

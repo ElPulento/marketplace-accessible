@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto container">
       <li class="nav-item active">
-        <a class="nav-link text" routerLink="" 
+        <a class="nav-link text" routerLink=""
           >Inicio <span class="sr-only">(current)</span></a
         >
       </li>
@@ -41,7 +41,34 @@
           >Iniciar sesion
         </a>
       </li>
+      <li class="nav-item">
+        <!-- <input [value]="zoom" (change)="onzoom($event)" />% -->
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle text"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Tamaño de pantalla
+        </a>
+        <div class="dropdown-menu col-12" aria-labelledby="navbarDropdown">
+          <div class="dropdown-item">
+            <a (click)="zoomDown()" class="nav-link textZoom">Disminuir </a>
+            <nb-icon (click)="zoomDown()" icon="minimize-outline"> </nb-icon>
+          </div>
+          <div class="dropdown-item">
+            <a (click)="zoomUp()" class="nav-link textZoom">Aumentar </a>
+            <nb-icon (click)="zoomUp()" icon="maximize-outline"> </nb-icon>
+          </div>
+        </div>
+      </li>
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <input
         class="form-control mr-sm-2"
