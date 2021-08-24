@@ -1,7 +1,7 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-md fixed-top navbar-light">
   <a class="navbar-brand text" style="color: #ffffff" routerLink=""
-    >Marketplace<i class="fab fa-twitch" style="margin: 10px"></i
-  ></a>
+    >Marketplace <nb-icon icon="shopping-cart-outline"> </nb-icon>
+  </a>
   <button
     class="navbar-toggler"
     type="button"
@@ -56,14 +56,32 @@
         >
           Tamaño de pantalla
         </a>
-        <div class="dropdown-menu col-12" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <div class="dropdown-item">
-            <a (click)="zoomDown()" class="nav-link textZoom">Disminuir </a>
-            <nb-icon (click)="zoomDown()" icon="minimize-outline"> </nb-icon>
-          </div>
-          <div class="dropdown-item">
-            <a (click)="zoomUp()" class="nav-link textZoom">Aumentar </a>
-            <nb-icon (click)="zoomUp()" icon="maximize-outline"> </nb-icon>
+            <div class="col-2">
+              <button
+                style="margin: 10px"
+                fullwidth
+                nbButton
+                status="success"
+                (click)="zoomUp()"
+              >
+                <nb-icon icon="maximize-outline"> </nb-icon>
+                Aumentar
+              </button>
+            </div>
+            <div class="col-2">
+              <button
+                style="margin: 10px"
+                fullwidth
+                nbButton
+                status="danger"
+                (click)="zoomDown()"
+              >
+                <nb-icon icon="minimize-outline"> </nb-icon>
+                Disminuir
+              </button>
+            </div>
           </div>
         </div>
       </li>
@@ -76,7 +94,9 @@
         placeholder="Buscar Productos"
         aria-label="Search"
       />
-      <button nbButton status="info" type="submit">Buscar</button>
+      <button (click)="goToListProduct()" nbButton status="info" type="submit">
+        Buscar
+      </button>
     </form>
   </div>
 </nav>
