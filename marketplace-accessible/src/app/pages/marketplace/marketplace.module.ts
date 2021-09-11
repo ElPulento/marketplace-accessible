@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarketplaceRoutingModule } from './marketplace-routing.module';
 import { CreateNewProductComponent } from './components/create-new-product/create-new-product.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
@@ -64,6 +64,8 @@ import { InformationComponent } from './components/information/information.compo
     NbListModule,
     NbDialogModule,
     NbActionsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class MarketplaceModule {}

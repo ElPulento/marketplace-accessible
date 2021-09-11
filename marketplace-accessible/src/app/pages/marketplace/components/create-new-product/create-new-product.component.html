@@ -1,1 +1,194 @@
-<p>Crear producto</p>
+<nb-card>
+  <nb-card-body>
+    <form [formGroup]="productForm">
+      <p>{{ productForm.value | json }}</p>
+      <nb-stepper orientation="horizontal">
+        <nb-step [label]="labelOne">
+          <ng-template #labelOne>Comienzo</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
+              <h4>Vender producto</h4>
+              <p class="lorem">
+                Por favor, recuerda ser concreto y preciso a la hora de detallar
+                la información del producto, ayúdanos a contribuir a que este
+                sea un espacio más accesible para todos ♡.
+              </p>
+              <img
+                src="assets/images/vender.png"
+                alt="Imagen referencial de compra y venta de productos"
+                width="200px"
+                height="200px"
+              />
+              <br />
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelTwo">
+          <ng-template #labelTwo>Titulo</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
+              <h4>Título del producto</h4>
+              <p class="lorem">
+                Aquí debes colocar el titulo más adecuado para el producto que
+                estas ofreciendo.
+              </p>
+
+              <label for="description" class="label col-form-label">
+                Título del producto
+              </label>
+              <input
+                nbInput
+                fullWidth
+                placeholder="Ejemplo: Televisor QLED marca LG"
+                type="title"
+                formControlName="title"
+                [nbPopover]="
+                  !form.title.pristine && form.title.errors?.required
+                    ? 'El titulo del producto es requerido'
+                    : ''
+                "
+                nbPopoverAdjustment="noop"
+                [status]="
+                  !form.title.pristine && form.title.errors?.required
+                    ? 'danger'
+                    : form.title.errors
+                    ? 'basic'
+                    : 'success'
+                "
+              />
+              <br />
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step label="Descripción">
+          <ng-template #labelTwo>Descripción del producto</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-4 col-lg-4">
+              <h4>Descripción del producto</h4>
+              <p class="lorem">
+                Aquí debes colocar siendo concreto y preciso los detalles y
+                caracteristicas del producto que estas ofreciendo, sin olvidar
+                ningun detalle importante que pueda ayudar al posible comprador
+                a elegir tu producto.
+              </p>
+
+              <label for="description" class="label col-form-label">
+                Descripción del producto
+              </label>
+              <textarea
+                nbInput
+                fullWidth
+                rows="8"
+                placeholder="Ejemplo: El televisor ofrecido cuenta con capacidades únicas e impresionantes, además está totalmente sellado y listo para ser vendido..."
+                type="description"
+                formControlName="description"
+                [nbPopover]="
+                  !form.description.pristine &&
+                  form.description.errors?.required
+                    ? 'La descripción del producto es requerida'
+                    : ''
+                "
+                nbPopoverAdjustment="noop"
+                [status]="
+                  !form.description.pristine &&
+                  form.description.errors?.required
+                    ? 'danger'
+                    : form.description.errors
+                    ? 'basic'
+                    : 'success'
+                "
+              ></textarea>
+              <br />
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelFour">
+          <ng-template #labelFour>Precio</ng-template>
+          <ng-template #labelTwo>Precio del producto</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
+              <h4>Precio del producto</h4>
+              <p class="lorem">
+                Aquí debes colocar el precio que tu estimes conveniente para el
+                producto que estas ofreciendo.
+              </p>
+
+              <label for="price" class="label col-form-label">
+                Precio del producto
+              </label>
+              <input
+                nbInput
+                fullWidth
+                min="1"
+                type="number"
+                formControlName="price"
+                [nbPopover]="
+                  !form.price.pristine && form.price.errors?.required
+                    ? 'El precio del producto es requerido'
+                    : ''
+                "
+                nbPopoverAdjustment="noop"
+                [status]="
+                  !form.price.pristine && form.price.errors?.required
+                    ? 'danger'
+                    : form.price.errors
+                    ? 'basic'
+                    : 'success'
+                "
+              />
+              <br />
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelFive">
+          <ng-template #labelFive>Cantidad</ng-template>
+          <ng-template #labelTwo>Cantidad</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
+              <h4>Cantidad</h4>
+              <p class="lorem">
+                Aquí debes colocar la cantidad disponible actual que tiene para
+                ofrecer para el producto que estas ofreciendo.
+              </p>
+
+              <label for="amount" class="label col-form-label">
+                Ingrese la cantidad a vender
+              </label>
+              <input
+                nbInput
+                fullWidth
+                min="1"
+                type="number"
+                formControlName="amount"
+                [nbPopover]="
+                  !form.amount.pristine && form.amount.errors?.required
+                    ? 'El precio del producto es requerido'
+                    : ''
+                "
+                nbPopoverAdjustment="noop"
+                [status]="
+                  !form.amount.pristine && form.amount.errors?.required
+                    ? 'danger'
+                    : form.amount.errors
+                    ? 'basic'
+                    : 'success'
+                "
+              />
+              <br />
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </div>
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </form>
+  </nb-card-body>
+</nb-card>
