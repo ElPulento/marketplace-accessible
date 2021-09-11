@@ -29,7 +29,7 @@ import {
   NbDialogModule,
 } from '@nebular/theme';
 import { InformationComponent } from './components/information/information.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     CreateNewProductComponent,
@@ -66,6 +66,7 @@ import { InformationComponent } from './components/information/information.compo
     NbActionsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
   ],
 })
 export class MarketplaceModule {}

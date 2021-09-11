@@ -6,8 +6,8 @@
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
-              <h4>Vender producto</h4>
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Vender producto</h1>
               <p class="lorem">
                 Por favor, recuerda ser concreto y preciso a la hora de detallar
                 la información del producto, ayúdanos a contribuir a que este
@@ -20,16 +20,27 @@
                 height="200px"
               />
               <br />
-              <button nbButton disabled nbStepperNext>prev</button>
-              <button nbButton nbStepperNext>next</button>
             </div>
           </div>
+          <nb-card-footer>
+            <div class="row" style="justify-content: center">
+              <button
+                nbButton
+                outline
+                shape="round"
+                status="info"
+                nbStepperNext
+              >
+                Comenzar
+              </button>
+            </div>
+          </nb-card-footer>
         </nb-step>
         <nb-step [label]="labelTwo">
           <ng-template #labelTwo>Titulo</ng-template>
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
-              <h4>Título del producto</h4>
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Título del producto</h1>
               <p class="lorem">
                 Aquí debes colocar el titulo más adecuado para el producto que
                 estas ofreciendo.
@@ -59,16 +70,41 @@
                 "
               />
               <br />
-              <button nbButton disabled nbStepperNext>prev</button>
-              <button nbButton nbStepperNext>next</button>
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.title.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
             </div>
           </div>
         </nb-step>
         <nb-step label="Descripción">
           <ng-template #labelTwo>Descripción del producto</ng-template>
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-4 col-lg-4">
-              <h4>Descripción del producto</h4>
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Descripción del producto</h1>
               <p class="lorem">
                 Aquí debes colocar siendo concreto y preciso los detalles y
                 caracteristicas del producto que estas ofreciendo, sin olvidar
@@ -102,9 +138,34 @@
                     : 'success'
                 "
               ></textarea>
-              <br />
-              <button nbButton disabled nbStepperNext>prev</button>
-              <button nbButton nbStepperNext>next</button>
+              <br />\
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.description.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
             </div>
           </div>
         </nb-step>
@@ -112,8 +173,8 @@
           <ng-template #labelFour>Precio</ng-template>
           <ng-template #labelTwo>Precio del producto</ng-template>
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
-              <h4>Precio del producto</h4>
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Precio del producto</h1>
               <p class="lorem">
                 Aquí debes colocar el precio que tu estimes conveniente para el
                 producto que estas ofreciendo.
@@ -143,17 +204,41 @@
                 "
               />
               <br />
-              <button nbButton disabled nbStepperNext>prev</button>
-              <button nbButton nbStepperNext>next</button>
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.price.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
             </div>
           </div>
         </nb-step>
         <nb-step [label]="labelFive">
           <ng-template #labelFive>Cantidad</ng-template>
-          <ng-template #labelTwo>Cantidad</ng-template>
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-3 col-lg-3">
-              <h4>Cantidad</h4>
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Cantidad</h1>
               <p class="lorem">
                 Aquí debes colocar la cantidad disponible actual que tiene para
                 ofrecer para el producto que estas ofreciendo.
@@ -183,9 +268,57 @@
                 "
               />
               <br />
-              <button nbButton disabled nbStepperNext>prev</button>
-              <button nbButton nbStepperNext>next</button>
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.amount.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
             </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelSix">
+          <ng-template #labelSix>Imagenes</ng-template>
+
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Imagenes del producto</h1>
+              <p class="lorem">
+                Aquí debes adjuntar las imágenes referenciales del producto que
+                estas ofreciendo.
+              </p>
+            </div>
+
+            <br />
+
+            <nb-card-footer>
+              <div class="row" style="justify-content: center">
+                <button nbButton outline shape="round" status="success">
+                  Realizar publicación
+                </button>
+              </div>
+            </nb-card-footer>
           </div>
         </nb-step>
       </nb-stepper>

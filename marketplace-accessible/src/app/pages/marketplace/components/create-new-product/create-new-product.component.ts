@@ -56,10 +56,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
       ]),
       amount: this.fb.control('', Validators.required),
       price: this.fb.control('', Validators.required),
-      images: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(this.imageMaxLength),
-      ]),
+      images: this.fb.control('', [Validators.required]),
     });
   }
   get form() {
