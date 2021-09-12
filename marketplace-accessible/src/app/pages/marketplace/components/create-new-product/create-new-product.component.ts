@@ -36,6 +36,15 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.initializeVariables();
     this.initializeForms();
   }
+  categories = [
+    
+      'Videojuegos',
+     'Vestuario',
+     'Electronica',
+     'Vehiculos'
+    
+  ]
+
 
   private initializeVariables() {
     this.titleMaxLength = restrictions.titleMaxLength;
@@ -62,6 +71,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
       amount: this.fb.control('', Validators.required),
       price: this.fb.control('', Validators.required),
       images: this.fb.array([]),
+      categories: this.fb.control([], [Validators.required, Validators.minLength(1)]),
     });
   }
   get imagesArray(): FormArray {

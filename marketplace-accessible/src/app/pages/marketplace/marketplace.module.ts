@@ -33,6 +33,7 @@ import { InformationComponent } from './components/information/information.compo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     CreateNewProductComponent,
@@ -44,6 +45,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
   imports: [
     CommonModule,
     MarketplaceRoutingModule,
+    SharedModule,
     ThemeModule,
     NbLayoutModule,
     NbActionsModule,

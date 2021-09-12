@@ -17,6 +17,7 @@ import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
 import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SharedModule } from './pages/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -26,6 +27,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AppRoutingModule,
     ThemeModule,
     MarketplaceModule,
+    SharedModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
