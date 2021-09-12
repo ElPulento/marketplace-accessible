@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import * as restrictions from '../../models/restrictions/new-product.restrictions';
 @Component({
@@ -20,8 +21,12 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   amountIsRequired!: boolean;
   createLoadingSpinner!: boolean;
   productForm!: FormGroup;
+  lastImagePicked!: FileList;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private toastr: NbToastrService,
+    ) {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -31,6 +36,15 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.initializeVariables();
     this.initializeForms();
   }
+  categories = [
+    
+      'Videojuegos',
+     'Vestuario',
+     'Electronica',
+     'Vehiculos'
+    
+  ]
+
 
   private initializeVariables() {
     this.titleMaxLength = restrictions.titleMaxLength;
@@ -56,10 +70,64 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
       ]),
       amount: this.fb.control('', Validators.required),
       price: this.fb.control('', Validators.required),
-      images: this.fb.control('', [Validators.required]),
+      images: this.fb.array([]),
+      categories: this.fb.control([], [Validators.required, Validators.minLength(1)]),
     });
   }
+  get imagesArray(): FormArray {
+		return this.productForm.get('images') as FormArray;
+	}
+  createImageItem(data: any): FormGroup {
+		return this.fb.group(data);
+	}
+  detectFiles(event: any) {
+		let images: FileList = event.target.files;
+		this.lastImagePicked = images;
+
+		if (images) {
+			if (images.length > this.imageMaxLength) {
+        console.log('No puede subir más de 5 imagenes')
+			//	this.toastr.showErrorToast();
+			} else {
+				for (let index = 0; index < images.length; index++) {
+					const file = images[index];
+					let reader = new FileReader();
+					if (file.size < 5 * 1024 * 1024) {
+						reader.onload = (e: any) => {
+							this.imagesArray.push(
+								this.createImageItem({
+									
+									name: file.name,
+								}),
+							);
+						};
+						reader.readAsDataURL(file);
+					} else {
+					//	this.toastr.showErrorToast();
+					}
+				}
+			}
+		}
+	}
+	removeFile(i: any) {
+		this.imagesArray.removeAt(i);
+	}
   get form() {
     return this.productForm.controls;
   }
+
+  submit() {
+		let newProduct = this.productForm.value;
+		const formData = new FormData();
+
+		formData.set('title', newProduct.title);
+		formData.set('description', newProduct.description);
+		formData.set('price', newProduct.price);
+		formData.set('amount', newProduct.amount);
+		formData.set('type', newProduct.type);
+		formData.set('images', newProduct.images);
+
+		this.createLoadingSpinner = true;
+	
+	}
 }

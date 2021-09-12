@@ -10,11 +10,14 @@ import {
   NbIconModule,
   NbButtonModule,
   NbCardModule,
+  NbActionsModule,
+  NbToastrModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
 import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SharedModule } from './pages/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -24,6 +27,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AppRoutingModule,
     ThemeModule,
     MarketplaceModule,
+    SharedModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
@@ -32,6 +36,14 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbCardModule,
     NbIconModule,
     NbButtonModule,
+    NbActionsModule,
+    NbToastrModule.forRoot({
+			hasIcon: true,
+			duration: 6000,
+			preventDuplicates: true,
+			destroyByClick: true,
+			limit: 3,
+		}),
   ],
   exports: [HeaderComponent, FooterComponent],
   providers: [],

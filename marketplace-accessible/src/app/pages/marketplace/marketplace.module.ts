@@ -27,9 +27,13 @@ import {
   NbLayoutModule,
   NbActionsModule,
   NbDialogModule,
+ 
 } from '@nebular/theme';
 import { InformationComponent } from './components/information/information.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     CreateNewProductComponent,
@@ -41,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     CommonModule,
     MarketplaceRoutingModule,
+    SharedModule,
     ThemeModule,
     NbLayoutModule,
     NbActionsModule,
@@ -67,6 +72,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
+    MaterialFileInputModule,
+  
   ],
+  
 })
 export class MarketplaceModule {}

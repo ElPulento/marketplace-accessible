@@ -1,8 +1,8 @@
 <nb-card>
   <nb-card-body>
     <form [formGroup]="productForm">
-      <p>{{ productForm.value | json }}</p>
-      <nb-stepper orientation="horizontal">
+   <!--   <p>{{ productForm.value | json }}</p> -->
+      <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
@@ -22,6 +22,7 @@
               <br />
             </div>
           </div>
+
           <nb-card-footer>
             <div class="row" style="justify-content: center">
               <button
@@ -46,9 +47,6 @@
                 estas ofreciendo.
               </p>
 
-              <label for="description" class="label col-form-label">
-                Título del producto
-              </label>
               <input
                 nbInput
                 fullWidth
@@ -60,7 +58,6 @@
                     ? 'El titulo del producto es requerido'
                     : ''
                 "
-                nbPopoverAdjustment="noop"
                 [status]="
                   !form.title.pristine && form.title.errors?.required
                     ? 'danger'
@@ -68,8 +65,13 @@
                     ? 'basic'
                     : 'success'
                 "
+                [maxlength]="titleMaxLength"
               />
               <br />
+              <character-counter
+						[input]="form.title.value?.length || 0"
+						[limit]="titleMaxLength"
+					></character-counter>
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -101,7 +103,7 @@
           </div>
         </nb-step>
         <nb-step label="Descripción">
-          <ng-template #labelTwo>Descripción del producto</ng-template>
+          <ng-template #labelThree>Descripción del producto</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1>Descripción del producto</h1>
@@ -112,9 +114,6 @@
                 a elegir tu producto.
               </p>
 
-              <label for="description" class="label col-form-label">
-                Descripción del producto
-              </label>
               <textarea
                 nbInput
                 fullWidth
@@ -137,8 +136,13 @@
                     ? 'basic'
                     : 'success'
                 "
+                [maxlength]="descriptionMaxLength"
               ></textarea>
-              <br />\
+              <br />
+              <character-counter
+						[input]="form.description.value?.length || 0"
+						[limit]="descriptionMaxLength"
+					></character-counter>
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -171,7 +175,6 @@
         </nb-step>
         <nb-step [label]="labelFour">
           <ng-template #labelFour>Precio</ng-template>
-          <ng-template #labelTwo>Precio del producto</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1>Precio del producto</h1>
@@ -180,10 +183,8 @@
                 producto que estas ofreciendo.
               </p>
 
-              <label for="price" class="label col-form-label">
-                Precio del producto
-              </label>
               <input
+              placeholder="Ejemplo : 19.000"
                 nbInput
                 fullWidth
                 min="1"
@@ -203,6 +204,7 @@
                     : 'success'
                 "
               />
+
               <br />
               <nb-card-footer>
                 <div class="row">
@@ -244,10 +246,8 @@
                 ofrecer para el producto que estas ofreciendo.
               </p>
 
-              <label for="amount" class="label col-form-label">
-                Ingrese la cantidad a vender
-              </label>
               <input
+              placeholder="Seleccione la cantidad del producto a vender"
                 nbInput
                 fullWidth
                 min="1"
@@ -298,8 +298,65 @@
             </div>
           </div>
         </nb-step>
-        <nb-step [label]="labelSix">
-          <ng-template #labelSix>Imagenes</ng-template>
+        <nb-step [label]="labelsix">
+          <ng-template #labelsix>Categorias</ng-template>
+
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>categoria(s) del producto</h1>
+              <p class="lorem">
+                Aquí debes colocar en que categoria se encuentra tu producto,
+                debes seleccionar al menos uno.
+              </p>
+
+              <nb-select
+                placeholder="Seleccione las categorias"
+                formControlName="categories"
+                fullWidth
+                multiple
+              >
+                <nb-option
+                  *ngFor="let category of categories; let i = index"
+                  [value]="categories[i]"
+                >
+                  {{ category }}
+                </nb-option>
+              </nb-select>
+
+              <br />
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                    
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.categories.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelSeven">
+          <ng-template #labelSeven>Imagenes</ng-template>
 
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
@@ -308,17 +365,124 @@
                 Aquí debes adjuntar las imágenes referenciales del producto que
                 estas ofreciendo.
               </p>
-            </div>
-
-            <br />
-
-            <nb-card-footer>
-              <div class="row" style="justify-content: center">
-                <button nbButton outline shape="round" status="success">
-                  Realizar publicación
+              <div class="container row">
+                <input
+                  fullWidth
+                  nbInput
+                  style="display: none"
+                  shape="semi-round"
+                  type="file"
+                  multiple
+                  (change)="detectFiles($event)"
+                  placeholder="Ingrese los archivos"
+                  accept="image"
+                  #hiddenfileinput
+                  [nbPopover]="
+                    !form.images.pristine && form.images.errors?.required
+                      ? 'la imagen del producto es requerido'
+                      : ''
+                  "
+                  nbPopoverAdjustment="noop"
+                  [status]="
+                    !form.images.pristine && form.images.errors?.required
+                      ? 'danger'
+                      : form.images.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                />
+                <br />
+                <button
+                  nbButton
+                  status="success"
+                  size="medium"
+                  (click)="hiddenfileinput.click()"
+                  disabled="{{ imagesArray.length >= imageMaxLength }}"
+                >
+                  <nb-icon icon="arrow-circle-up-outline"></nb-icon>
+                  Subir imagenes
                 </button>
               </div>
-            </nb-card-footer>
+       
+              <character-counter
+						[input]="form.images.value?.length || 0"
+						[limit]="imageMaxLength"
+					></character-counter>
+              <hr />
+
+              <div *ngIf="imagesArray && imagesArray.length">
+                <label class="label col-form-label"> Imagenes agregadas</label>
+
+                <div class="row" style="justify-content: space-around">
+                  <nb-card
+                    formArrayName="images"
+                    *ngFor="let file of imagesArray.controls; let i = index"
+                    class="col-12"
+                    style="margin: 10px"
+                  >
+                    <nb-card-body>
+                      <div class="row" [formGroupName]="i">
+                        <div
+                          class="container col-12 col-sm-12 col-md-6 col-lg-6"
+                        >
+                          <h2>{{ file.get("name")?.value }}</h2>
+                        </div>
+
+                        <div
+                          class="
+                            container
+                            right
+                            col-12 col-sm-12 col-md-6 col-lg-6
+                          "
+                        >
+                          <button
+                            nbButton
+                            ghost
+                            status="danger"
+                            style="margin: 5px"
+                            (click)="removeFile(i)"
+                          >
+                            <nb-icon
+                              nbTooltip="Eliminar Imagen"
+                              nbTooltipStatus="danger"
+                              icon="close-circle-outline"
+                            >
+                            </nb-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </div>
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      disabled="{{ imagesArray.length <= 0 }}"
+                      nbButton
+                      outline
+                      shape="round"
+                      status="info"
+                    >
+                      Realizar publicación
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
+            </div>
+            <br />
           </div>
         </nb-step>
       </nb-stepper>
