@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-body>
     <form [formGroup]="productForm">
-      <p>{{ productForm.value | json }}</p>
+<!--     <p>{{ productForm.value | json }}</p> -->
       <nb-stepper orientation="horizontal">
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
@@ -22,6 +22,7 @@
               <br />
             </div>
           </div>
+
           <nb-card-footer>
             <div class="row" style="justify-content: center">
               <button
@@ -138,7 +139,7 @@
                     : 'success'
                 "
               ></textarea>
-              <br />\
+              <br />
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -183,6 +184,7 @@
               <label for="price" class="label col-form-label">
                 Precio del producto
               </label>
+
               <input
                 nbInput
                 fullWidth
@@ -203,6 +205,7 @@
                     : 'success'
                 "
               />
+
               <br />
               <nb-card-footer>
                 <div class="row">
@@ -308,17 +311,95 @@
                 Aquí debes adjuntar las imágenes referenciales del producto que
                 estas ofreciendo.
               </p>
-            </div>
-
-            <br />
-
-            <nb-card-footer>
-              <div class="row" style="justify-content: center">
-                <button nbButton outline shape="round" status="success">
-                  Realizar publicación
-                </button>
+              <div class=" container row">
+              
+									<input
+										fullWidth
+										nbInput
+										style="display: none"
+										shape="semi-round"
+										type="file"
+										multiple
+										(change)="detectFiles($event)"
+										placeholder="Ingrese los archivos"
+										accept="image"
+										#hiddenfileinput
+                    [nbPopover]="
+                    !form.images.pristine && form.images.errors?.required
+                      ? 'la imagen del producto es requerido'
+                      : ''
+                  "
+                  nbPopoverAdjustment="noop"
+                  [status]="
+                    !form.images.pristine && form.images.errors?.required
+                      ? 'danger'
+                      : form.images.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+            
+                    
+									/>
+									<br />
+									<button nbButton class="btn" status="success" size="medium" (click)="hiddenfileinput.click()">
+										<nb-icon icon="upload-outline"></nb-icon>
+										Subir imagenes
+									</button>
+						
+                
               </div>
-            </nb-card-footer>
+              <hr />
+
+								<div *ngIf="imagesArray && imagesArray.length">
+									<label class="label col-form-label"> Imagenes agregadas</label>
+
+									<div class="row" style="justify-content: space-around">
+										<nb-card
+											formArrayName="images"
+											*ngFor="let file of imagesArray.controls; let i = index"
+											class="col-12"
+											style="margin: 10px"
+										>
+											<nb-card-body>
+												<div class="row" [formGroupName]="i">
+													<div class="col-md-6">
+														<h6 class="list">{{file.get('name')?.value}}</h6>
+													</div>
+
+													<div class="col-md-6">
+													
+                            <button nbButton ghost status="danger" style="margin: 5px" (click)="removeFile(i)"><nb-icon nbTooltip="Eliminar Imagen"
+                              nbTooltipStatus="danger"
+                              icon="close-circle-outline"></nb-icon></button>
+													</div>
+												</div>
+											</nb-card-body>
+										</nb-card>
+									</div>
+								</div>
+              <nb-card-footer>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button disabled="{{imagesArray.length <=0 }}" nbButton outline shape="round" status="info">
+                      Realizar publicación
+                    </button>
+                  </div>
+                </div>
+              </nb-card-footer>
+            </div>
+            <br />
+            
           </div>
         </nb-step>
       </nb-stepper>

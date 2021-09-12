@@ -10,6 +10,8 @@ import {
   NbIconModule,
   NbButtonModule,
   NbCardModule,
+  NbActionsModule,
+  NbToastrModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
@@ -32,6 +34,14 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbCardModule,
     NbIconModule,
     NbButtonModule,
+    NbActionsModule,
+    NbToastrModule.forRoot({
+			hasIcon: true,
+			duration: 6000,
+			preventDuplicates: true,
+			destroyByClick: true,
+			limit: 3,
+		}),
   ],
   exports: [HeaderComponent, FooterComponent],
   providers: [],
