@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
+import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
 import * as restrictions from '../../models/restrictions/new-product.restrictions';
 @Component({
@@ -15,6 +16,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   titleIsRequired!: boolean;
   descriptionMaxLength!: number;
   descriptionIsRequired!: boolean;
+  imageDescriptionMaxLength!: number;
   priceIsRequired!: boolean;
   imageMaxLength!: number;
   imageIsRequired!: boolean;
@@ -55,6 +57,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.imageMaxLength = restrictions.imageMaxLength;
     this.imageIsRequired = restrictions.imageIsRequired;
     this.amountIsRequired = restrictions.amountIsRequired;
+    this.imageDescriptionMaxLength = restrictions.imageDescriptionLength;
     this.createLoadingSpinner = false;
   }
 

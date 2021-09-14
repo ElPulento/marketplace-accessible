@@ -1,9 +1,9 @@
 <nb-card size="giant">
   <nb-card-body>
     <form [formGroup]="productForm">
-        <p>{{ productForm.value | json }}</p> 
+      <!--   <p>{{ productForm.value | json }}</p> -->
 
-      <nb-stepper orientation="horizontal" >
+      <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
@@ -47,18 +47,16 @@
                 Aquí debes colocar el titulo más adecuado para el producto que
                 estas ofreciendo.
               </p>
-
+              <nb-form-field>
+                <nb-icon *ngIf="form.title.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
+                <nb-icon *ngIf="!form.title.pristine && form.title.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
+             
               <input
                 nbInput
                 fullWidth
                 placeholder="Ejemplo: Televisor QLED marca LG"
                 type="title"
                 formControlName="title"
-                [nbPopover]="
-                  !form.title.pristine && form.title.errors?.required
-                    ? 'El titulo del producto es requerido'
-                    : ''
-                "
                 [status]="
                   !form.title.pristine && form.title.errors?.required
                     ? 'danger'
@@ -68,11 +66,22 @@
                 "
                 [maxlength]="titleMaxLength"
               />
+            </nb-form-field>
               <br />
+              <p
+                class="red"
+                *ngIf="!form.title.pristine && form.title.errors?.required"
+              >
+                El titulo del producto es requerido
+              </p>
               <character-counter
+              
                 [input]="form.title.value?.length || 0"
                 [limit]="titleMaxLength"
-              ></character-counter>
+              > </character-counter>
+
+              <br />
+
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -114,7 +123,10 @@
                 ningun detalle importante que pueda ayudar al posible comprador
                 a elegir tu producto.
               </p>
-
+              <nb-form-field>
+                <nb-icon *ngIf="form.description.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
+                <nb-icon *ngIf="!form.description.pristine && form.description.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
+                
               <textarea
                 nbInput
                 fullWidth
@@ -122,13 +134,6 @@
                 placeholder="Ejemplo: El televisor ofrecido cuenta con capacidades únicas e impresionantes, además está totalmente sellado y listo para ser vendido..."
                 type="description"
                 formControlName="description"
-                [nbPopover]="
-                  !form.description.pristine &&
-                  form.description.errors?.required
-                    ? 'La descripción del producto es requerida'
-                    : ''
-                "
-                nbPopoverAdjustment="noop"
                 [status]="
                   !form.description.pristine &&
                   form.description.errors?.required
@@ -139,11 +144,22 @@
                 "
                 [maxlength]="descriptionMaxLength"
               ></textarea>
+            </nb-form-field>
               <br />
+              <p
+                class="red"
+                *ngIf="
+                  !form.description.pristine &&
+                  form.description.errors?.required
+                "
+              >
+                La descripción del producto es requerida
+              </p>
               <character-counter
                 [input]="form.description.value?.length || 0"
                 [limit]="descriptionMaxLength"
-              ></character-counter>
+              >
+              </character-counter>
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -183,7 +199,9 @@
                 Aquí debes colocar el precio que tu estimes conveniente para el
                 producto que estas ofreciendo.
               </p>
-
+              <nb-form-field>
+                <nb-icon *ngIf="form.price.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
+                <nb-icon *ngIf="!form.price.pristine && form.price.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
               <input
                 placeholder="Ejemplo : 19.000"
                 nbInput
@@ -191,12 +209,6 @@
                 min="1"
                 type="number"
                 formControlName="price"
-                [nbPopover]="
-                  !form.price.pristine && form.price.errors?.required
-                    ? 'El precio del producto es requerido'
-                    : ''
-                "
-                nbPopoverAdjustment="noop"
                 [status]="
                   !form.price.pristine && form.price.errors?.required
                     ? 'danger'
@@ -205,7 +217,14 @@
                     : 'success'
                 "
               />
-
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.price.pristine && form.price.errors?.required"
+              >
+                El precio del producto es requerido
+              </p>
               <br />
               <nb-card-footer>
                 <div class="row">
@@ -246,7 +265,9 @@
                 Aquí debes colocar la cantidad disponible actual que tiene para
                 ofrecer para el producto que estas ofreciendo.
               </p>
-
+              <nb-form-field>
+                <nb-icon *ngIf="form.amount.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
+                <nb-icon *ngIf="!form.amount.pristine && form.amount.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
               <input
                 placeholder="Seleccione la cantidad del producto a vender"
                 nbInput
@@ -254,12 +275,6 @@
                 min="1"
                 type="number"
                 formControlName="amount"
-                [nbPopover]="
-                  !form.amount.pristine && form.amount.errors?.required
-                    ? 'La cantidad del producto es requerida'
-                    : ''
-                "
-                nbPopoverAdjustment="noop"
                 [status]="
                   !form.amount.pristine && form.amount.errors?.required
                     ? 'danger'
@@ -268,6 +283,14 @@
                     : 'success'
                 "
               />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.amount.pristine && form.amount.errors?.required"
+              >
+                El monto del producto es requerido
+              </p>
               <br />
               <nb-card-footer>
                 <div class="row">
@@ -309,21 +332,38 @@
                 Aquí debes colocar en que categoria se encuentra tu producto,
                 debes seleccionar al menos uno.
               </p>
-
+              
               <nb-select
                 placeholder="Seleccione las categorias"
                 formControlName="categories"
                 fullWidth
                 multiple
+                [status]="
+                  !form.categories.pristine && form.categories.errors?.required
+                    ? 'danger'
+                    : form.categories.errors
+                    ? 'basic'
+                    : 'success'
+                "
               >
+              
                 <nb-option
                   *ngFor="let category of categories; let i = index"
                   [value]="categories[i]"
                 >
                   {{ category }}
                 </nb-option>
+               
               </nb-select>
-
+              <br />
+              <p
+                class="red"
+                *ngIf="
+                  !form.categories.pristine && form.categories.errors?.required
+                "
+              >
+                La categoria del producto es requerida
+              </p>
               <br />
               <nb-card-footer>
                 <div class="row">
@@ -377,12 +417,6 @@
                   placeholder="Ingrese los archivos"
                   accept="image"
                   #hiddenfileinput
-                  [nbPopover]="
-                    !form.images.pristine && form.images.errors?.required
-                      ? 'la imagen del producto es requerido'
-                      : ''
-                  "
-                  nbPopoverAdjustment="noop"
                   [status]="
                     !form.images.pristine && form.images.errors?.required
                       ? 'danger'
@@ -391,6 +425,13 @@
                       : 'success'
                   "
                 />
+                <br />
+                <p
+                  class="red"
+                  *ngIf="!form.images.pristine && form.images.errors?.required"
+                >
+                  La imagen del producto es requerida
+                </p>
                 <br />
                 <button
                   nbButton
@@ -422,41 +463,51 @@
                   >
                     <nb-card-body>
                       <div class="row" [formGroupName]="i">
-                        <div
-                          class=" col-12 col-sm-12 col-md-5 col-lg-5"
-                        >
+                        <div class="col-12">
                           <h2>{{ file.get("name")?.value }}</h2>
                         </div>
                         <div
-                        class="container col-12 col-sm-12 col-md-5 col-lg-5"
-                      >
-                      <input
-                      placeholder="Descripción de la imagen"
-                      nbInput
-                      fullWidth
-                      type="text"
-                      formControlName="description"
-                      [nbPopover]="
-                      !file.get('description')?.pristine && file.get('description')?.errors?.required
-                          ? 'La descripción de la imagen es requerida'
-                          : ''
-                      "
-                      nbPopoverAdjustment="noop"
-                      [status]="
-                        !file.get('description')?.pristine && file.get('description')?.errors?.required
-                          ? 'danger'
-                          : file.get('description')?.errors
-                          ? 'basic'
-                          : 'success'
-                      "
-                    />
+                          class="container col-12 col-sm-12 col-md-6 col-lg-6"
+                        >
+                          <textarea
+                            placeholder="Pequeña descripción de la imagen"
+                            nbInput
+                            rows="3"
+                            fullWidth
+                            type="text"
+                            [maxlength]="imageDescriptionMaxLength"
+                            formControlName="description"
+                            [status]="
+                              !file.get('description')?.pristine &&
+                              file.get('description')?.errors?.required
+                                ? 'danger'
+                                : file.get('description')?.errors
+                                ? 'basic'
+                                : 'success'
+                            "
+                          >
+                          </textarea>
+                          <br />
+                          <p
+                            class="red"
+                            *ngIf="
+                              !file.get('description')?.pristine &&
+                              file.get('description')?.errors?.required
+                            "
+                          >
+                            La descripcion de la imagen es requerida
+                          </p>
+                  
+                        <character-counter
+                          [input]="file.get('description')?.value.length || 0"
+                          [limit]="imageDescriptionMaxLength"
+                        ></character-counter>
                       </div>
-
                         <div
                           class="
                             container
                             right
-                            col-12 col-sm-12 col-md-2 col-lg-2
+                            col-12 col-sm-12 col-md-1 col-lg-1
                           "
                         >
                           <button
@@ -494,7 +545,7 @@
                   </div>
                   <div class="ml-auto">
                     <button
-                    [disabled]="!form.images.valid || imagesArray.length <= 0 "
+                      [disabled]="!form.images.valid || imagesArray.length <= 0"
                       nbButton
                       outline
                       shape="round"
