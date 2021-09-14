@@ -1,8 +1,9 @@
-<nb-card>
+<nb-card size="giant">
   <nb-card-body>
     <form [formGroup]="productForm">
-   <!--   <p>{{ productForm.value | json }}</p> -->
-      <nb-stepper orientation="horizontal" disableStepNavigation>
+        <p>{{ productForm.value | json }}</p> 
+
+      <nb-stepper orientation="horizontal" >
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
@@ -69,9 +70,9 @@
               />
               <br />
               <character-counter
-						[input]="form.title.value?.length || 0"
-						[limit]="titleMaxLength"
-					></character-counter>
+                [input]="form.title.value?.length || 0"
+                [limit]="titleMaxLength"
+              ></character-counter>
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -140,9 +141,9 @@
               ></textarea>
               <br />
               <character-counter
-						[input]="form.description.value?.length || 0"
-						[limit]="descriptionMaxLength"
-					></character-counter>
+                [input]="form.description.value?.length || 0"
+                [limit]="descriptionMaxLength"
+              ></character-counter>
               <nb-card-footer>
                 <div class="row">
                   <div>
@@ -184,7 +185,7 @@
               </p>
 
               <input
-              placeholder="Ejemplo : 19.000"
+                placeholder="Ejemplo : 19.000"
                 nbInput
                 fullWidth
                 min="1"
@@ -247,7 +248,7 @@
               </p>
 
               <input
-              placeholder="Seleccione la cantidad del producto a vender"
+                placeholder="Seleccione la cantidad del producto a vender"
                 nbInput
                 fullWidth
                 min="1"
@@ -255,7 +256,7 @@
                 formControlName="amount"
                 [nbPopover]="
                   !form.amount.pristine && form.amount.errors?.required
-                    ? 'El precio del producto es requerido'
+                    ? 'La cantidad del producto es requerida'
                     : ''
                 "
                 nbPopoverAdjustment="noop"
@@ -328,7 +329,6 @@
                 <div class="row">
                   <div>
                     <button
-                    
                       type="button"
                       status="primary"
                       size="medium"
@@ -359,7 +359,7 @@
           <ng-template #labelSeven>Imagenes</ng-template>
 
           <div class="row">
-            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+            <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
               <h1>Imagenes del producto</h1>
               <p class="lorem">
                 Aquí debes adjuntar las imágenes referenciales del producto que
@@ -403,11 +403,11 @@
                   Subir imagenes
                 </button>
               </div>
-       
+
               <character-counter
-						[input]="form.images.value?.length || 0"
-						[limit]="imageMaxLength"
-					></character-counter>
+                [input]="form.images.value?.length || 0"
+                [limit]="imageMaxLength"
+              ></character-counter>
               <hr />
 
               <div *ngIf="imagesArray && imagesArray.length">
@@ -423,16 +423,40 @@
                     <nb-card-body>
                       <div class="row" [formGroupName]="i">
                         <div
-                          class="container col-12 col-sm-12 col-md-6 col-lg-6"
+                          class=" col-12 col-sm-12 col-md-5 col-lg-5"
                         >
                           <h2>{{ file.get("name")?.value }}</h2>
                         </div>
+                        <div
+                        class="container col-12 col-sm-12 col-md-5 col-lg-5"
+                      >
+                      <input
+                      placeholder="Descripción de la imagen"
+                      nbInput
+                      fullWidth
+                      type="text"
+                      formControlName="description"
+                      [nbPopover]="
+                      !file.get('description')?.pristine && file.get('description')?.errors?.required
+                          ? 'La descripción de la imagen es requerida'
+                          : ''
+                      "
+                      nbPopoverAdjustment="noop"
+                      [status]="
+                        !file.get('description')?.pristine && file.get('description')?.errors?.required
+                          ? 'danger'
+                          : file.get('description')?.errors
+                          ? 'basic'
+                          : 'success'
+                      "
+                    />
+                      </div>
 
                         <div
                           class="
                             container
                             right
-                            col-12 col-sm-12 col-md-6 col-lg-6
+                            col-12 col-sm-12 col-md-2 col-lg-2
                           "
                         >
                           <button
@@ -470,7 +494,7 @@
                   </div>
                   <div class="ml-auto">
                     <button
-                      disabled="{{ imagesArray.length <= 0 }}"
+                    [disabled]="!form.images.valid || imagesArray.length <= 0 "
                       nbButton
                       outline
                       shape="round"
