@@ -1,1 +1,57 @@
-<p>list-products works!</p>
+<nb-card>
+    <nb-card-header>Listado de productos</nb-card-header>
+    <nb-card-header>
+      <div class="row offset-11">
+        <button
+          nbButton
+          [nbTooltip]="'Actualizar pagina'"
+          (click)="reloadMyOrganizationssList()"
+          status="info"
+          class="actions"
+        >
+          <nb-icon icon="refresh-outline"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+  
+    <nb-card-body [nbSpinner]="getProductSpinnerLoading">
+      <div
+        style="justify-content: space-around"
+        *ngIf="dummy.length > 0; else noProducts"
+      >
+        <ng-container *ngFor="let product of dummy; let i = index">
+          <nb-card *ngIf="product.isActive" style="margin: 10px">
+            <nb-card-body>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                  <img
+                    [src]="product.images || 'assets/images/vender.png'"
+                    alt=""
+                    width="100px"
+                    height="100px"
+                  />
+                </div>
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                  <h1>{{ product.title }}</h1>
+                  <hr />
+                  <h1>${{ product.price }}</h1>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                  <button nbButton status="success" style="margin: 10px; text-align: center;">
+                    <nb-icon icon="eye-outline"></nb-icon>
+                    Ver producto
+                  </button>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </ng-container>
+      </div>
+      <ng-template #noProducts>
+        <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
+          <h1>No hay productos encontrados :(</h1>
+        </div>
+      </ng-template>
+    </nb-card-body>
+  </nb-card>
+  

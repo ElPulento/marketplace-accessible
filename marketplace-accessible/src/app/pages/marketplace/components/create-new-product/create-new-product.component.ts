@@ -75,6 +75,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
       price: this.fb.control('', Validators.required),
       categories: this.fb.control([], [Validators.required, Validators.minLength(1)]),
       images: this.fb.array([]),
+      isActive: this.fb.control(false, Validators.required),
     });
   }
   get imagesArray(): FormArray {
@@ -99,7 +100,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 						reader.onload = (e: any) => {
 							this.imagesArray.push(
 								this.createImageItem({
-								
+                  file,
 									name: file.name,
                   description: this.fb.control('', Validators.required),
 								}),

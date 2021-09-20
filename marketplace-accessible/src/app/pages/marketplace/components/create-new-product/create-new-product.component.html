@@ -1,7 +1,7 @@
 <nb-card size="giant">
   <nb-card-body>
     <form [formGroup]="productForm">
-      <!--   <p>{{ productForm.value | json }}</p> -->
+      <p>{{ productForm.value | json }}</p> 
 
       <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
@@ -203,7 +203,7 @@
                 <nb-icon *ngIf="form.price.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
                 <nb-icon *ngIf="!form.price.pristine && form.price.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
               <input
-                placeholder="Ejemplo : 19.000"
+                placeholder="Ejemplo : 19000"
                 nbInput
                 fullWidth
                 min="1"
