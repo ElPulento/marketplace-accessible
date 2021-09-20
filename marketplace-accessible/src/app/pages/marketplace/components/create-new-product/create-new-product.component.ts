@@ -12,7 +12,7 @@ import * as restrictions from '../../models/restrictions/new-product.restriction
 export class CreateNewProductComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<any>();
 
-  titleMaxLength!: number;
+  titleMaxLength: number;
   titleIsRequired!: boolean;
   descriptionMaxLength!: number;
   descriptionIsRequired!: boolean;
