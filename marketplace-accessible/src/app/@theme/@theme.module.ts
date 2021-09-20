@@ -17,9 +17,10 @@ import {
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { ColorsPageComponent } from './colors-page/colors-page.component';
 
 @NgModule({
-  declarations: [SidebarComponent],
+  declarations: [SidebarComponent, ColorsPageComponent],
   imports: [
     CommonModule,
     NbLayoutModule,
@@ -36,5 +37,6 @@ import { HeaderComponent } from './header/header.component';
     NbCardModule,
     NbButtonModule,
   ],
+  exports: [ColorsPageComponent]
 })
 export class ThemeModule {}

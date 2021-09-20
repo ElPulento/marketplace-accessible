@@ -44,6 +44,7 @@ import { SharedModule } from './pages/shared/shared.module';
 			destroyByClick: true,
 			limit: 3,
 		}),
+   
   ],
   exports: [HeaderComponent, FooterComponent],
   providers: [],
