@@ -12,15 +12,20 @@ import {
   NbSearchModule,
   NbSelectModule,
   NbSidebarModule,
+  NbToggleComponent,
+  NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ColorsPageComponent } from './colors-page/colors-page.component';
+import { HeaderNebularComponent } from './header-nebular/header-nebular.component';
+import { ScreenSizeComponent } from './screen-size/screen-size.component';
+
 
 @NgModule({
-  declarations: [SidebarComponent, ColorsPageComponent],
+  declarations: [SidebarComponent, ColorsPageComponent,FooterComponent, ScreenSizeComponent],
   imports: [
     CommonModule,
     NbLayoutModule,
@@ -28,7 +33,6 @@ import { ColorsPageComponent } from './colors-page/colors-page.component';
     NbUserModule,
     NbActionsModule,
     NbSearchModule,
-    NbSidebarModule,
     NbContextMenuModule,
     NbSelectModule,
     NbButtonModule,
@@ -36,7 +40,10 @@ import { ColorsPageComponent } from './colors-page/colors-page.component';
     NbIconModule,
     NbCardModule,
     NbButtonModule,
+    NbSidebarModule.forRoot(),
+    NbToggleModule,
+    
   ],
-  exports: [ColorsPageComponent]
+  exports: [ColorsPageComponent,SidebarComponent, FooterComponent,ScreenSizeComponent]
 })
 export class ThemeModule {}

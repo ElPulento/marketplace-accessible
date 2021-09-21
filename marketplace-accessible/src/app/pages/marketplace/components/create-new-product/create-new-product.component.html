@@ -1,7 +1,7 @@
 <nb-card size="giant">
   <nb-card-body>
     <form [formGroup]="productForm">
-      <p>{{ productForm.value | json }}</p> 
+   <!--   <p>{{ productForm.value | json }}</p> -->
 
       <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
@@ -24,7 +24,7 @@
             </div>
           </div>
 
-          <nb-card-footer>
+          <ng-container>
             <div class="row" style="justify-content: center">
               <button
                 nbButton
@@ -36,7 +36,7 @@
                 Comenzar
               </button>
             </div>
-          </nb-card-footer>
+          </ng-container>
         </nb-step>
         <nb-step [label]="labelTwo">
           <ng-template #labelTwo>Titulo</ng-template>
@@ -82,7 +82,7 @@
 
               <br />
 
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -108,7 +108,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
           </div>
         </nb-step>
@@ -160,7 +160,7 @@
                 [limit]="descriptionMaxLength"
               >
               </character-counter>
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -186,7 +186,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
           </div>
         </nb-step>
@@ -226,7 +226,7 @@
                 El precio del producto es requerido
               </p>
               <br />
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -252,7 +252,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
           </div>
         </nb-step>
@@ -292,7 +292,7 @@
                 El monto del producto es requerido
               </p>
               <br />
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -318,7 +318,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
           </div>
         </nb-step>
@@ -365,7 +365,7 @@
                 La categoria del producto es requerida
               </p>
               <br />
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -391,7 +391,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
           </div>
         </nb-step>
@@ -530,7 +530,7 @@
                   </nb-card>
                 </div>
               </div>
-              <nb-card-footer>
+              <ng-container>
                 <div class="row">
                   <div>
                     <button
@@ -555,7 +555,7 @@
                     </button>
                   </div>
                 </div>
-              </nb-card-footer>
+              </ng-container>
             </div>
             <br />
           </div>

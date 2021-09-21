@@ -12,15 +12,18 @@ import {
   NbCardModule,
   NbActionsModule,
   NbToastrModule,
+  NbMenuModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
 import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './pages/shared/shared.module';
+import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.component';
+
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent,HeaderComponent,HeaderNebularComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -44,9 +47,10 @@ import { SharedModule } from './pages/shared/shared.module';
 			destroyByClick: true,
 			limit: 3,
 		}),
+    NbMenuModule.forRoot(),
    
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent,HeaderNebularComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

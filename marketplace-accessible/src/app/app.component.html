@@ -1,10 +1,6 @@
 
-
-
-    <app-header></app-header>
-    <nb-layout>
-      <nb-layout-column><router-outlet></router-outlet></nb-layout-column>
-      <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
-    </nb-layout>
-    
-
+<nb-layout >
+  <nb-layout-header subheader fixed> <header-nebular></header-nebular></nb-layout-header>
+  <nb-layout-column><router-outlet></router-outlet></nb-layout-column>
+  <nb-layout-footer><app-footer></app-footer></nb-layout-footer>
+</nb-layout>

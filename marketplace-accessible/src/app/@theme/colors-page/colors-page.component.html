@@ -1,3 +1,23 @@
-<nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
-    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-  </nb-select>
+<nb-select
+  [selected]="currentTheme"
+  (selectedChange)="changeTheme($event)"
+  status="primary"
+>
+  <nb-option *ngFor="let theme of themes" [value]="theme.value">
+    {{ theme.name }}
+    <nb-icon
+      style="margin-left: auto"
+      *ngIf="theme.value === 'dark'"
+      nbSuffix
+      icon="moon-outline"
+      pack="eva"
+    ></nb-icon>
+    <nb-icon
+      style="margin-left: auto"
+      *ngIf="theme.value === 'default'"
+      nbSuffix
+      icon="sun-outline"
+      pack="eva"
+    ></nb-icon>
+  </nb-option>
+</nb-select>
