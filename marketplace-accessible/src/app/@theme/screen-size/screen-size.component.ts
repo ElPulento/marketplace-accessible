@@ -29,15 +29,17 @@ export class ScreenSizeComponent implements OnInit {
     document.body.style.zoom = this.zoom + '%';
   }
   zoomUp() {
-    this.zoom += 10;
     if (this.zoom <= 200) {
+    this.zoom += 10;
+    
       console.log('zoom es: ', this.zoom);
       document.body.style.zoom = this.zoom + '%';
     }
   }
   zoomDown() {
+    if (this.zoom >= 100) {
     this.zoom -= 10;
-    if (this.zoom >= 50) {
+    
       console.log('zoom es: ', this.zoom);
       document.body.style.zoom = this.zoom + '%';
     }

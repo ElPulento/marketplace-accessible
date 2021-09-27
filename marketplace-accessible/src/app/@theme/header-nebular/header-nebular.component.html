@@ -1,24 +1,31 @@
-<div class="header-container">
+<div class="header-container control-item-sm-down">
   <div class="logo-container">
     <a class="logo" routerLink="">Marketplace-accesible</a>
   </div>
   <div class="logo-container">
-    <a class="logo" routerLink="">Inicio</a>
-
     <a class="logo" routerLink="marketplace/create-product">Vender</a>
 
     <a class="logo" routerLink="">Solicitar</a>
-
-    <a class="logo" routerLink="marketplace/information">Informacion</a>
+   
   </div>
 </div>
+<div class="header-container ">
+  <screen-size class="control-item-md-down"></screen-size>
+  <colors-page class="control-item-sm-down"></colors-page>
+  <nb-actions size="small">
+    <nb-action [nbContextMenu]="items" class="control-item-sm-down" icon="settings-2-outline"></nb-action>
+  </nb-actions>
+</div>
 
-<div class="header-container">
-  <div class="header-container">
-    <screen-size></screen-size>
-    <colors-page></colors-page>
-    <nb-actions size="small">
-      <nb-action class="control-item" icon="settings-2-outline"></nb-action>
-    </nb-actions>
-  </div>
+<div class="header-container control-item-xs-up ">
+  
+  <a class="logo" routerLink="marketplace/create-product">Vender</a>
+
+    <a class="logo" routerLink="">Solicitar</a>
+    <nb-search placeholder="Buscar..." hint="Presione ENTER para buscar" type="rotate-layout"></nb-search>
+  <nb-actions  size="small">
+    
+    <nb-action  class="control-item-sm-up" [nbContextMenu]="items" icon="settings-2-outline"></nb-action>
+    
+  </nb-actions>
 </div>

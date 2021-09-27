@@ -8,7 +8,7 @@ import { NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./header-nebular.component.scss']
 })
 export class HeaderNebularComponent implements OnInit {
-  items = [{ title: 'Profile' }, { title: 'Log out' }];
+  items = [{ title: 'Editar interfaz' }, { title: 'Información' }];
  
   constructor(
 

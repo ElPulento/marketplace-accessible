@@ -1,4 +1,63 @@
-<nb-card >
-  <nb-card-header>Main page</nb-card-header>
- 
+<nb-card>
+  <!-- Si esta en modo responsive desactivar aumentar el tamaño de pantalla-->
+  <nb-card-body>
+    <div class="row">
+      <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+        <h1>Bienvenido al marketplace accesible!</h1>
+        <br />
+      </div>
+    </div>
+    <div class="row space">
+      <img
+        src="assets/images/diseño-para-todos.png"
+        alt="Diseño para todos"
+        width="350px"
+        height="350px"
+      />
+
+      <img
+        src="assets/images/mas.png"
+        alt="signo más"
+        width="50px"
+        height="50px"
+      />
+      <img
+        src="assets/images/carro.png"
+        alt="Carro de compras con productos"
+        width="300px"
+        height="300px"
+      />
+    </div>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+        <h1>Explora nuestras categorias</h1>
+      </div>
+      <div class="row">
+        <ng-container *ngFor="let category of categories; let i = index">
+          <nb-card
+            class="card col-12 col-sm-12 col-md-3 col-lg-3"
+            style="margin: 5px"
+          >
+            <nb-card-body>
+              <div>
+                <hr />
+                <h6 class="name">{{ category.name }}</h6>
+                <hr />
+              </div>
+            </nb-card-body>
+            <nb-card-footer
+              ><button class="name" nbButton status="info" style="margin: 10px">
+                <nb-icon icon="eye-outline"></nb-icon>
+                Ver
+              </button></nb-card-footer
+            >
+          </nb-card>
+        </ng-container>
+      </div>
+
+      <br />
+    </div>
+  </nb-card-body>
 </nb-card>

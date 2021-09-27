@@ -10,22 +10,24 @@ export class MainPageComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  goToCreateProduct() {
-    this.router.navigateByUrl(`marketplace/create-product`);
-  }
-  goToListProduct() {
-    this.router.navigateByUrl(`marketplace/list-products`);
-  }
-  goToInformation() {
-    this.router.navigateByUrl(`marketplace/create-product`);
-  }
+  categories = [
+		{
+			name: 'Electrónica',
+		
+		},
+    {
+			name: 'Vehiculos',
+			
+		},
+    {
+			name: 'Vestuario',
+			
+		},
+    {
+			name: 'Videojuegos',
+		
+		},
 
-  change() {
-    const xd = document.getElementById('myAppView');
+  ]
 
-    if (xd !== null) {
-      console.log('ddddddddddddddddddddddd');
-      xd.style.fontSize = '1000%';
-    }
-  }
 }

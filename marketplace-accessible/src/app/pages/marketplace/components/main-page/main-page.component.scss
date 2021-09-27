@@ -1,0 +1,30 @@
+.container {
+    justify-content: center;
+    text-align: center;
+
+  }
+.space{
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-row {
+	display: flex;
+	margin: 0 -0.5rem;
+}
+
+.card-col {
+	flex: 1 0 calc(50% - 1rem);
+	margin: 0 0.5rem;
+}
+
+
+hr.no-space {
+	margin: 0;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.card {
+	box-shadow: 6px 10px 10px #9a9aa3;
+	//justify-content: flex-end;
+}

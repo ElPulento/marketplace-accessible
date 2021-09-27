@@ -13,6 +13,8 @@ import {
   NbActionsModule,
   NbToastrModule,
   NbMenuModule,
+  NbSearchModule,
+  NbContextMenuModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
@@ -48,6 +50,8 @@ import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.c
 			limit: 3,
 		}),
     NbMenuModule.forRoot(),
+    NbSearchModule,
+    NbContextMenuModule,
    
   ],
   exports: [HeaderComponent, FooterComponent,HeaderNebularComponent],
