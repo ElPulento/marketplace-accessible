@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-light">
   <a class="navbar-brand text" style="color: #ffffff" routerLink=""
-    >Marketplace <nb-icon icon="shopping-cart-outline"> </nb-icon>
+    >Marketplace accesible <nb-icon icon="shopping-cart-outline"> </nb-icon>
   </a>
- 
+
   <button
     class="navbar-toggler"
     type="button"
@@ -15,24 +15,25 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form >
-      <input
-      nbInput
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Buscar Productos"
-        aria-label="Search"
-      />
-      <button (click)="goToListProduct()" nbButton status="info" type="submit">
-        Buscar
-      </button>
-    </form>
     <ul class="navbar-nav mr-auto container">
-      <li class="nav-item active">
-        <a class="nav-link text" routerLink=""
-          >Inicio <span class="sr-only">(current)</span></a
+      <form class="form-inline">
+        <input
+          nbInput
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Buscar Productos"
+          aria-label="Search"
+        />
+        <button
+          (click)="goToListProduct()"
+          nbButton
+          status="info"
+          type="submit"
         >
-      </li>
+          <nb-icon icon="search-outline"></nb-icon>
+        </button>
+      </form>
+
       <li class="nav-item">
         <a
           class="nav-link text"
@@ -40,14 +41,6 @@
           routerLink="marketplace/create-product"
           >Vender</a
         >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link text"
-          style="color: #ffffff"
-          routerLink="marketplace/information"
-          >Información
-        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text" style="color: #ffffff" routerLink="auth/login"
@@ -97,17 +90,12 @@
             </div>
           </div>
         </div>
-        <li>
-          <colors-page></colors-page>
-        </li>
-      
-    
+      </li>
+      <li>
+        <colors-page></colors-page>
+      </li>
 
-    
-        
-    
+     
     </ul>
-
-   
   </div>
 </nav>
