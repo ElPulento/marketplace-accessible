@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -18,13 +17,11 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   rows!: number;
   getProductSpinnerLoading!: boolean;
 
-
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.initializeVariables();
   }
-  
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -44,67 +41,107 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.ngOnDestroy();
     this.ngOnInit();
   }
+  goToViewProduct(id : string) {
+    this.router.navigateByUrl(`marketplace/view-product/${id}`);
+  }
 
-  dummy = [
+ listProducts = [
     {
+      id: '1',
       title: 'Mario kart 8 deluxe',
       description:
-        'Aquí debes colocar siendo concreto y preciso los detalles y caracteristicas del producto que estas ofreciendo, sin olvidar ningun detalle importante que pueda ayudar al posible comprador a elegir tu producto.',
+        'Videojuego Mario kart 8 deluxe para consola nintendo switch',
       amount: 5,
-      price: 50000,
-      categories: ['Videojuegos', 'Electronica'],
+      price: '40.000',
+      categories: ['Videojuegos'],
       images: [
-        { name: 'logo-software-testing.png', description: 'logo mario' },
+        {
+          name: 'assets/images/marioKart8.jfif',
+          description: 'Juego mario kart 8 deluxe nuevo',
+        },
       ],
       isActive: true,
     },
     {
-      title: 'Mario kart 9 deluxe',
-      description:
-        'Aquí debes colocar siendo concreto y preciso los detalles y caracteristicas del producto que estas ofreciendo, sin olvidar ningun detalle importante que pueda ayudar al posible comprador a elegir tu producto.',
-      amount: 5,
-      price: 10000,
-      categories: ['Videojuegos', 'Electronica'],
+      id: '2',
+      title: 'Playstation 5, nueva',
+      description: 'Se vende la nueva consola PS5, con un mando.',
+      amount: 2,
+      price: '600.000',
+      categories: ['Videojuegos'],
       images: [
-        { name: 'logo-software-testing.png', description: 'logo mario' },
+        {
+          name: 'assets/images/ps5.jpg',
+          description: 'Nueva consola PS5, con un mando.',
+        },
       ],
       isActive: true,
     },
     {
-      title: 'Mario kart 7 deluxe',
-      description:
-        'Aquí debes colocar siendo concreto y preciso los detalles y caracteristicas del producto que estas ofreciendo, sin olvidar ningun detalle importante que pueda ayudar al posible comprador a elegir tu producto.',
+      id: '3',
+      title: 'Consola nintendo switch',
+      description: 'Consola nintendo switch nueva',
       amount: 5,
-      price: 500,
-      categories: ['Videojuegos', 'Electronica'],
+      price: '250.000',
+      categories: ['vehiculos'],
       images: [
-        { name: 'logo-software-testing.png', description: 'logo mario' },
-      ],
-    },
-    {
-      title: 'Mario kart 64 ',
-      description:
-        'Aquí debes colocar siendo concreto y preciso los detalles y caracteristicas del producto que estas ofreciendo, sin olvidar ningun detalle importante que pueda ayudar al posible comprador a elegir tu producto.',
-      amount: 5,
-      price: 50,
-      categories: ['Videojuegos', 'Electronica'],
-      images: [
-        { name: 'logo-software-testing.png', description: 'logo mario' },
+        {
+          name: 'assets/images/nintendoSwitch.jpg',
+          description: 'Consola nintendo switch nueva',
+        },
       ],
       isActive: true,
     },
     {
-      title: 'Mario kart 8 deluxe',
+      id: '4',
+      title: 'Ford Mustang color naranjo ',
       description:
-        'Aquí debes colocar siendo concreto y preciso los detalles y caracteristicas del producto que estas ofreciendo, sin olvidar ningun detalle importante que pueda ayudar al posible comprador a elegir tu producto.',
-      amount: 5,
-      price: 50,
-      categories: ['Videojuegos', 'Electronica'],
+        'Se vende automóvil Ford Mustang, de color naranjo.\nNuevo y en perfecto estado.',
+      amount: 1,
+      price: '20.000.000',
+      categories: ['Vehiculos'],
       images: [
-        { name: 'logo-software-testing.png', description: 'logo mario' },
+        {
+          file: {},
+          name: 'assets/images/fordMustang.jpg',
+          description: 'Foto del auto en movimiento',
+        },
       ],
-      isActive: false,
-    }
-    
+      isActive: true,
+    },
+    {
+      id: '5',
+      title: 'Polera de nirvana',
+      description:
+        'Se vende polera la banda nirvana.\nse encuentra disponible talla S, M L. \ncualquiera consulta no duden en escribirme.',
+      amount: 10,
+      price: 15000,
+      categories: ['Vestuario'],
+      images: [
+        {
+          name: 'assets/images/poleraNirvana.jpg',
+          description:
+            'Polera nirvana color negra, con el logo coplor amarillo',
+        },
+      ],
+      isActive: true,
+    },
+    {
+      id: '6',
+      title: 'Televisor QLED marca LG',
+      description:
+        'El televisor LG OLED es un placer para la vista. Los píxeles autoiluminados permiten una calidad de imagen realmente espectacular y toda una serie de posibilidades de diseño, mientras que las últimas tecnologías de vanguardia ayudan a ofrecer niveles de maravilla sin precedentes. Esto es todo lo que te encanta de un televisor: superior en todos los sentidos.\n"Descripción proporcionada por la pagina de LG "',
+      amount: 5,
+      price: "400.000",
+      categories: ['Electronica'],
+      images: [
+        {
+          name: 'assets/images/televisorLg.jpg',
+          description:
+            'televisor LG mostrando una flor de cerca',
+        },
+      ],
+      isActive: true,
+    },
   ];
 }

@@ -8,7 +8,7 @@ import { ViewProductComponent } from './components/view-product/view-product.com
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
-  { path: 'view-product', component: ViewProductComponent },
+  { path: 'view-product/:id', component: ViewProductComponent },
   { path: 'list-products', component: ListProductsComponent },
   { path: 'information', component: InformationComponent },
   { path: '', component: MainPageComponent },

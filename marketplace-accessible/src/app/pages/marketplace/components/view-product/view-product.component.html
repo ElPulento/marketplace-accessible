@@ -1,1 +1,18 @@
-<p>view-product works!</p>
+<nb-card>
+    <nb-card-header class="title"> Listado de productos </nb-card-header>
+    <nb-card-body>
+        <ng-container *ngFor="let product of listProducts; let i = index">
+            <div class="row" *ngIf="product.id === productId" style="margin: 10px">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+      
+                    <h1>{{product.title}}</h1>
+                </div>
+              </div>
+        </ng-container>
+        
+       
+       
+
+    </nb-card-body>
+</nb-card>
+  
