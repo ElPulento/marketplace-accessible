@@ -45,7 +45,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`marketplace/view-product/${id}`);
   }
 
- listProducts = [
+  listProducts = [
     {
       id: '1',
       title: 'Mario kart 8 deluxe',
@@ -57,7 +57,15 @@ export class ListProductsComponent implements OnInit, OnDestroy {
       images: [
         {
           name: 'assets/images/marioKart8.jfif',
-          description: 'Juego mario kart 8 deluxe nuevo',
+          description: 'Juego en caja mario kart 8 deluxe para nintendo switch',
+        },
+        {
+          name: 'assets/images/mario-kart-2.jpg',
+          description: 'Imagen referencial del videojuego',
+        },
+        {
+          name: 'assets/images/mario-kart-3.jpg',
+          description: 'Elección de personajes dentro del videojuego',
         },
       ],
       isActive: true,

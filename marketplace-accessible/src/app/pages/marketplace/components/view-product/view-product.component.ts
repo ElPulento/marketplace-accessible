@@ -9,6 +9,7 @@ export class ViewProductComponent implements OnInit {
   
   productId : string
   imagesCounter: number
+  favorites: boolean;
   constructor(
     private route: ActivatedRoute,
   ) {}
@@ -21,12 +22,21 @@ export class ViewProductComponent implements OnInit {
   initializableVariables(){
     this.productId = this.route.snapshot.paramMap.get('id');
     this.imagesCounter = 0;
+    this.favorites = false;
   }
   counterUp(){
     this.imagesCounter+=1;
   }
   counterDown(){
     this.imagesCounter-=1;
+  }
+
+  addFavorites(){
+    this.favorites = true
+  }
+
+  deleteFavorites(){
+    this.favorites = false;
   }
 
   listProducts = [
@@ -41,7 +51,7 @@ export class ViewProductComponent implements OnInit {
       images: [
         {
           name: 'assets/images/marioKart8.jfif',
-          description: 'Juego mario kart 8 deluxe nuevo',
+          description: 'Juego en caja mario kart 8 deluxe para nintendo switch',
         },
         {
           name: 'assets/images/mario-kart-2.jpg',
@@ -49,7 +59,7 @@ export class ViewProductComponent implements OnInit {
         },
         {
           name: 'assets/images/mario-kart-3.jpg',
-          description: 'Eleccion de personajes dentro del videojuego',
+          description: 'Elección de personajes dentro del videojuego',
         },
       ],
       isActive: true,
