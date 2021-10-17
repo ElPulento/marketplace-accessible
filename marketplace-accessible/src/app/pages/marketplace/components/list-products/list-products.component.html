@@ -1,31 +1,18 @@
 <nb-card>
-    <nb-card-header class="title">Listado de productos</nb-card-header>
-    <nb-card-header>
-      <div class="row offset-11">
-        <button
-          nbButton
-          [nbTooltip]="'Actualizar pagina'"
-          (click)="reloadMyOrganizationssList()"
-          status="info"
-          class="actions"
-        >
-          <nb-icon icon="refresh-outline"></nb-icon>
-        </button>
-      </div>
-    </nb-card-header>
-  
+    <nb-card-header class="title"> <strong> Listado de productos</strong> </nb-card-header>
+   
     <nb-card-body [nbSpinner]="getProductSpinnerLoading">
       <div
         style="justify-content: space-around"
-        *ngIf="dummy.length > 0; else noProducts"
+        *ngIf="listProducts.length > 0; else noProducts"
       >
-        <ng-container *ngFor="let product of dummy; let i = index">
-          <nb-card *ngIf="product.isActive" style="margin: 10px">
+        <ng-container *ngFor="let product of listProducts; let i = index">
+          <nb-card accent="info" *ngIf="product.isActive" style="margin: 10px">
             <nb-card-body>
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                   <img
-                    [src]="'assets/images/vender.png' || product.images "
+                    [src]="product.images[0].name"
                     alt=""
                     width="200px"
                     height="200px"
@@ -36,8 +23,9 @@
                   <hr />
                   <h1>${{ product.price }}</h1>
                 </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                  <button nbButton status="success" style="text-align: center;">
+                <div class="col-1"></div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                  <button (click)="goToViewProduct(product.id)" nbButton status="info" style="float: center; margin-top: 4rem;">
                     <nb-icon icon="eye-outline"></nb-icon>
                     Ver producto
                   </button>

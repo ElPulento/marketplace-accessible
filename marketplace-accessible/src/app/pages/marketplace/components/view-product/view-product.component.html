@@ -1,1 +1,125 @@
-<p>view-product works!</p>
+<nb-card>
+  <nb-card-header class="title"> Información del producto </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngFor="let product of listProducts; let i = index">
+      <div class="row" *ngIf="product.id === productId">
+        <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+          <label class="label col-form-label mr-4">Imágenes del producto</label>
+          <br />
+          <img
+            [src]="product.images[this.imagesCounter].name"
+            width="300px"
+            height="300px"
+          />
+          <br />
+
+          <div>
+            <label class="label col-form-label mr-4"
+              >Descripción de la imagen {{ this.imagesCounter + 1 }}</label
+            >
+            <br />
+            <h6>{{ product.images[this.imagesCounter].description }}</h6>
+          </div>
+          <br />
+          <p>Total de imagenes : {{ product.images.length }} imágenes</p>
+          <ng-container>
+            <div class="row">
+              <div>
+                <button
+                  type="button"
+                  status="primary"
+                  size="medium"
+                  nbButton
+                  (click)="counterDown()"
+                  [disabled]="this.imagesCounter === 0"
+                >
+                  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                  Anterior
+                </button>
+              </div>
+              <div class="ml-auto">
+                <button
+                  (click)="counterUp()"
+                  nbButton
+                  type="button"
+                  status="primary"
+                  size="medium"
+                  [disabled]="this.imagesCounter === product.images.length - 1"
+                >
+                  <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <br />
+        </div>
+        <div class="col-3"></div>
+
+        <div class="col-12 col-sm-12 col-md-7 col-lg-4" style="float: right">
+          <label class="label col-form-label mr-4">Nombre del producto</label>
+          <br />
+          <h2>{{ product.title }}</h2>
+          <br />
+          <label class="label col-form-label mr-4">Precio del producto</label>
+          <br />
+          <h2>${{ product.price }}</h2>
+          <br />
+          <label class="label col-form-label mr-4">Favoritos</label>
+          <br />
+
+          <button
+            fullWidth
+            *ngIf="favorites === false"
+            (click)="addFavorites()"
+            type="button"
+            status="danger"
+            size="medium"
+            nbButton
+          >
+            <nb-icon icon="heart-outline"></nb-icon>
+            Agregar a favoritos
+          </button>
+
+          <button
+            fullWidth
+            *ngIf="favorites === true"
+            (click)="deleteFavorites()"
+            type="button"
+            status="danger"
+            size="medium"
+            nbButton
+          >
+            <nb-icon icon="trash-2-outline"></nb-icon>
+            Quitar de favoritos
+          </button>
+          <br />
+          <label class="label col-form-label mr-4">Comunicación</label>
+          <br />
+          <button fullWidth type="button" status="info" size="medium" nbButton>
+            <nb-icon icon="message-circle-outline"></nb-icon>
+            Comunicarse con el vendedor
+          </button>
+          <br />
+          <label class="label col-form-label mr-4">Perfil vendedor</label>
+          <br />
+          <button fullWidth type="button" status="info" size="medium" nbButton>
+            <nb-icon icon="person-outline"></nb-icon>
+            Ver perfil del vendedor
+          </button>
+        </div>
+      </div>
+      <hr *ngIf="product.id === productId" />
+      <br />
+      <div class="row" *ngIf="product.id === productId">
+        <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+          <label class="label col-form-label mr-4"
+            >Descripción del producto</label
+          >
+          <br />
+          <h6>{{ product.description }}</h6>
+        </div>
+      </div>
+    </ng-container>
+  </nb-card-body>
+</nb-card>

@@ -1,7 +1,7 @@
 <nb-card size="giant">
   <nb-card-body>
     <form [formGroup]="productForm">
-   <!--   <p>{{ productForm.value | json }}</p> -->
+      <p>{{ productForm.value | json }}</p> 
 
       <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
@@ -79,6 +79,7 @@
                 [input]="form.title.value?.length || 0"
                 [limit]="titleMaxLength"
               > </character-counter>
+              
 
               <br />
 
@@ -93,6 +94,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">
@@ -105,6 +107,7 @@
                       nbStepperNext
                     >
                       <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
                     </button>
                   </div>
                 </div>
@@ -171,6 +174,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">
@@ -183,6 +187,7 @@
                       nbStepperNext
                     >
                       <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
                     </button>
                   </div>
                 </div>
@@ -237,6 +242,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">
@@ -249,6 +255,7 @@
                       nbStepperNext
                     >
                       <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
                     </button>
                   </div>
                 </div>
@@ -303,6 +310,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">
@@ -315,6 +323,7 @@
                       nbStepperNext
                     >
                       <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
                     </button>
                   </div>
                 </div>
@@ -376,6 +385,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">
@@ -388,6 +398,7 @@
                       nbStepperNext
                     >
                       <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
                     </button>
                   </div>
                 </div>
@@ -435,7 +446,7 @@
                 <br />
                 <button
                   nbButton
-                  status="success"
+                  status="info"
                   size="medium"
                   (click)="hiddenfileinput.click()"
                   disabled="{{ imagesArray.length >= imageMaxLength }}"
@@ -503,6 +514,7 @@
                           [limit]="imageDescriptionMaxLength"
                         ></character-counter>
                       </div>
+                      <!--
                         <div
                           class="
                             container
@@ -525,6 +537,22 @@
                             </nb-icon>
                           </button>
                         </div>
+                      -->
+                      <div
+                      class="
+                        container
+                        right
+                        col-12 col-sm-12 col-md-3 col-lg-3
+                      "
+                    >
+                    
+                      <button (click)="removeFile(i)" nbButton status="danger" style="float: center">
+                        <nb-icon icon="close-circle-outline"></nb-icon>
+                        Eliminar Imagen
+                      </button>
+                    </div>
+
+
                       </div>
                     </nb-card-body>
                   </nb-card>
@@ -541,6 +569,7 @@
                       nbStepperPrevious
                     >
                       <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
                     </button>
                   </div>
                   <div class="ml-auto">

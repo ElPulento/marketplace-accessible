@@ -22,6 +22,8 @@ import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './pages/shared/shared.module';
 import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.c
     NbMenuModule.forRoot(),
     NbSearchModule,
     NbContextMenuModule,
+    MDBBootstrapModule.forRoot(),
+    IvyCarouselModule,
    
   ],
   exports: [HeaderComponent, FooterComponent,HeaderNebularComponent],

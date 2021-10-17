@@ -34,6 +34,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { SharedModule } from '../shared/shared.module';
+import { MDBBootstrapModule, MdbCardImageComponent } from 'angular-bootstrap-md';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
     CreateNewProductComponent,
@@ -74,7 +76,9 @@ import { SharedModule } from '../shared/shared.module';
     MatFormFieldModule,
     MatInputModule,
     MaterialFileInputModule,
-  
+    IvyCarouselModule,
+
+
   ],
   
 })

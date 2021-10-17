@@ -7,6 +7,7 @@ import {
   NbCardModule,
   NbContextMenuModule,
   NbIconModule,
+  NbInputModule,
   NbLayoutModule,
   NbMenuModule,
   NbSearchModule,
@@ -42,7 +43,8 @@ import { ScreenSizeComponent } from './screen-size/screen-size.component';
     NbButtonModule,
     NbSidebarModule.forRoot(),
     NbToggleModule,
-    
+    NbInputModule,
+  
   ],
   exports: [ColorsPageComponent,SidebarComponent, FooterComponent,ScreenSizeComponent]
 })
