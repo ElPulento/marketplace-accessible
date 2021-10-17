@@ -1,18 +1,72 @@
 <nb-card>
-    <nb-card-header class="title"> Listado de productos </nb-card-header>
-    <nb-card-body>
-        <ng-container *ngFor="let product of listProducts; let i = index">
-            <div class="row" *ngIf="product.id === productId" style="margin: 10px">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-      
-                    <h1>{{product.title}}</h1>
-                </div>
+  <nb-card-header class="title"> Información del producto </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngFor="let product of listProducts; let i = index">
+      <div class="row" *ngIf="product.id === productId" style="margin: 10px">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <label class="label col-form-label mr-4">Fotos del producto</label>
+          <br />
+          <img
+            [src]="product.images[this.imagesCounter].name"
+            width="300px"
+            height="300px"
+          />
+          <br />
+          <label class="label col-form-label mr-4"
+            >Descripción del producto</label
+          >
+          <br />
+          <h6>{{ product.images[this.imagesCounter].description }}</h6>
+          <ng-container>
+            <div class="row">
+              <div>
+                <button
+                  type="button"
+                  status="primary"
+                  size="medium"
+                  nbButton
+                  (click)="counterDown()"
+                  [disabled]="this.imagesCounter === 0"
+                >
+                  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                  Anterior
+                </button>
               </div>
-        </ng-container>
-        
-       
-       
+              <div class="ml-auto">
+                <button
+                  (click)="counterUp()"
+                  nbButton
+                  type="button"
+                  status="primary"
+                  size="medium"
+                  [disabled]="this.imagesCounter === product.images.length - 1"
+                >
+                  <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
 
-    </nb-card-body>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="row">
+            <label class="label col-form-label mr-4">Nombre del producto</label>
+            <h1>{{ product.title }}</h1>
+          </div>
+          <label class="label col-form-label mr-4">Precio del producto</label>
+          <div class="row">${{ product.price }}</div>
+          <label class="label col-form-label mr-4">Favoritos</label>
+          <div class="row">Agregalo a favoritos</div>
+        </div>
+        <hr />
+        <br />
+        <!-- <div class="col-12" style="text-align: left;">
+          <h6>Descripción del producto</h6>
+          <br>
+          {{ product.description }}
+        </div>
+      --></div>
+    </ng-container>
+  </nb-card-body>
 </nb-card>
-  

@@ -8,13 +8,25 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewProductComponent implements OnInit {
   
   productId : string
+  imagesCounter: number
   constructor(
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    this.initializableVariables()
+   
+  }
+  
+  initializableVariables(){
     this.productId = this.route.snapshot.paramMap.get('id');
-    console.log(this.productId)
+    this.imagesCounter = 0;
+  }
+  counterUp(){
+    this.imagesCounter+=1;
+  }
+  counterDown(){
+    this.imagesCounter-=1;
   }
 
   listProducts = [
@@ -30,6 +42,14 @@ export class ViewProductComponent implements OnInit {
         {
           name: 'assets/images/marioKart8.jfif',
           description: 'Juego mario kart 8 deluxe nuevo',
+        },
+        {
+          name: 'assets/images/mario-kart-2.jpg',
+          description: 'Imagen referencial del videojuego',
+        },
+        {
+          name: 'assets/images/mario-kart-3.jpg',
+          description: 'Eleccion de personajes dentro del videojuego',
         },
       ],
       isActive: true,
