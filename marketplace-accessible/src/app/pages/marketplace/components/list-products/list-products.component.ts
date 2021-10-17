@@ -123,7 +123,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
       description:
         'Se vende polera la banda nirvana.\nse encuentra disponible talla S, M L. \ncualquiera consulta no duden en escribirme.',
       amount: 10,
-      price: 15000,
+      price: 15.000,
       categories: ['Vestuario'],
       images: [
         {

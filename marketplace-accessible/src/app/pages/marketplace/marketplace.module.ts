@@ -27,6 +27,7 @@ import {
   NbLayoutModule,
   NbActionsModule,
   NbDialogModule,
+  NbChatModule,
  
 } from '@nebular/theme';
 import { InformationComponent } from './components/information/information.component';
@@ -77,6 +78,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatInputModule,
     MaterialFileInputModule,
     IvyCarouselModule,
+    NbChatModule,
+    NbWindowModule.forChild(),
 
 
   ],
