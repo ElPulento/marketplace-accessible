@@ -15,6 +15,7 @@ import {
   NbMenuModule,
   NbSearchModule,
   NbContextMenuModule,
+  NbWindowModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
@@ -56,6 +57,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NbContextMenuModule,
     MDBBootstrapModule.forRoot(),
     IvyCarouselModule,
+    NbWindowModule.forRoot(),
    
   ],
   exports: [HeaderComponent, FooterComponent,HeaderNebularComponent],

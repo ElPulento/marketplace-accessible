@@ -96,7 +96,7 @@
           <br />
           <label class="label col-form-label mr-4">Comunicación</label>
           <br />
-          <button fullWidth type="button" status="info" size="medium" nbButton>
+          <button (click)="openWindowWithBackdrop()" fullWidth type="button" status="info" size="medium" nbButton>
             <nb-icon icon="message-circle-outline"></nb-icon>
             Comunicarse con el vendedor
           </button>
@@ -122,4 +122,27 @@
       </div>
     </ng-container>
   </nb-card-body>
+
+
+  <ng-template #escClose>
+    <nb-chat status="info" title="Vendedor" size="large">
+      <nb-chat-message *ngFor="let msg of messages"
+      
+                       [type]="msg.type"
+                       [message]="msg.text"
+                       [reply]="msg.reply"
+                       [sender]="msg.user.name"
+                       [date]="msg.date"
+                       [files]="msg.files"
+                       [quote]="msg.quote"
+                       [latitude]="msg.latitude"
+                       [longitude]="msg.longitude"
+                       [avatar]="msg.user.avatar">
+      </nb-chat-message>
+      <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true" messagePlaceholder="Escriba un mensaje al vendedor">
+      </nb-chat-form>
+    </nb-chat>
+  </ng-template>
+
 </nb-card>
+

@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+
 @Component({
   selector: 'app-view-product',
   templateUrl: './view-product.component.html',
@@ -7,23 +9,47 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewProductComponent implements OnInit {
   
+  
   productId : string
   imagesCounter: number
   favorites: boolean;
+  messages: any[];
+  minimize: boolean;
+  maximize: boolean;
+  fullScreen: boolean;
   constructor(
     private route: ActivatedRoute,
-  ) {}
+    private windowService: NbWindowService
+   ) {}
 
   ngOnInit(): void {
     this.initializableVariables()
    
   }
+  @ViewChild('escClose', { read: TemplateRef }) escCloseTemplate: TemplateRef<HTMLElement>;
   
   initializableVariables(){
     this.productId = this.route.snapshot.paramMap.get('id');
     this.imagesCounter = 0;
     this.favorites = false;
+    this.minimize = false;
+    this.maximize = false;
+    this.fullScreen = true;
+
   }
+  openWindowWithBackdrop() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+    this.windowService.open(
+      this.escCloseTemplate,
+      { title: 'Chat con vendedor', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
+
+
   counterUp(){
     this.imagesCounter+=1;
   }
@@ -38,6 +64,29 @@ export class ViewProductComponent implements OnInit {
   deleteFavorites(){
     this.favorites = false;
   }
+
+  sendMessage(event: any) {
+    const files = !event.files ? [] : event.files.map((file) => {
+      return {
+        url: file.src,
+        type: file.type,
+        icon: 'file-text-outline',
+      };
+    });
+
+    this.messages.push({
+      text: event.message,
+      date: new Date(),
+      reply: true,
+      type: files.length ? 'file' : 'text',
+      files: files,
+      user: {
+        name: 'Jonh Doe',
+        avatar: 'https://i.gifer.com/no.gif',
+      },
+    });
+  
+}
 
   listProducts = [
     {
@@ -117,7 +166,7 @@ export class ViewProductComponent implements OnInit {
       description:
         'Se vende polera la banda nirvana.\nse encuentra disponible talla S, M L. \ncualquiera consulta no duden en escribirme.',
       amount: 10,
-      price: 15000,
+      price: 15.000,
       categories: ['Vestuario'],
       images: [
         {
