@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md  fixed-top navbar-light">
+<!--<nav class="navbar navbar-expand-md  fixed-top navbar-light">
   <a class="navbar-brand text" style="color: #ffffff" routerLink=""
     >Marketplace accesible <nb-icon icon="shopping-cart-outline"> </nb-icon>
   </a>
@@ -49,7 +49,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <!-- <input [value]="zoom" (change)="onzoom($event)" />% -->
+         <input [value]="zoom" (change)="onzoom($event)" />% 
       </li>
       <li class="nav-item dropdown">
         <a
@@ -99,4 +99,101 @@
      
     </ul>
   </div>
+</nav>-->
+
+<!--<nav class="menu fixed-top">
+  <label class="logo">Marketplace</label>
+  <div class="container-fluid">
+    <div class="column">
+      <div class="col-lg-4">
+        <p>
+          <input type="search" name="busquedamusica" placeholder="Canción, autor, álbum...">
+          <input type="submit" value="Buscar">
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <ul class="menu_items" id="mode">
+          <li><a routerLink="">Inicio</a></li>
+          <li><a routerLink="marketplace/create-product">Vender</a></li>
+          <li><a routerLink="">Información</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+  <span class="btn_menu" (click)="showMenu()">
+    <i class="fa fa-bars"></i>
+  </span>
+  <p>nicolas</p>
+</nav>-->
+
+<nav class="menu fixed-top">
+  <label class="logo">Marketplace</label>
+  <ul class="menu_items" id="mode">
+    <li>
+      <input
+        nbInput
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Buscar Productos"
+        aria-label="Search"
+      />
+    </li>
+    <li>
+      <button (click)="goToListProduct()" nbButton status="info" type="submit">
+        <nb-icon icon="search-outline"></nb-icon>
+        Buscar
+      </button>
+    </li>
+    <li><a routerLink="">Inicio</a></li>
+    <li><a routerLink="marketplace/create-product">Vender</a></li>
+    <li><a routerLink="">Información</a></li>
+    <li><a routerLink="">Iniciar Sesión</a></li>
+    <li><a routerLink="">Registrarse</a></li>
+    <li><colors-page></colors-page></li>
+  </ul>
+  <span class="btn_menu" (click)="showMenu()">
+    <i class="fa fa-bars"></i>
+  </span>
+</nav>
+
+
+<nav class="menu fixed-top">
+  <label class="logo">Marketplace</label>
+  <div class="container">
+    <div class="column">
+      <div>
+        <ul class="menu_items" id="mode"> 
+          <li>
+            <input style="margin-left: 10px;"
+              nbInput
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Buscar Productos"
+              aria-label="Search"
+            />
+          </li>
+          <li>
+            <button (click)="goToListProduct()" nbButton status="info" type="submit" style="margin-left: 5px;">
+              <nb-icon icon="search-outline"></nb-icon>
+              Buscar
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="menu_items" id="mode" style="margin-top: 5px;">
+          <li><a routerLink="">Inicio</a></li>
+          <li><a routerLink="marketplace/create-product">Vender</a></li>
+          <li><a routerLink="">Información</a></li>
+          <li><a routerLink="">Iniciar Sesión</a></li>
+          <li><a routerLink="">Registrarse</a></li>
+          <li><colors-page></colors-page></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <span class="btn_menu" (click)="showMenu()">
+    <i class="fa fa-bars"></i>
+  </span>
 </nav>
