@@ -23,9 +23,6 @@
   height: 70px;
 }
 
-
-
-
 .menu {
   background-color: rgb(139, 110, 177);
   height: 100px;
@@ -112,7 +109,7 @@ ul.menu_items {
     position: fixed;
     width: 100vw;
     height: calc(100% - 65px);
-    background-color: #414141;
+    background-color: rgb(139, 110, 177);
     top: -100vh;
     text-align: center;
     transition: all .4s;

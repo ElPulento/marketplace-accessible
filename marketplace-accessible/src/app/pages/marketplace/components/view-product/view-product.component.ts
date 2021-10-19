@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 
 @Component({
@@ -13,20 +13,22 @@ export class ViewProductComponent implements OnInit {
   productId : string
   imagesCounter: number
   favorites: boolean;
-  messages: any[];
+ 
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
   constructor(
     private route: ActivatedRoute,
-    private windowService: NbWindowService
+    private windowService: NbWindowService,
+    private router : Router
    ) {}
 
   ngOnInit(): void {
     this.initializableVariables()
    
   }
-  @ViewChild('escClose', { read: TemplateRef }) escCloseTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('chat', { read: TemplateRef }) chatTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('profile', { read: TemplateRef }) profileTemplate: TemplateRef<HTMLElement>;
   
   initializableVariables(){
     this.productId = this.route.snapshot.paramMap.get('id');
@@ -37,15 +39,27 @@ export class ViewProductComponent implements OnInit {
     this.fullScreen = true;
 
   }
-  openWindowWithBackdrop() {
+  openWindowChat() {
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,
       fullScreen: this.fullScreen,
     }
     this.windowService.open(
-      this.escCloseTemplate,
+      this.chatTemplate,
       { title: 'Chat con vendedor', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
+
+  openWindowProfile() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+    this.windowService.open(
+      this.profileTemplate,
+      { title: 'Perfil del vendedor', hasBackdrop: true, buttons: buttonsConfig },
     );
   }
 
@@ -64,8 +78,24 @@ export class ViewProductComponent implements OnInit {
   deleteFavorites(){
     this.favorites = false;
   }
+  messages: any[] = [
+    {
+      type: 'text',
+      text: 'Hola! realiza tus consultas sobre el producto!',
+      customMessageData: {
+     
+        text: 'Hola! consulta tus preguntas sobre el producto',
+      },
+      reply: false,
+      date: new Date(),
+      user: {
+        name: 'Vendedor',
+       
+      },
+    },
+  ];
 
-  sendMessage(event: any) {
+  sendMessage(event) {
     const files = !event.files ? [] : event.files.map((file) => {
       return {
         url: file.src,
@@ -77,24 +107,24 @@ export class ViewProductComponent implements OnInit {
     this.messages.push({
       text: event.message,
       date: new Date(),
-      reply: true,
-      type: files.length ? 'file' : 'text',
       files: files,
+      type: files.length ? 'file' : 'text',
+      reply: true,
       user: {
-        name: 'Jonh Doe',
-        avatar: 'https://i.gifer.com/no.gif',
+        name: 'Usuario comprador',
       },
     });
-  
+  }
+
+goToListProduct() {
+  this.router.navigateByUrl(`marketplace/list-products`);
 }
 
   listProducts = [
     {
       id: '1',
       title: 'Mario kart 8 deluxe',
-      description:
-        'Videojuego Mario kart 8 deluxe para consola nintendo switch',
-      amount: 5,
+      "description": "Compite con tus amigos encarreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.",
       price: '40.000',
       categories: ['Videojuegos'],
       images: [

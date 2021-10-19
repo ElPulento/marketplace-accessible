@@ -1,10 +1,21 @@
 <nb-card>
-  <nb-card-header class="title"> Información del producto </nb-card-header>
+  <nb-card-header class="title"> Información del producto
+ 
+    <nb-actions size="small" class="buttonClose">
+			<nb-action
+      (click)="goToListProduct()"
+        style="text-align: right;"
+				icon="arrow-back-outline"
+				[nbTooltip]="'Volver a listado de productos.'"
+				nbTooltipStatus="info"
+			></nb-action>
+		</nb-actions>
+   </nb-card-header>
   <nb-card-body>
     <ng-container *ngFor="let product of listProducts; let i = index">
       <div class="row" *ngIf="product.id === productId">
-        <div class="col-12 col-sm-12 col-md-5 col-lg-5">
-          <label class="label col-form-label mr-4">Imágenes del producto</label>
+        <div class="col-12 col-sm-12 col-md-5 col-lg-5" style="text-align: center;">
+          <label class="label col-form-label mr-4" >Imágenes del producto</label>
           <br />
           <img
             [src]="product.images[this.imagesCounter].name"
@@ -21,7 +32,8 @@
             <h6>{{ product.images[this.imagesCounter].description }}</h6>
           </div>
           <br />
-          <p>Total de imagenes : {{ product.images.length }} imágenes</p>
+          <p *ngIf="product.images.length !== 1">Total de imagenes : {{ product.images.length }} imágenes</p>
+          <p *ngIf="product.images.length === 1">Total de imagenes : {{ product.images.length }} imagen</p>
           <ng-container>
             <div class="row">
               <div>
@@ -90,20 +102,20 @@
             size="medium"
             nbButton
           >
-            <nb-icon icon="trash-2-outline"></nb-icon>
+            <nb-icon icon="heart"></nb-icon>
             Quitar de favoritos
           </button>
           <br />
           <label class="label col-form-label mr-4">Comunicación</label>
           <br />
-          <button (click)="openWindowWithBackdrop()" fullWidth type="button" status="info" size="medium" nbButton>
+          <button (click)="openWindowChat()" fullWidth type="button" style="background-color:#54A59E; color: white;" size="medium" nbButton>
             <nb-icon icon="message-circle-outline"></nb-icon>
             Comunicarse con el vendedor
           </button>
           <br />
           <label class="label col-form-label mr-4">Perfil vendedor</label>
           <br />
-          <button fullWidth type="button" status="info" size="medium" nbButton>
+          <button (click)="openWindowProfile()" fullWidth type="button" style="background-color:#54A59E;color: white;" size="medium" nbButton>
             <nb-icon icon="person-outline"></nb-icon>
             Ver perfil del vendedor
           </button>
@@ -112,7 +124,7 @@
       <hr *ngIf="product.id === productId" />
       <br />
       <div class="row" *ngIf="product.id === productId">
-        <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8">
           <label class="label col-form-label mr-4"
             >Descripción del producto</label
           >
@@ -124,7 +136,7 @@
   </nb-card-body>
 
 
-  <ng-template #escClose>
+  <ng-template #chat>
     <nb-chat status="info" title="Vendedor" size="large">
       <nb-chat-message *ngFor="let msg of messages"
       
@@ -142,6 +154,10 @@
       <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true" messagePlaceholder="Escriba un mensaje al vendedor">
       </nb-chat-form>
     </nb-chat>
+  </ng-template>
+
+  <ng-template #profile let-data>
+    <p>Perfil del vendedor</p>
   </ng-template>
 
 </nb-card>
