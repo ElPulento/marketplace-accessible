@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+import { NbDialogService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 
 @Component({
   selector: 'app-view-product',
@@ -13,14 +13,14 @@ export class ViewProductComponent implements OnInit {
   productId : string
   imagesCounter: number
   favorites: boolean;
- 
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
+  starValue: HTMLElement;
   constructor(
     private route: ActivatedRoute,
     private windowService: NbWindowService,
-    private router : Router
+    private router : Router,
    ) {}
 
   ngOnInit(): void {
@@ -29,6 +29,7 @@ export class ViewProductComponent implements OnInit {
   }
   @ViewChild('chat', { read: TemplateRef }) chatTemplate: TemplateRef<HTMLElement>;
   @ViewChild('profile', { read: TemplateRef }) profileTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('qualification', { read: TemplateRef }) qualificationTemplate: TemplateRef<HTMLElement>;
   
   initializableVariables(){
     this.productId = this.route.snapshot.paramMap.get('id');
@@ -37,6 +38,8 @@ export class ViewProductComponent implements OnInit {
     this.minimize = false;
     this.maximize = false;
     this.fullScreen = true;
+    this.starValue = document.getElementById("radio1");;
+    console.log(this.starValue, ' star')
 
   }
   openWindowChat() {
@@ -59,8 +62,26 @@ export class ViewProductComponent implements OnInit {
     }
     this.windowService.open(
       this.profileTemplate,
-      { title: 'Perfil del vendedor', hasBackdrop: true, buttons: buttonsConfig },
+      { title: 'Datos del vendedor', hasBackdrop: true, buttons: buttonsConfig },
     );
+  }
+  openWindowQualification(){
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+    this.windowService.open(
+      this.qualificationTemplate,
+      { title: 'Calificar vendedor', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
+
+
+  star(value){
+    this.starValue = value;
+    return this.starValue;
+
   }
 
 
@@ -124,7 +145,7 @@ goToListProduct() {
     {
       id: '1',
       title: 'Mario kart 8 deluxe',
-      "description": "Compite con tus amigos encarreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.",
+      description: 'Compite con tus amigos en carreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.',
       price: '40.000',
       categories: ['Videojuegos'],
       images: [
@@ -196,7 +217,7 @@ goToListProduct() {
       description:
         'Se vende polera la banda nirvana.\nse encuentra disponible talla S, M L. \ncualquiera consulta no duden en escribirme.',
       amount: 10,
-      price: 15.000,
+      price: '15.000',
       categories: ['Vestuario'],
       images: [
         {

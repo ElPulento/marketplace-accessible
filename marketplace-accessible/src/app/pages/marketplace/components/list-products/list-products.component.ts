@@ -49,9 +49,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     {
       id: '1',
       title: 'Mario kart 8 deluxe',
-      description:
-        'Videojuego Mario kart 8 deluxe para consola nintendo switch',
-      amount: 5,
+      description: 'Compite con tus amigos en carreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.',
       price: '40.000',
       categories: ['Videojuegos'],
       images: [
@@ -123,7 +121,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
       description:
         'Se vende polera la banda nirvana.\nse encuentra disponible talla S, M L. \ncualquiera consulta no duden en escribirme.',
       amount: 10,
-      price: 15.000,
+      price: '15.000',
       categories: ['Vestuario'],
       images: [
         {

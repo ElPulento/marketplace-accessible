@@ -1,21 +1,25 @@
 <nb-card>
-  <nb-card-header class="title"> Información del producto
- 
+  <nb-card-header class="title">
+    Información del producto
+
     <nb-actions size="small" class="buttonClose">
-			<nb-action
-      (click)="goToListProduct()"
-        style="text-align: right;"
-				icon="arrow-back-outline"
-				[nbTooltip]="'Volver a listado de productos.'"
-				nbTooltipStatus="info"
-			></nb-action>
-		</nb-actions>
-   </nb-card-header>
+      <nb-action
+        (click)="goToListProduct()"
+        style="text-align: right"
+        icon="arrow-back-outline"
+        [nbTooltip]="'Volver a listado de productos.'"
+        nbTooltipStatus="info"
+      ></nb-action>
+    </nb-actions>
+  </nb-card-header>
   <nb-card-body>
     <ng-container *ngFor="let product of listProducts; let i = index">
       <div class="row" *ngIf="product.id === productId">
-        <div class="col-12 col-sm-12 col-md-5 col-lg-5" style="text-align: center;">
-          <label class="label col-form-label mr-4" >Imágenes del producto</label>
+        <div
+          class="col-12 col-sm-12 col-md-5 col-lg-5"
+          style="text-align: center"
+        >
+          <label class="label col-form-label mr-4">Imágenes del producto</label>
           <br />
           <img
             [src]="product.images[this.imagesCounter].name"
@@ -32,8 +36,12 @@
             <h6>{{ product.images[this.imagesCounter].description }}</h6>
           </div>
           <br />
-          <p *ngIf="product.images.length !== 1">Total de imagenes : {{ product.images.length }} imágenes</p>
-          <p *ngIf="product.images.length === 1">Total de imagenes : {{ product.images.length }} imagen</p>
+          <p *ngIf="product.images.length !== 1">
+            Total de imagenes : {{ product.images.length }} imágenes
+          </p>
+          <p *ngIf="product.images.length === 1">
+            Total de imagenes : {{ product.images.length }} imagen
+          </p>
           <ng-container>
             <div class="row">
               <div>
@@ -108,16 +116,44 @@
           <br />
           <label class="label col-form-label mr-4">Comunicación</label>
           <br />
-          <button (click)="openWindowChat()" fullWidth type="button" style="background-color:#54A59E; color: white;" size="medium" nbButton>
+          <button
+            (click)="openWindowChat()"
+            fullWidth
+            type="button"
+            style="background-color: #54a59e; color: white"
+            size="medium"
+            nbButton
+          >
             <nb-icon icon="message-circle-outline"></nb-icon>
             Comunicarse con el vendedor
           </button>
           <br />
           <label class="label col-form-label mr-4">Perfil vendedor</label>
           <br />
-          <button (click)="openWindowProfile()" fullWidth type="button" style="background-color:#54A59E;color: white;" size="medium" nbButton>
+          <button
+            (click)="openWindowProfile()"
+            fullWidth
+            type="button"
+            style="background-color: #54a59e; color: white"
+            size="medium"
+            nbButton
+          >
             <nb-icon icon="person-outline"></nb-icon>
-            Ver perfil del vendedor
+            Ver datos del vendedor
+          </button>
+          <br />
+          <label class="label col-form-label mr-4">Calificación</label>
+          <br />
+          <button
+            (click)="openWindowQualification()"
+            fullWidth
+            type="button"
+            style="background-color: #54a59e; color: white"
+            size="medium"
+            nbButton
+          >
+            <nb-icon icon="star-outline"></nb-icon>
+            Calificar atención del vendedor
           </button>
         </div>
       </div>
@@ -135,30 +171,121 @@
     </ng-container>
   </nb-card-body>
 
-
   <ng-template #chat>
-    <nb-chat status="info" title="Vendedor" size="large">
-      <nb-chat-message *ngFor="let msg of messages"
-      
-                       [type]="msg.type"
-                       [message]="msg.text"
-                       [reply]="msg.reply"
-                       [sender]="msg.user.name"
-                       [date]="msg.date"
-                       [files]="msg.files"
-                       [quote]="msg.quote"
-                       [latitude]="msg.latitude"
-                       [longitude]="msg.longitude"
-                       [avatar]="msg.user.avatar">
+    <nb-chat status="info" title="Vendedor" size="medium">
+      <nb-chat-message
+        *ngFor="let msg of messages"
+        [type]="msg.type"
+        [message]="msg.text"
+        [reply]="msg.reply"
+        [sender]="msg.user.name"
+        [date]="msg.date"
+        [files]="msg.files"
+        [quote]="msg.quote"
+        [latitude]="msg.latitude"
+        [longitude]="msg.longitude"
+        [avatar]="msg.user.avatar"
+      >
       </nb-chat-message>
-      <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true" messagePlaceholder="Escriba un mensaje al vendedor">
+      <nb-chat-form
+        (send)="sendMessage($event)"
+        [dropFiles]="true"
+        messagePlaceholder="Escriba un mensaje al vendedor"
+      >
       </nb-chat-form>
     </nb-chat>
   </ng-template>
 
   <ng-template #profile let-data>
-    <p>Perfil del vendedor</p>
+    <div class="row">
+      <div class="col-12">
+        <label class="label col-form-label mr-4">Nombre y apellido</label>
+        <br />
+        <strong>Vendedor market </strong>
+        <br />
+        <label class="label col-form-label mr-4">Número de contacto </label>
+        <br />
+        <strong> +56912345678</strong>
+        <br />
+        <label class="label col-form-label mr-4">Correo electrónico</label>
+        <br />
+        <strong>market.accesible@correo.com</strong>
+        <br />
+      </div>
+    </div>
   </ng-template>
 
+  <ng-template #qualification let-data let-ref="dialogRef">
+    <div class="row">
+      <div class="col-12">
+        <label class="label col-form-label mr-4"
+          >Calificación atención del vendedor</label
+        >
+        <br />
+        <form>
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="5" /><!--
+        --><label for="radio1">
+              <nb-icon
+                (click)="star(5)"
+                [options]="{ animation: { type: 'pulse' } }"
+                icon="star-outline"
+              ></nb-icon></label
+            ><!--
+        --><input id="radio2" type="radio" name="estrellas" value="4" /><!--
+        --><label for="radio2"
+              ><nb-icon
+                (click)="star(4)"
+                [options]="{ animation: { type: 'pulse' } }"
+                icon="star-outline"
+              ></nb-icon></label
+            ><!--
+        --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
+        --><label for="radio3"
+              ><nb-icon
+                (click)="star(3)"
+                [options]="{ animation: { type: 'pulse' } }"
+                icon="star-outline"
+              ></nb-icon></label
+            ><!--
+        --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
+        --><label for="radio4"
+              ><nb-icon
+                (click)="star(2)"
+                [options]="{ animation: { type: 'pulse' } }"
+                icon="star-outline"
+              ></nb-icon></label
+            ><!--
+        --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
+        --><label for="radio5"
+              ><nb-icon
+                (click)="star(1)"
+                [options]="{ animation: { type: 'pulse' } }"
+                icon="star-outline"
+              ></nb-icon
+            ></label>
+          </p>
+        </form>
+      </div>
+    </div>
+    <!--
+    <ng-container>
+      <div class="row">
+     
+        <div class="ml-auto">
+          <button
+           [disabled]="!starValue"
+            nbButton
+            outline
+            shape="round"
+            status="info"
+           
+          >
+            Guardar Calificación
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  -->
+  </ng-template>
 </nb-card>
-
