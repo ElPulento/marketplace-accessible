@@ -24,8 +24,10 @@ import {
   NbActionsModule,
   NbDialogModule,
   NbChatModule,
+  NbCheckboxModule,
  
 } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -54,6 +56,9 @@ import {
     NbListModule,
     NbDialogModule,
     NbActionsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbCheckboxModule,
   ],
 })
 export class AuthModule {}

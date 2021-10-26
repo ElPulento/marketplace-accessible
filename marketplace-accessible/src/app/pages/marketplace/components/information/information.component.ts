@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-information',
@@ -8,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class InformationComponent implements OnInit {
 
   constructor() { }
-
+  @ViewChild('item1') accordion;
+  
+  
   ngOnInit(): void {
+  }
+
+ 
+
+  toggle() {
+    this.accordion.toggle();
   }
 
 }
