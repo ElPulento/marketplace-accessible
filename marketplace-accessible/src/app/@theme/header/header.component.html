@@ -127,6 +127,7 @@
   <p>nicolas</p>
 </nav>-->
 
+<!-- RESPONSIVE -->
 <nav class="menu fixed-top">
   <label class="logo">Marketplace</label>
   <ul class="menu_items" id="mode">
@@ -157,7 +158,7 @@
   </span>
 </nav>
 
-
+<!-- NORMAL -->
 <nav class="menu fixed-top">
   <label class="logo">Marketplace</label>
   <div class="container">
@@ -186,14 +187,20 @@
           <li><a routerLink="">Inicio</a></li>
           <li><a routerLink="marketplace/create-product">Vender</a></li>
           <li><a routerLink="marketplace/information">Información</a></li>
-          <li><a routerLink="auth/login">Iniciar Sesión</a></li>
-          <li><a routerLink="auth/register">Registrarse</a></li>
+          
           <li><colors-page></colors-page></li>
         </ul>
       </div>
     </div>
   </div>
+  <ul class="menu_items" id="mode">
+    <li>
+        <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="focus" nbContextMenuTag="my-context-menu"> <nb-icon icon="settings-2-outline"></nb-icon>Opciones</button>
+    </li>
+  </ul>
+  
   <span class="btn_menu" (click)="showMenu()">
     <i class="fa fa-bars"></i>
   </span>
+  
 </nav>

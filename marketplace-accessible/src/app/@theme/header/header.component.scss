@@ -26,6 +26,7 @@
 .menu {
   background-color: rgb(139, 110, 177);
   height: 100px;
+  justify-content: space-around;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -87,7 +88,7 @@ ul.menu_items {
   padding: 0 0 0 0;
 }
 
-@media screen and (max-width: 952px){
+@media screen and (max-width: 1400px){
   .logo {
     font-size: 30px;
     padding-left: 35px;
@@ -97,7 +98,7 @@ ul.menu_items {
   }
 }
 
-@media screen and (max-width: 858px) {
+@media screen and (max-width: 1400px) {
   .menu {
     height: 65px;
     justify-content: space-between;
@@ -145,8 +146,3 @@ ul.menu_items {
     height: calc(100% - 65px);
   }
 }
-/*@media (max-width: 800px) {
-  .navbar-custom {
-    height: 230px;
-  }
-}*/
