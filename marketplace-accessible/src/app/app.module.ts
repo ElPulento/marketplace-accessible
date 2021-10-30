@@ -16,6 +16,7 @@ import {
   NbSearchModule,
   NbContextMenuModule,
   NbWindowModule,
+  NbDatepickerModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { FooterComponent } from './@theme/footer/footer.component';
@@ -24,11 +25,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './pages/shared/shared.module';
 import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
-
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { eo, es } from 'date-fns/locale';
 
 @NgModule({
-  declarations: [AppComponent,HeaderComponent,HeaderNebularComponent],
+  declarations: [AppComponent, HeaderComponent, HeaderNebularComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -46,21 +48,24 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NbButtonModule,
     NbActionsModule,
     NbToastrModule.forRoot({
-			hasIcon: true,
-			duration: 6000,
-			preventDuplicates: true,
-			destroyByClick: true,
-			limit: 3,
-		}),
+      hasIcon: true,
+      duration: 6000,
+      preventDuplicates: true,
+      destroyByClick: true,
+      limit: 3,
+    }),
     NbMenuModule.forRoot(),
     NbSearchModule,
     NbContextMenuModule,
     MDBBootstrapModule.forRoot(),
     IvyCarouselModule,
     NbWindowModule.forRoot(),
-   
+    NbDatepickerModule.forRoot(),
+    NbDateFnsDateModule.forRoot({
+      format: 'dd.MM.yyyy'
+    }),
   ],
-  exports: [HeaderComponent, FooterComponent,HeaderNebularComponent],
+  exports: [HeaderComponent, FooterComponent, HeaderNebularComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

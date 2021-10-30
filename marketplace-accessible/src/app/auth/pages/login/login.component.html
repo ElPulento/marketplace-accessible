@@ -5,8 +5,9 @@
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 container">
           <h1>Iniciar Sesión</h1>
           <p class="sub-title">Hola! Ingresa con tu correo electrónico y contraseña.</p>
-          <label class="label col-form-label mr-4">Correo electrónico</label>
+          
           <nb-form-field>
+            <label style="float: left;" class="label col-form-label mr-4">Correo electrónico</label>
             <input
               nbInput
               fullWidth
@@ -29,11 +30,12 @@
           >
             El Correo electrónico es requerido
           </p>
-          <br />
-
-          <label class="label col-form-label mr-4">Contraseña</label>
-         
+      
+        
+          
+         <br>
           <nb-form-field>
+            <label style="float: left;" class="label col-form-label mr-4">Contraseña</label>
             <input
               fullWidth
               type="password"
@@ -48,7 +50,7 @@
                   : 'success'
               "
             />
-            <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+            <button style="margin-top: 2rem" ghost nbSuffix nbButton (click)="toggleShowPassword()">
               <nb-icon
                 [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
                 pack="eva"
@@ -58,9 +60,11 @@
               >
               </nb-icon>
             </button>
-            <a style="text-align: right;" routerlink="" class="forgot-password caption-2" href="auth/login">¿Olvidaste la contraseña?</a>
+          
 
           </nb-form-field>
+          <br>
+          <a style="float: right;" class="text-link" routerlink="" class="forgot-password caption-2" href="auth/login">¿Olvidaste la contraseña?</a>
           
           <br />
           <p

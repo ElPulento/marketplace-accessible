@@ -25,9 +25,13 @@ import {
   NbDialogModule,
   NbChatModule,
   NbCheckboxModule,
+  NbCalendarModule,
  
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../pages/shared/shared.module';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { eo, es } from 'date-fns/locale';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -59,6 +63,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NbCheckboxModule,
+    SharedModule,
+    NbCalendarModule,
+    NbDateFnsDateModule.forChild({
+			format: 'DD-MM-yyyy',
+			parseOptions: { locale: eo },
+			formatOptions: { locale: eo },
+		}),
   ],
 })
 export class AuthModule {}
