@@ -127,7 +127,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
         {
           name: 'assets/images/poleraNirvana.jpg',
           description:
-            'Polera nirvana color negra, con el logo coplor amarillo',
+            'Polera nirvana color negra, con el logo color amarillo',
         },
       ],
       isActive: true,

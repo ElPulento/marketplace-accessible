@@ -1,5 +1,717 @@
 <nb-card size="giant">
   <nb-card-body>
-    <h1>Registro</h1>
+    <form [formGroup]="productForm">
+      <!-- <p>{{ productForm.value | json }}</p> -->
+
+      <nb-stepper orientation="horizontal" disableStepNavigation>
+        <nb-step [label]="labelOne">
+          <ng-template #labelOne>Comienzo</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Registrarse</h1>
+              <p class="lorem">
+                A continuación deberá llenar un formulario para tener una cuenta
+                propia en el marketplace
+              </p>
+
+              <img
+                src="assets/images/registro.png"
+                alt="Imagen referencial de compra y venta de productos"
+                width="200px"
+                height="200px"
+              />
+              <br />
+            </div>
+          </div>
+          <hr />
+          <ng-container>
+            <div class="row" style="justify-content: center">
+              <button
+                nbButton
+                outline
+                shape="round"
+                status="info"
+                nbStepperNext
+              >
+                Comenzar
+              </button>
+            </div>
+          </ng-container>
+        </nb-step>
+        <nb-step [label]="labelTwo">
+          <ng-template #labelTwo>Nombre y apellido</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Nombres y apellidos</h1>
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.name.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="!form.name.pristine && form.name.errors?.required"
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4">Nombre(s)</label>
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: Sebastián Andrés"
+                  type="name"
+                  formControlName="name"
+                  [status]="
+                    !form.name.pristine && form.name.errors?.required
+                      ? 'danger'
+                      : form.name.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="nameMaxLength"
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.name.pristine && form.name.errors?.required"
+              >
+                El/Los nombres son requeridos
+              </p>
+              <character-counter
+                [input]="form.name.value?.length || 0"
+                [limit]="nameMaxLength"
+              >
+              </character-counter>
+
+              <br />
+
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.surname.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="
+                    !form.surname.pristine && form.surname.errors?.required
+                  "
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4">Apellido(s)</label>
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: Valdés Reveco"
+                  type="surname"
+                  formControlName="surname"
+                  [status]="
+                    !form.surname.pristine && form.surname.errors?.required
+                      ? 'danger'
+                      : form.surname.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="surnameMaxLength"
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.surname.pristine && form.surname.errors?.required"
+              >
+                El/Los apellidos son requeridos
+              </p>
+              <character-counter
+                [input]="form.surname.value?.length || 0"
+                [limit]="surnameMaxLength"
+              >
+              </character-counter>
+
+              <ng-container>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.name.valid || !form.surname.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step label="Descripción">
+          <ng-template #labelThree>Descripción </ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Descripción de tú perfil</h1>
+              <p class="lorem">
+                Si deseas describir tú perfil con productos que vendes aqui
+                puedes escribir un resumen, en caso de que no vendas productos
+                puedes avanzar al siguiente punto del formulario sin llenar este
+                punto
+              </p>
+              <nb-form-field>
+                <nb-icon
+                  *ngIf="form.description.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+
+                <textarea
+                  nbInput
+                  fullWidth
+                  rows="8"
+                  placeholder="Ejemplo: En este perfil vendemos productos tecnologicos a muy buen precio, ofrecemos televisores, celulares y otros productos tecnologicos.  "
+                  type="description"
+                  formControlName="description"
+                  [status]="
+                    !form.description.pristine &&
+                    form.description.errors?.required
+                      ? 'basic'
+                      : form.description.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="descriptionMaxLength"
+                ></textarea>
+              </nb-form-field>
+              <br />
+
+              <character-counter
+                [input]="form.description.value?.length || 0"
+                [limit]="descriptionMaxLength"
+              >
+              </character-counter>
+              <ng-container>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelFour">
+          <ng-template #labelFour>Fecha de nacimiento</ng-template>
+
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Fecha de nacimiento</h1>
+              <nb-form-field>
+                <nb-icon
+                  style="margin-bottom: 3.5rem"
+                  *ngIf="form.date.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-bottom: 5.5rem"
+                  *ngIf="!form.date.pristine && form.date.errors?.required"
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <input
+                  fullWidth
+                  nbInput
+                  formControlName="date"
+                  placeholder="Ejemplo: 11.01.1999"
+                  [nbDatepicker]="dateTimePicker"
+                  [status]="
+                    !form.date.pristine && form.date.errors?.required
+                      ? 'danger'
+                      : form.date.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                />
+                <br />
+
+                <p
+                  class="red"
+                  *ngIf="!form.date.pristine && form.date.errors?.required"
+                >
+                  La fecha de nacimiento es requerida, debes seguir el formato
+                  de ejemplo
+                </p>
+                <nb-datepicker #dateTimePicker></nb-datepicker>
+                <br />
+                <ng-container>
+                  <div class="row">
+                    <div>
+                      <button
+                        type="button"
+                        status="primary"
+                        size="medium"
+                        nbButton
+                        nbStepperPrevious
+                      >
+                        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                        Anterior
+                      </button>
+                    </div>
+                    <div class="ml-auto">
+                      <button
+                        nbButton
+                        type="button"
+                        status="primary"
+                        size="medium"
+                        [disabled]="!form.date.valid"
+                        nbStepperNext
+                      >
+                        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                        Siguiente
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+              </nb-form-field>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelFive">
+          <ng-template #labelFive>Dirección</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Dirección de residencia</h1>
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.address.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="
+                    !form.address.pristine && form.address.errors?.required
+                  "
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4"
+                  >Dirección de residencia</label
+                >
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: Pasaje milan #20"
+                  type="address"
+                  formControlName="address"
+                  [status]="
+                    !form.address.pristine && form.address.errors?.required
+                      ? 'danger'
+                      : form.address.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="addressMaxLength"
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.address.pristine && form.address.errors?.required"
+              >
+                La dirección es requerida
+              </p>
+              <character-counter
+                [input]="form.address.value?.length || 0"
+                [limit]="addressMaxLength"
+              >
+              </character-counter>
+
+              <br />
+
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.region.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="!form.region.pristine && form.region.errors?.required"
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4">Ciudad </label>
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: Valparaiso"
+                  type="region"
+                  formControlName="region"
+                  [status]="
+                    !form.region.pristine && form.region.errors?.required
+                      ? 'danger'
+                      : form.region.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="regionMaxLength"
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.region.pristine && form.region.errors?.required"
+              >
+                La ciudad es requerida
+              </p>
+              <character-counter
+                [input]="form.region.value?.length || 0"
+                [limit]="regionMaxLength"
+              >
+              </character-counter>
+
+              <ng-container>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="!form.address.valid || !form.region.valid"
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelsix">
+          <ng-template #labelsix>Datos de contacto</ng-template>
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+              <h1>Datos de contacto</h1>
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.email.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="!form.email.pristine && form.email.errors?.required"
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4"
+                  >Correo electrónico</label
+                >
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: nombre@gmail.com"
+                  type="email"
+                  [email]="true"
+                  formControlName="email"
+                  [status]="
+                    !form.email.pristine && form.email.errors?.required
+                      ? 'danger'
+                      : form.email.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="!form.email.pristine && form.email.errors?.required"
+              >
+                El correo electrónico es requerido
+              </p>
+              <br />
+              <nb-form-field>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="form.contactNumber.valid"
+                  nbSuffix
+                  icon="checkmark-outline"
+                  pack="eva"
+                ></nb-icon>
+                <nb-icon
+                  style="margin-top: 2rem"
+                  *ngIf="
+                    !form.contactNumber.pristine &&
+                    form.contactNumber.errors?.required
+                  "
+                  nbSuffix
+                  icon="close-outline"
+                  pack="eva"
+                ></nb-icon>
+                <label class="label col-form-label mr-4"
+                  >Número de contacto
+                </label>
+                <input
+                  nbInput
+                  fullWidth
+                  placeholder="Ejemplo: 998123456"
+                  type="number"
+                  formControlName="contactNumber"
+                  [status]="
+                    !form.contactNumber.pristine &&
+                    form.contactNumber.errors?.required
+                      ? 'danger'
+                      : form.contactNumber.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                  [maxlength]="contactNumberMaxLength"
+                />
+              </nb-form-field>
+              <br />
+              <p
+                class="red"
+                *ngIf="
+                  !form.contactNumber.pristine &&
+                  form.contactNumber.errors?.required
+                "
+              >
+                El número de contacto es requerido
+              </p>
+
+              <ng-container>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button
+                      nbButton
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      [disabled]="
+                        !form.contactNumber.valid || !form.email.valid
+                      "
+                      nbStepperNext
+                    >
+                      <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                      Siguiente
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </nb-step>
+        <nb-step [label]="labelSeven">
+          <ng-template #labelSeven>Imagen de perfil</ng-template>
+
+          <div class="row">
+            <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
+              <h1>Imagen del perfil</h1>
+              <p class="lorem">
+                Si deseas tener una foto de perfil puedes agregarla, en caso
+                contrario puedes saltar este paso y terminar con el registro
+                presionando "Realizar registro"
+              </p>
+              <div class="container row">
+                <input
+                  fullWidth
+                  nbInput
+                  style="display: none"
+                  shape="semi-round"
+                  type="file"
+                  multiple
+                  (change)="detectFiles($event)"
+                  accept="image"
+                  #hiddenfileinput
+                  [status]="
+                    !form.images.pristine && form.images.errors?.required
+                      ? 'danger'
+                      : form.images.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                />
+                <br />
+
+                <br />
+                <ng-container *ngIf="imagesArray.length !== 1">
+                  <button
+                    nbButton
+                    style="background-color: #54a59e; color: white"
+                    size="medium"
+                    (click)="hiddenfileinput.click()"
+                    disabled="{{ imagesArray.length === 1 }}"
+                  >
+                    <nb-icon icon="arrow-circle-up-outline"></nb-icon>
+                    Subir imagen
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="imagesArray.length === 1">
+                  <button
+                    nbButton
+                    status="success"
+                    size="medium"
+                    (click)="hiddenfileinput.click()"
+                    disabled
+                  >
+                    <nb-icon icon="arrow-circle-up-outline"></nb-icon>
+                    Subir imagen
+                  </button>
+                </ng-container>
+              </div>
+              <hr />
+
+              <div *ngIf="imagesArray && imagesArray.length">
+                <label class="label col-form-label"> Imagen agregada</label>
+
+                <div class="row" style="justify-content: space-around">
+                  <nb-card
+                    formArrayName="images"
+                    *ngFor="let file of imagesArray.controls; let i = index"
+                    class="col-12"
+                    style="margin: 10px"
+                  >
+                    <nb-card-body>
+                      <nb-card-body>
+                        <div class="row" [formGroupName]="i">
+                          <div class="col-12">
+                            <h2>{{ file.get("name")?.value }}</h2>
+                          </div>
+
+                          <div
+                            class="
+                              container
+                              right
+                              col-12 col-sm-12 col-md-3 col-lg-3
+                            "
+                          >
+                            <button
+                              (click)="removeFile(i)"
+                              nbButton
+                              status="danger"
+                              style="float: center"
+                            >
+                              <nb-icon icon="close-circle-outline"></nb-icon>
+                              Eliminar Imagen
+                            </button>
+                          </div>
+                        </div>
+                      </nb-card-body>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </div>
+              <ng-container>
+                <div class="row">
+                  <div>
+                    <button
+                      type="button"
+                      status="primary"
+                      size="medium"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                      Anterior
+                    </button>
+                  </div>
+                  <div class="ml-auto">
+                    <button nbButton outline shape="round" status="info">
+                      Realizar registro
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <br />
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </form>
   </nb-card-body>
 </nb-card>
