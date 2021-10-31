@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private toastr: NbToastrService,
+    private router : Router
     ) {}
 
   ngOnDestroy(): void {
@@ -60,7 +62,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
-
+  goToRegister(){
+      this.router.navigateByUrl(`auth/register`);
+  }
   
   get form() {
     return this.loginForm.controls;

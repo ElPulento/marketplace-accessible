@@ -456,10 +456,8 @@
                 </button>
               </div>
 
-              <character-counter
-                [input]="form.images.value?.length || 0"
-                [limit]="imageMaxLength"
-              ></character-counter>
+              <p>Total de imagenes: {{ form.images.value?.length || 0 }} - {{imageMaxLength}}</p>
+           
               <hr />
 
               <div *ngIf="imagesArray && imagesArray.length">
@@ -508,7 +506,7 @@
                           >
                             La descripcion de la imagen es requerida
                           </p>
-                  
+                          
                         <character-counter
                           [input]="file.get('description')?.value.length || 0"
                           [limit]="imageDescriptionMaxLength"
