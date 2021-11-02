@@ -1,26 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
+import { HeaderService } from '../../../pages/marketplace/services/header.service';
 
 @Component({
-  selector: 'app-login',
+  selector: '<app-login>',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
+
   
   private destroy$ = new Subject<any>();
   loginLoadingSpinner!: boolean;
   loginForm!: FormGroup;
+  loginHeader: boolean;
+ 
+ 
+  
 
 
   constructor(
     private fb: FormBuilder,
     private toastr: NbToastrService,
-    private router : Router
+    private router : Router,
+    private headerService : HeaderService,
     ) {}
 
   ngOnDestroy(): void {
@@ -49,6 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
      
     });
   }
+  
 
   showPassword = false;
 
@@ -65,10 +73,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   goToRegister(){
       this.router.navigateByUrl(`auth/register`);
   }
-  
+  login(){
+    this.headerService.login();
+    
+  }
   get form() {
     return this.loginForm.controls;
   }
-
 
 }

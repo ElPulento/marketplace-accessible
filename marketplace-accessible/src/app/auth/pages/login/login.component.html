@@ -8,6 +8,8 @@
           
           <nb-form-field>
             <label style="float: left;" class="label col-form-label mr-4">Correo electrónico</label>
+            <nb-icon style="margin-top: 2rem" *ngIf="form.email.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
+            <nb-icon style="margin-top: 2rem" *ngIf="!form.email.pristine && form.email.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
             <input
               nbInput
               fullWidth
@@ -64,7 +66,8 @@
 
           </nb-form-field>
           <br>
-          <a style="float: right;" class="text-link" routerlink="" class="forgot-password caption-2" href="auth/login">¿Olvidaste la contraseña?</a>
+          <a style="float: right; font-size: medium;" class="text-link" routerlink=""  href="auth/login">¿Olvidaste la contraseña?</a>
+          
           
           <br />
           <p
@@ -77,6 +80,7 @@
 
           <div class="ml-auto">
             <button
+              (click)="login()"
               [disabled]="!form.email.valid || !form.password.valid"
               nbButton
               status="info"
@@ -86,7 +90,7 @@
             </button>
           </div>
           <br>
-          <section aria-label="Register" class="another-action"> ¿Aún no tienes creada una cuenta? <a routerlink="../register" class="text-link" href="auth/register">Registrar</a></section>
+          <section style="font-size: medium;" aria-label="Register" class="another-action"> ¿Aún no tienes creada una cuenta? <a routerlink="../register" class="text-link" href="auth/register">Registrar</a></section>
         </div>
         
       </div>

@@ -1,16 +1,17 @@
 <nb-card>
-  <nb-card-header class="title">
-    Información del producto
 
-    <nb-actions size="small" class="buttonClose">
+  <nb-card-header class="title">
+ 
+   <nb-actions size="small" class="buttonClose">
       <nb-action
         (click)="goToListProduct()"
-        style="text-align: right"
+        style="text-align: left"
         icon="arrow-back-outline"
         [nbTooltip]="'Volver a listado de productos.'"
         nbTooltipStatus="info"
       ></nb-action>
     </nb-actions>
+  
   </nb-card-header>
   <nb-card-body>
     <ng-container *ngFor="let product of listProducts; let i = index">

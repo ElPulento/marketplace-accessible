@@ -82,11 +82,7 @@
               >
                 El/Los nombres son requeridos
               </p>
-              <character-counter
-                [input]="form.name.value?.length || 0"
-                [limit]="nameMaxLength"
-              >
-              </character-counter>
+             
 
               <br />
 
@@ -131,11 +127,7 @@
               >
                 El/Los apellidos son requeridos
               </p>
-              <character-counter
-                [input]="form.surname.value?.length || 0"
-                [limit]="surnameMaxLength"
-              >
-              </character-counter>
+              
 
               <ng-container>
                 <div class="row">
@@ -208,11 +200,7 @@
               </nb-form-field>
               <br />
 
-              <character-counter
-                [input]="form.description.value?.length || 0"
-                [limit]="descriptionMaxLength"
-              >
-              </character-counter>
+             
               <ng-container>
                 <div class="row">
                   <div>
@@ -371,11 +359,7 @@
               >
                 La dirección es requerida
               </p>
-              <character-counter
-                [input]="form.address.value?.length || 0"
-                [limit]="addressMaxLength"
-              >
-              </character-counter>
+              
 
               <br />
 
@@ -418,11 +402,7 @@
               >
                 La ciudad es requerida
               </p>
-              <character-counter
-                [input]="form.region.value?.length || 0"
-                [limit]="regionMaxLength"
-              >
-              </character-counter>
+            
 
               <ng-container>
                 <div class="row">

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component, ElementRef, Input, Output } from '@angular/core';
+import { LoginComponent} from './auth/pages/login/login.component'
+import { HeaderService } from './pages/marketplace/services/header.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'marketplace-accessible';
+
+ login = false;
+  constructor(
+    private headerService : HeaderService,
+    ) {}
+    ngOnInit() {
+      this.headerService.change.subscribe(login => {
+        this.login = login
+        console.log(login, 'login header')
+      })
+    }
 }

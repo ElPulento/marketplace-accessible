@@ -19,6 +19,7 @@ import {
   NbDatepickerModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
+import { HeaderLoginComponent } from './@theme/header-login/header-login.component'
 import { FooterComponent } from './@theme/footer/footer.component';
 import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -30,7 +31,7 @@ import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { eo, es } from 'date-fns/locale';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HeaderNebularComponent],
+  declarations: [AppComponent, HeaderComponent, HeaderNebularComponent, HeaderLoginComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -65,7 +66,7 @@ import { eo, es } from 'date-fns/locale';
       format: 'dd.MM.yyyy'
     }),
   ],
-  exports: [HeaderComponent, FooterComponent, HeaderNebularComponent],
+  exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

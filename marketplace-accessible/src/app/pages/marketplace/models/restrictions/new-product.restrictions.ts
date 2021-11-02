@@ -6,4 +6,4 @@ export const amountIsRequired = true;
 export const titleMaxLength = 100;
 export const descriptionMaxLength = 500;
 export const imageMaxLength = 5;
-export const imageDescriptionLength = 50;
+export const imageDescriptionLength = 100;

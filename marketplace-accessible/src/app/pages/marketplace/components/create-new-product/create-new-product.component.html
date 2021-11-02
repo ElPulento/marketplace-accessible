@@ -3,7 +3,7 @@
     <form [formGroup]="productForm">
    <!-- <p>{{ productForm.value | json }}</p> -->
 
-      <nb-stepper orientation="horizontal" disableStepNavigation>
+      <nb-stepper orientation="horizontal" >
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
@@ -74,11 +74,7 @@
               >
                 El titulo del producto es requerido
               </p>
-              <character-counter
               
-                [input]="form.title.value?.length || 0"
-                [limit]="titleMaxLength"
-              > </character-counter>
               
 
               <br />
@@ -158,11 +154,7 @@
               >
                 La descripción del producto es requerida
               </p>
-              <character-counter
-                [input]="form.description.value?.length || 0"
-                [limit]="descriptionMaxLength"
-              >
-              </character-counter>
+              
               <ng-container>
                 <div class="row">
                   <div>
@@ -472,14 +464,14 @@
                   >
                     <nb-card-body>
                       <div class="row" [formGroupName]="i">
-                        <div class="col-12">
-                          <h2>{{ file.get("name")?.value }}</h2>
-                        </div>
-                        <div
-                          class="container col-12 col-sm-12 col-md-6 col-lg-6"
-                        >
+                      <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
+                        <label style="float: left;" class="label col-form-label mr-4">Nombre de la imagen</label>
+                        <br>
+                        <h6 style="float: left;" >{{ file.get("name")?.value }}</h6>
+                        <label style="float: left;" class="label col-form-label mr-4">Descripción de la imagen</label>
+                        <br>
                           <textarea
-                            placeholder="Pequeña descripción de la imagen"
+                            placeholder="Ejemplo: La imagen agregada muestra un televisor, con el menú de aplicaciones"
                             nbInput
                             rows="3"
                             fullWidth
@@ -507,10 +499,7 @@
                             La descripcion de la imagen es requerida
                           </p>
                           
-                        <character-counter
-                          [input]="file.get('description')?.value.length || 0"
-                          [limit]="imageDescriptionMaxLength"
-                        ></character-counter>
+                        
                       </div>
                       <!--
                         <div
@@ -544,9 +533,9 @@
                       "
                     >
                     
-                      <button (click)="removeFile(i)" nbButton status="danger" style="float: center">
+                      <button nbTooltip="Eliminar imagen" nbTooltipStatus="danger" (click)="removeFile(i)" nbButton status="danger" style="float: right">
                         <nb-icon icon="close-circle-outline"></nb-icon>
-                        Eliminar Imagen
+                        
                       </button>
                     </div>
 

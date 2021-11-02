@@ -12,7 +12,7 @@ export class ColorsPageComponent implements OnInit, OnDestroy {
   themes = [
     {
       value: 'default',
-      name: 'Modo predeterminado',
+      name: 'Modo claro',
     },
     {
       value: 'dark',
