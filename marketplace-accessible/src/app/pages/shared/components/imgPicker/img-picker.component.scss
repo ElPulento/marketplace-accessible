@@ -1,0 +1,109 @@
+/*
+
+button-filled-primary-background-color	color-primary-default	#3366ff	
+button-filled-primary-border-color	color-primary-default	#3366ff	
+button-filled-primary-text-color	text-control-color	#ffffff	
+button-filled-primary-focus-border-color	color-primary-700	#1a34b8	
+button-filled-primary-hover-background-color	color-primary-hover	#598bff	
+button-filled-primary-hover-border-color	color-primary-hover	#598bff	
+button-filled-primary-active-background-color	color-primary-active	#274bdb	
+button-filled-primary-active-border-color	color-primary-active	#274bdb	
+button-filled-primary-disabled-background-color	color-basic-transparent-300	rgba(143, 155, 179, 0.24)	
+button-filled-primary-disabled-border-color		rgba(0, 0, 0, 0)	
+button-filled-primary-disabled-text-color	text-disabled-color	rgba(143, 155, 179, 0.48)
+*/
+
+@import './../../../../@theme/styles/themes.scss';
+@include nb-install-component() {
+	.button-primary {
+		background-color: nb-theme(color-primary-default);
+		border-color: nb-theme(color-primary-default);
+		color: nb-theme(text-control-color);
+	}
+	.button-primary:focus {
+		border-color: nb-theme(color-primary-700);
+	}
+	.button-primary:hover {
+		background: nb-theme(color-primary-hover);
+		border-color: nb-theme(color-primary-hover);
+	}
+	.button-primary:active {
+		background: nb-theme(color-primary-active);
+		border-color: nb-theme(color-primary-active);
+	}
+}
+
+.icon-size {
+	position: absolute;
+	bottom: 0;
+	margin-left: -6px;
+	cursor: pointer;
+	color: nb-theme(color-primary-active);
+	font-size: 3rem;
+}
+
+@media (max-width: 370px) {
+	.icon-size {
+		bottom: 0;
+		margin-left: 0px;
+		right: 0;
+		font-size: 2.8rem;
+	}
+}
+
+.icon-size:hover {
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+	font-size: 1.25em;
+	padding: 1rem;
+	font-weight: 700;
+	border-color: nb-theme(color-primary-default);
+	color: nb-theme(text-control-color);
+	background-color: nb-theme(color-primary-default);
+	display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+	background-color: nb-theme(color-primary-hover);
+	border-color: nb-theme(color-primary-hover);
+}
+
+.inputfile + label {
+	cursor: pointer;
+	/* "hand" cursor */
+}
+
+.inputfile:focus + label {
+	outline: 1px dotted nb-theme(color-primary-700);
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.column-center {
+	margin: auto;
+	text-align: center;
+}
+
+.profileDiv {
+	text-align: center;
+	margin: auto;
+}
+
+img {
+	border-radius: 25%;
+	border: 3px solid;
+	border-color: nb-theme(color-primary-active);
+	object-fit: cover;
+}

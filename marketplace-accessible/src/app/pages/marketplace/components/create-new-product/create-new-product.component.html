@@ -1,4 +1,4 @@
-<nb-card size="giant">
+<nb-card size="giant" [nbSpinner]="loading" nbSpinnerStatus="primary">
   <nb-card-body>
     <form [formGroup]="productForm">
    <!-- <p>{{ productForm.value | json }}</p> -->
@@ -409,7 +409,16 @@
                 estas ofreciendo.
               </p>
               <div class="container row">
+   
                 <input
+                  hidden
+                  type="file"
+                  name="imgCatcher"
+                  id="imgCatcher"
+                  class="inputfile"
+                  accept="image/*"
+                  (change)="updateSource($event)"
+
                   fullWidth
                   nbInput
                   style="display: none"
@@ -467,7 +476,7 @@
                       <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
                         <label style="float: left;" class="label col-form-label mr-4">Nombre de la imagen</label>
                         <br>
-                        <h6 style="float: left;" >{{ file.get("name")?.value }}</h6>
+                        <h6 style="float: left; text-align: left;" >{{ file.get("name")?.value }}</h6>
                         <label style="float: left;" class="label col-form-label mr-4">Descripción de la imagen</label>
                         <br>
                           <textarea
@@ -498,6 +507,8 @@
                           >
                             La descripcion de la imagen es requerida
                           </p>
+                          <br>
+                         
                           
                         
                       </div>
@@ -538,7 +549,18 @@
                         
                       </button>
                     </div>
-
+                    <ng-template #delete let-data let-ref="dialogRef">
+                      <div class="row">
+                        <div class="col-12">
+                          <label class="label col-form-label mr-4"
+                            >Calificación atención del vendedor</label>
+                            <button nbTooltip="Eliminar imagen" nbTooltipStatus="danger" (click)="removeFile(i)" nbButton status="danger" style="float: right">
+                              <nb-icon icon="close-circle-outline"></nb-icon>
+                              
+                            </button>
+                          </div>
+                          </div>
+                    </ng-template>
 
                       </div>
                     </nb-card-body>
@@ -561,6 +583,7 @@
                   </div>
                   <div class="ml-auto">
                     <button
+                    (click)="goToList()"
                       [disabled]="!form.images.valid || imagesArray.length <= 0"
                       nbButton
                       outline
@@ -578,5 +601,7 @@
         </nb-step>
       </nb-stepper>
     </form>
+
+    
   </nb-card-body>
 </nb-card>

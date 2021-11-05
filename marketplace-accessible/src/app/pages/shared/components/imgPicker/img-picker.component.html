@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-12 col-md-12 profileDiv">
+		<!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+		<label for="imgCatcher" *ngIf="isEnabled">
+			<img *ngIf="source" [src]="source" width="200" height="200" />
+
+	<nb-icon class="icon-size" icon="cloud-upload-outline" [options]="{ animation: { type: 'zoom' } }"></nb-icon>
+		
+		<input
+				hidden
+				type="file"
+				name="imgCatcher"
+				id="imgCatcher"
+				class="inputfile"
+				accept="image/*"
+				(change)="updateSource($event)"
+			/>
+		</label>
+	</div>
+</div>

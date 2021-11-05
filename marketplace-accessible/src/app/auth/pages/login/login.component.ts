@@ -73,12 +73,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   goToRegister(){
       this.router.navigateByUrl(`auth/register`);
   }
+  loading = false;
   login(){
-    this.headerService.login();
+    
+    this.loading = true;
+    setTimeout(() => this.loading = false, 2000);
+    setTimeout(() => this.headerService.login(), 2000);
+    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
     
   }
   get form() {
     return this.loginForm.controls;
   }
+  
+
+  
+
 
 }

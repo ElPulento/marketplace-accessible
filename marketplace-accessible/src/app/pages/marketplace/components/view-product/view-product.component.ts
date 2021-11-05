@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
-
+import { ModalQualificationComponent} from './modal-qualification/modal-qualification.component';
 @Component({
   selector: 'app-view-product',
   templateUrl: './view-product.component.html',
@@ -72,7 +72,7 @@ export class ViewProductComponent implements OnInit {
       fullScreen: this.fullScreen,
     }
     this.windowService.open(
-      this.qualificationTemplate,
+      ModalQualificationComponent,
       { title: 'Calificar vendedor', hasBackdrop: true, buttons: buttonsConfig },
     );
   }

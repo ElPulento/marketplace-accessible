@@ -17,6 +17,7 @@ import {
   NbContextMenuModule,
   NbWindowModule,
   NbDatepickerModule,
+  NbDialogModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { HeaderLoginComponent } from './@theme/header-login/header-login.component'
@@ -65,6 +66,7 @@ import { eo, es } from 'date-fns/locale';
     NbDateFnsDateModule.forRoot({
       format: 'dd.MM.yyyy'
     }),
+    NbDialogModule.forRoot(),
   ],
   exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],

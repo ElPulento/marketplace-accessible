@@ -38,6 +38,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { SharedModule } from '../shared/shared.module';
 import { MDBBootstrapModule, MdbCardImageComponent } from 'angular-bootstrap-md';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { ModalQualificationComponent } from './components/view-product/modal-qualification/modal-qualification.component';
+
 @NgModule({
   declarations: [
     CreateNewProductComponent,
@@ -45,6 +47,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     ViewProductComponent,
     MainPageComponent,
     InformationComponent,
+    ModalQualificationComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -68,10 +72,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NbTabsetModule,
     NbToggleModule,
     NbTooltipModule,
-    NbWindowModule,
     NbSpinnerModule,
     NbListModule,
-    NbDialogModule,
     NbActionsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -82,6 +84,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NbChatModule,
     NbAccordionModule,
     NbWindowModule.forChild(),
+    NbDialogModule.forChild(),
 
 
   ],

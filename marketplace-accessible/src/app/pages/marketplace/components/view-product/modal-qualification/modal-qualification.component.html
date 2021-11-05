@@ -1,0 +1,61 @@
+<ng-container [nbSpinner]="loading" nbSpinnerStatus="primary">
+  <div class="row">
+    <div class="col-12">
+      <label style="font-size: medium" class="label col-form-label mr-4"
+        >Calificación atención del vendedor</label
+      >
+      <br />
+      <form>
+        <p class="clasificacion">
+          <input id="radio1" type="radio" name="estrellas" value="5" /><!--
+          --><label (click)="star(5)" for="radio1" style="font-size: 30px"
+            >★</label
+          ><!--
+          --><input
+            id="radio2"
+            type="radio"
+            name="estrellas"
+            value="4"
+          /><!-- style="font-size: 30px;"
+          --><label (click)="star(4)" for="radio2" style="font-size: 30px"
+            >★</label
+          ><!--
+          --><input id="radio3" type="radio" name="estrellas" value="3" /><!--
+          --><label (click)="star(3)" for="radio3" style="font-size: 30px"
+            >★</label
+          ><!--
+          --><input id="radio4" type="radio" name="estrellas" value="2" /><!--
+          --><label (click)="star(2)" for="radio4" style="font-size: 30px"
+            >★</label
+          ><!--
+          --><input id="radio5" type="radio" name="estrellas" value="1" /><!--
+          --><label (click)="star(1)" for="radio5" style="font-size: 30px"
+            >★</label
+          >
+        </p>
+        <p *ngIf="i === 5">Excelente calificación</p>
+        <p *ngIf="i === 4">Muy buena calificación</p>
+        <p *ngIf="i === 3">Buena calificación</p>
+        <p *ngIf="i === 2">Mala calificación</p>
+        <p *ngIf="i === 1">Muy mala calificación</p>
+      </form>
+    </div>
+  </div>
+
+  <ng-container>
+    <div class="row">
+      <div class="ml-auto">
+        <button
+          (click)="goToBack()"
+          [disabled]="!starValue"
+          nbButton
+          outline
+          shape="round"
+          status="info"
+        >
+          Guardar Calificación
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

@@ -32,9 +32,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../pages/shared/shared.module';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { eo, es } from 'date-fns/locale';
+import { ModalRegisterComponent } from './pages/modal-register/modal-register.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, ModalRegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -55,7 +56,6 @@ import { eo, es } from 'date-fns/locale';
     NbTabsetModule,
     NbToggleModule,
     NbTooltipModule,
-    NbWindowModule,
     NbSpinnerModule,
     NbListModule,
     NbDialogModule,
@@ -70,6 +70,7 @@ import { eo, es } from 'date-fns/locale';
 			parseOptions: { locale: eo },
 			formatOptions: { locale: eo },
 		}),
+    NbWindowModule.forChild(),
   ],
 })
 export class AuthModule {}

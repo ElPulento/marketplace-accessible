@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService, NbWindowControlButtonsConfig, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
 import { NbCalendarRange, NbDateService } from '@nebular/theme';
+import { Router } from '@angular/router';
+import { ModalRegisterComponent } from '../modal-register/modal-register.component';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -31,10 +33,16 @@ export class RegisterComponent implements OnInit {
   createLoadingSpinner!: boolean;
   productForm!: FormGroup;
   lastImagePicked!: FileList;
+  minimize: boolean;
+  maximize: boolean;
+  fullScreen: boolean;
 
   constructor(
     private fb: FormBuilder,
     private toastr: NbToastrService,
+    private windowService: NbWindowService,
+    private router: Router,
+  
     ) {}
 
   ngOnDestroy(): void {
@@ -45,6 +53,7 @@ export class RegisterComponent implements OnInit {
     this.initializeVariables();
     this.initializeForms();
   }
+  @ViewChild('modal', { read: TemplateRef }) modalTemplate: TemplateRef<HTMLElement>;
   categories = [
     
       'Videojuegos',
@@ -109,6 +118,18 @@ export class RegisterComponent implements OnInit {
   get imagesArray(): FormArray {
 		return this.productForm.get('images') as FormArray;
 	}
+
+  openWindowModal(){
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+   const windowRef = this.windowService.open(
+      ModalRegisterComponent,
+      { title: 'Registro completado', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
   createImageItem(data: any): FormGroup {
 		return this.fb.group(data);
 	}
@@ -148,6 +169,8 @@ export class RegisterComponent implements OnInit {
   get form() {
     return this.productForm.controls;
   }
+
+ 
 
  
 }

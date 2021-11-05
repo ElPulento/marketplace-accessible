@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NbToastrService } from '@nebular/theme';
+import { Router } from '@angular/router';
+import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
 import * as restrictions from '../../models/restrictions/new-product.restrictions';
@@ -11,6 +12,45 @@ import * as restrictions from '../../models/restrictions/new-product.restriction
 })
 export class CreateNewProductComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<any>();
+  @ViewChild('delete', { read: TemplateRef }) deleteTemplate: TemplateRef<HTMLElement>;
+
+
+  // Emit an event when a file has been picked. Here we return the file itself
+	@Output() onChange: EventEmitter<File> = new EventEmitter<File>();
+	@Input() isEnabled = true;
+
+
+
+	// If the input has changed(file picked) we project the file into the img previewer
+	updateSource($event: Event) {
+		// We access he file with $event.target['files'][0]
+   
+	
+    const reader = new FileReader();
+		reader.onload = (e: any) => {
+			// Simply set e.target.result as our <img> src in the layout
+		this.source = e.target.result;
+		//this.onChange.emit($event.target['files'][0]);
+		};
+		// This will process our file and get it's attributes/data
+		reader.readAsDataURL($event.target['files'][0]);
+   this.imagesCont=+1;
+	}
+  //  <img [src]="source" width="200" height="200" />
+
+	// Uses FileReader to read the file from the input
+	@Input() source: string = '';
+	projectImage(file: File) {
+		const reader = new FileReader();
+		reader.onload = (e: any) => {
+			// Simply set e.target.result as our <img> src in the layout
+			this.source = e.target.result;
+		this.onChange.emit(file);
+		};
+		// This will process our file and get it's attributes/data
+		reader.readAsDataURL(file);
+   
+	}
 
   titleMaxLength: number;
   titleIsRequired!: boolean;
@@ -24,10 +64,17 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   createLoadingSpinner!: boolean;
   productForm!: FormGroup;
   lastImagePicked!: FileList;
+  actualImg: any;
+  imagesCont: number;
+  minimize: boolean;
+  maximize: boolean;
+  fullScreen: boolean;
 
   constructor(
     private fb: FormBuilder,
     private toastr: NbToastrService,
+    private windowService: NbWindowService,
+    private router: Router,
     ) {}
 
   ngOnDestroy(): void {
@@ -59,6 +106,10 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.amountIsRequired = restrictions.amountIsRequired;
     this.imageDescriptionMaxLength = restrictions.imageDescriptionLength;
     this.createLoadingSpinner = false;
+    this.imagesCont = 0;
+    this.fullScreen = false;
+    this.minimize = false;
+    this.maximize = false;
   }
 
   private initializeForms() {
@@ -78,6 +129,22 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
       isActive: this.fb.control(false, Validators.required),
     });
   }
+  openWindowDelete() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+    this.windowService.open(
+      this.deleteTemplate,
+      { title: 'Eliminar imagen', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
+
+  imageChange(image) {
+		this.actualImg = image;
+	}
+  //<img-picker (onChange)="imageChange($event)"></img-picker>
   get imagesArray(): FormArray {
 		return this.productForm.get('images') as FormArray;
 	}
@@ -116,9 +183,19 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 	}
 	removeFile(i: any) {
 		this.imagesArray.removeAt(i);
+   
 	}
   get form() {
     return this.productForm.controls;
+  }
+
+  loading = false;
+  goToList(){
+    
+    this.loading = true;
+    setTimeout(() => this.loading = false, 2000);
+    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
+    
   }
 
   submit() {
