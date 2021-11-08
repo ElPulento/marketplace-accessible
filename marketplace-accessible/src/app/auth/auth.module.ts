@@ -26,6 +26,7 @@ import {
   NbChatModule,
   NbCheckboxModule,
   NbCalendarModule,
+  NbToastrModule,
  
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,9 +34,10 @@ import { SharedModule } from '../pages/shared/shared.module';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { eo, es } from 'date-fns/locale';
 import { ModalRegisterComponent } from './pages/modal-register/modal-register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ModalRegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, ModalRegisterComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -71,6 +73,7 @@ import { ModalRegisterComponent } from './pages/modal-register/modal-register.co
 			formatOptions: { locale: eo },
 		}),
     NbWindowModule.forChild(),
+    NbToastrModule,
   ],
 })
 export class AuthModule {}

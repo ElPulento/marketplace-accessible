@@ -53,7 +53,7 @@ import { eo, es } from 'date-fns/locale';
     NbActionsModule,
     NbToastrModule.forRoot({
       hasIcon: true,
-      duration: 6000,
+      duration: 4000,
       preventDuplicates: true,
       destroyByClick: true,
       limit: 3,
@@ -71,6 +71,7 @@ import { eo, es } from 'date-fns/locale';
     NbDialogModule.forRoot(),
     NbToggleModule,
     NbSpinnerModule,
+    NbToastrModule.forRoot(),
   ],
   exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],

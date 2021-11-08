@@ -29,6 +29,7 @@ import {
   NbDialogModule,
   NbChatModule,
   NbAccordionModule,
+  NbToastrModule,
  
 } from '@nebular/theme';
 import { InformationComponent } from './components/information/information.component';
@@ -40,6 +41,7 @@ import { MDBBootstrapModule, MdbCardImageComponent } from 'angular-bootstrap-md'
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ModalQualificationComponent } from './components/view-product/modal-qualification/modal-qualification.component';
 import { OptionsComponent } from './components/options/options.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { OptionsComponent } from './components/options/options.component';
     InformationComponent,
     ModalQualificationComponent,
     OptionsComponent,
+    CategoriesComponent,
    
   ],
   imports: [
@@ -87,6 +90,7 @@ import { OptionsComponent } from './components/options/options.component';
     NbAccordionModule,
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
+    NbToastrModule,
 
 
   ],

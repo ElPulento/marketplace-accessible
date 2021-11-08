@@ -5,12 +5,14 @@ import { InformationComponent } from './components/information/information.compo
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
+import { CategoriesComponent } from './components/categories/categories.component'
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
   { path: 'view-product/:id', component: ViewProductComponent },
   { path: 'list-products', component: ListProductsComponent },
   { path: 'information', component: InformationComponent },
+  { path: 'categories', component: CategoriesComponent },
   { path: '', component: MainPageComponent },
 ];
 

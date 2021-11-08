@@ -14,6 +14,7 @@ import {
   NbSelectModule,
   NbSidebarModule,
   NbSpinnerModule,
+  NbToastrModule,
   NbToggleComponent,
   NbToggleModule,
   NbUserModule,
@@ -46,6 +47,7 @@ import { ScreenSizeComponent } from './screen-size/screen-size.component';
     NbToggleModule,
     NbInputModule,
     NbSpinnerModule,
+    NbToastrModule,
   
   ],
   exports: [ColorsPageComponent,SidebarComponent, FooterComponent,ScreenSizeComponent]

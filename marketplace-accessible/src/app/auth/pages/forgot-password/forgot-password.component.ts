@@ -1,31 +1,25 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { HeaderService } from '../../../pages/marketplace/services/header.service';
 
 @Component({
-  selector: '<app-login>',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
+export class ForgotPasswordComponent implements OnInit {
 
-export class LoginComponent implements OnInit, OnDestroy {
-
-  
   private destroy$ = new Subject<any>();
-  loginLoadingSpinner!: boolean;
-  loginForm!: FormGroup;
-  loginHeader: boolean;
+  passLoadingSpinner!: boolean;
+  passForm!: FormGroup;
+  passHeader: boolean;
  
- 
-  
-
-
   constructor(
     private fb: FormBuilder,
-    private toastrService: NbToastrService,
+    private toastr: NbToastrService,
     private router : Router,
     private headerService : HeaderService,
     ) {}
@@ -40,18 +34,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private initializeVariables() {
-    this.loginLoadingSpinner = false;
+    this.passLoadingSpinner = false;
   }
 
   private initializeForms() {
-    this.loginForm = this.fb.group({
+    this.passForm = this.fb.group({
       email: this.fb.control('', [
         Validators.required,
         Validators.email,
-      ]),
-      password: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(8)
       ]),
      
     });
@@ -73,27 +63,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   goToRegister(){
       this.router.navigateByUrl(`auth/register`);
   }
+  goToLogin() {
+    this.router.navigateByUrl(`auth/login`);
+  }
   loading = false;
-  private index: number = 0;
   login(){
     
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
-    setTimeout(() => this.headerService.login(), 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
-    setTimeout(() =>   this.toastrService.show('Inicio de sesión correcto',`Iniciar sesión`, {
-      status: 'info',
-      icon: 'checkmark-outline',
-    }), 2000);
-  
     
   }
   get form() {
-    return this.loginForm.controls;
+    return this.passForm.controls;
   }
-  
-
-  
-
 
 }
