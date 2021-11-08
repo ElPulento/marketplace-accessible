@@ -12,10 +12,16 @@ import { HeaderService } from '../../pages/marketplace/services/header.service';
 export class HeaderLoginComponent implements OnInit {
 
   login = true;
-  constructor(private router: Router, private nbMenuService: NbMenuService, @Inject(NB_WINDOW) private window, private headerService: HeaderService) {}
+  constructor(
+    private router: Router,
+     private nbMenuService: NbMenuService,
+      @Inject(NB_WINDOW) private window, 
+      private headerService: HeaderService,
+      
+      ) {}
 
-  
-  items = [{ title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
+  loading = false;
+  itemsLogin = [{ title: 'Editar interfaz' }, { title: 'Ver mi perfil' }, { title: 'Favoritos' }, { title: 'Cerrar sesión' }];
 
   ngOnInit() {
     this.headerService.change.subscribe(login => {
@@ -30,11 +36,20 @@ export class HeaderLoginComponent implements OnInit {
         map(({ item: { title } }) => title),
       )
       .subscribe(title => {
-        if(title == "Iniciar Sesión") {
+        if(title == "Editar interfaz") {
           this.router.navigateByUrl(`auth/login`);
         }
-        if(title == "Registrarse") {
+        if(title == "Ver mi perfil") {
           this.router.navigateByUrl(`auth/register`);
+        }
+        if(title == "Favoritos") {
+          this.router.navigateByUrl(`auth/register`);
+        }
+        if(title == "Cerrar sesión") {
+          this.loading = true;
+          setTimeout(() => this.loading = false, 500);
+          setTimeout(() => this.headerService.login(), 500);
+          setTimeout(() => this.router.navigateByUrl(``), 500);
         }
       });
   }

@@ -3,20 +3,21 @@
 }
 .text {
   color: aliceblue !important;
-  font-family: "Roboto Slab";
+  font-family: "Montserrat";
   font-size: large;
   font-weight: 100;
   text-decoration: none;
 }
 .textZoom {
-  font-family: "Roboto Slab";
+  font-family: "Montserrat";
   font-size: large;
   font-weight: 100;
   text-decoration: none;
 }
 
-.container {
-  justify-content: center;
+.container2 {
+  justify-content:space-between;
+  align-items: flex-end;
 }
 
 .navbar-custom {
@@ -146,3 +147,18 @@ ul.menu_items {
     height: calc(100% - 65px);
   }
 }
+
+
+.align{
+margin-right: 30px ;
+}
+.textColor{
+  color: aliceblue !important;
+  font-family: "Montserrat";
+  font-size: large;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 0.5rem;
+
+  }

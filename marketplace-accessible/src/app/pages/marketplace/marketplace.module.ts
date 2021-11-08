@@ -39,6 +39,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MDBBootstrapModule, MdbCardImageComponent } from 'angular-bootstrap-md';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ModalQualificationComponent } from './components/view-product/modal-qualification/modal-qualification.component';
+import { OptionsComponent } from './components/options/options.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ModalQualificationComponent } from './components/view-product/modal-qua
     MainPageComponent,
     InformationComponent,
     ModalQualificationComponent,
+    OptionsComponent,
    
   ],
   imports: [

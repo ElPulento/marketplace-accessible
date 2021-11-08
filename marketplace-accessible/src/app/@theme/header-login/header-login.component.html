@@ -159,12 +159,13 @@
 </nav>
 
 <!-- NORMAL -->
-<nav class="menu fixed-top">
+
+<nav class="menu fixed-top" >
   <label class="logo">Marketplace</label>
-  <div class="container">
-    <div class="column">
+  <div class="container" >
+    <div class="column" >
       <div>
-        <ul class="menu_items" id="mode"> 
+        <ul class="menu_items" id="mode" > 
           <li>
             <input style="margin-left: 10px; display: flex; width: 400px;"
               nbInput
@@ -195,11 +196,11 @@
   </div>
   <ul class="menu_items" id="mode">
     <li>
-        <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="focus" nbContextMenuTag="my-context-menu"> <nb-icon icon="settings-2-outline"></nb-icon>Opciones</button>
+        <button [nbSpinner]="loading" nbSpinnerStatus="primary"  nbButton [nbContextMenu]="itemsLogin" nbContextMenuTrigger="focus" nbContextMenuTag="my-context-menu"> <nb-icon icon="settings-2-outline"></nb-icon>Opciones</button>
     </li>
   </ul>
   
-  <span class="btn_menu" (click)="showMenu()">
+  <span class="btn_menu" (click)="showMenu()" >
     <i class="fa fa-bars"></i>
   </span>
   
