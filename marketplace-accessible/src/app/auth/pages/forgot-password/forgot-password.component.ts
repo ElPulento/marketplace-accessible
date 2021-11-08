@@ -80,6 +80,7 @@ export class ForgotPasswordComponent implements OnInit {
           {
             status: 'info',
             icon: 'checkmark-outline',
+            preventDuplicates: true,
           }
         ),
       2000

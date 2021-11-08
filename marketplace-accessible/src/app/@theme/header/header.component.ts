@@ -24,13 +24,13 @@ export class HeaderComponent implements OnInit {
     private headerService: HeaderService
   ) {}
 
-  items = [{ title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
+  items = [ { title: 'Editar interfaz' }, { title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
   ngOnInit() {
-    this.checked = 'default';
+    this.checked = this.themeService.currentTheme;
     this.nbMenuService
       .onItemClick()
       .pipe(
@@ -38,6 +38,9 @@ export class HeaderComponent implements OnInit {
         map(({ item: { title } }) => title)
       )
       .subscribe((title) => {
+        if (title == 'Editar interfaz') {
+          this.router.navigateByUrl(`marketplace/edit-interface`);
+        }
         if (title == 'Iniciar Sesión') {
           this.router.navigateByUrl(`auth/login`);
         }

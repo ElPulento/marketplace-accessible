@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     setTimeout(() =>   this.toastrService.show('Inicio de sesión correcto',`Iniciar sesión`, {
       status: 'info',
       icon: 'checkmark-outline',
+      preventDuplicates: true,
     }), 2000);
   
     

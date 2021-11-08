@@ -57,19 +57,21 @@ div.container {
   margin: 0 5px;
 }
 
+// normal items
 .menu_items li a {
   padding: 7px 13px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   display: block;
   text-transform: uppercase;
   color: #fff;
   font-family: "Montserrat";
+  
 }
 
 .menu_items li:hover, li:active {
-  background-color: rgba(0, 0, 0, .3);
-  transition: .4s;
+  background-color: rgba(0, 0, 0, .1);
+  transition: .2s;
 }
 
 .btn_menu {
@@ -89,6 +91,7 @@ ul.menu_items {
   padding: 0 0 0 0;
 }
 
+//no
 @media screen and (max-width: 1400px){
   .logo {
     font-size: 30px;
@@ -99,6 +102,7 @@ ul.menu_items {
   }
 }
 
+//responsive
 @media screen and (max-width: 1400px) {
   .menu {
     height: 65px;
@@ -160,5 +164,6 @@ margin-right: 30px ;
   text-decoration: none;
   font-size: 20px;
   margin-top: 0.5rem;
+  cursor: pointer;
 
   }

@@ -28,6 +28,7 @@ export class ModalQualificationComponent implements OnInit {
     setTimeout(() =>   this.toastrService.show('Se ha guardado la calificación correctamente',`Calificar atencion del vendedor`, {
       status: 'info',
       icon: 'checkmark-outline',
+      preventDuplicates: true,
     }), 2000);
     
     

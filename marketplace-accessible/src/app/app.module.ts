@@ -20,6 +20,7 @@ import {
   NbDialogModule,
   NbToggleModule,
   NbSpinnerModule,
+  NbUserModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { HeaderLoginComponent } from './@theme/header-login/header-login.component'
@@ -72,6 +73,7 @@ import { eo, es } from 'date-fns/locale';
     NbToggleModule,
     NbSpinnerModule,
     NbToastrModule.forRoot(),
+    NbUserModule,
   ],
   exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],

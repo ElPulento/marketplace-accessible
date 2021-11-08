@@ -30,6 +30,8 @@ import {
   NbChatModule,
   NbAccordionModule,
   NbToastrModule,
+  NbContextMenuModule,
+  NbRadioModule,
  
 } from '@nebular/theme';
 import { InformationComponent } from './components/information/information.component';
@@ -42,6 +44,9 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ModalQualificationComponent } from './components/view-product/modal-qualification/modal-qualification.component';
 import { OptionsComponent } from './components/options/options.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { EditInterfaceComponent } from './components/options/edit-interface/edit-interface.component';
+import { FavoritesComponent } from './components/options/favorites/favorites.component';
+import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +58,9 @@ import { CategoriesComponent } from './components/categories/categories.componen
     ModalQualificationComponent,
     OptionsComponent,
     CategoriesComponent,
+    EditInterfaceComponent,
+    FavoritesComponent,
+    ViewProfileComponent,
    
   ],
   imports: [
@@ -91,6 +99,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     NbWindowModule.forChild(),
     NbDialogModule.forChild(),
     NbToastrModule,
+    NbContextMenuModule,
+    NbRadioModule,
 
 
   ],

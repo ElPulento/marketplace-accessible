@@ -198,6 +198,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     setTimeout(() =>   this.toastrService.show('Producto agregado correctamente',`Vender producto`, {
       status: 'info',
       icon: 'checkmark-outline',
+      preventDuplicates: true,
     }), 2000);
     
   }

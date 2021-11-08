@@ -6,6 +6,9 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { CategoriesComponent } from './components/categories/categories.component'
+import { EditInterfaceComponent } from './components/options/edit-interface/edit-interface.component';
+import { FavoritesComponent } from './components/options/favorites/favorites.component';
+import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
@@ -13,6 +16,9 @@ const routes: Routes = [
   { path: 'list-products', component: ListProductsComponent },
   { path: 'information', component: InformationComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'edit-interface', component: EditInterfaceComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'view-profile', component: ViewProfileComponent },
   { path: '', component: MainPageComponent },
 ];
 
