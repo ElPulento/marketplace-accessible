@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbWindowRef } from '@nebular/theme';
+import { NbToastrService, NbWindowRef } from '@nebular/theme';
 
 @Component({
   selector: 'modal-register',
@@ -11,7 +11,8 @@ export class ModalRegisterComponent implements OnInit {
   loading = false;
   constructor(
     private router: Router,
-    protected windowRef: NbWindowRef
+    protected windowRef: NbWindowRef,
+    private toastrService: NbToastrService,
   ) { }
 
   ngOnInit() {
@@ -22,7 +23,18 @@ export class ModalRegisterComponent implements OnInit {
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() =>  this.router.navigateByUrl(`auth/login`), 2000);
     setTimeout(() => this.windowRef.close(), 2000);
-    
+    setTimeout(
+      () =>
+        this.toastrService.show(
+          'Se ha registrado correctamente, Bienvenido!',
+          `Registro completado!`,
+          {
+            status: 'info',
+            icon: 'checkmark-outline',
+          }
+        ),
+      2000
+    );
     
   }
 

@@ -19,7 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
  
   constructor(
     private fb: FormBuilder,
-    private toastr: NbToastrService,
+    private toastrService: NbToastrService,
     private router : Router,
     private headerService : HeaderService,
     ) {}
@@ -72,6 +72,18 @@ export class ForgotPasswordComponent implements OnInit {
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
+    setTimeout(
+      () =>
+        this.toastrService.show(
+          'Se ha recuperado la contraseña correctamente',
+          `Recuperar contraseña`,
+          {
+            status: 'info',
+            icon: 'checkmark-outline',
+          }
+        ),
+      2000
+    );
     
   }
   get form() {

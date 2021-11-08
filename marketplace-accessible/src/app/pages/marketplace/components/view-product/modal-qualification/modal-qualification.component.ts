@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbWindowRef } from '@nebular/theme';
+import { NbToastrService, NbWindowRef } from '@nebular/theme';
 
 @Component({
   selector: 'modal-qualification',
@@ -14,7 +14,8 @@ export class ModalQualificationComponent implements OnInit {
   loading = false;
   constructor(
     private router: Router,
-    protected windowRef: NbWindowRef
+    protected windowRef: NbWindowRef,
+    private toastrService: NbToastrService,
   ) { }
 
   ngOnInit() {
@@ -24,6 +25,10 @@ export class ModalQualificationComponent implements OnInit {
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() => this.windowRef.close(), 2000);
+    setTimeout(() =>   this.toastrService.show('Se ha guardado la calificación correctamente',`Calificar atencion del vendedor`, {
+      status: 'info',
+      icon: 'checkmark-outline',
+    }), 2000);
     
     
   }

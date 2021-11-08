@@ -72,7 +72,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: NbToastrService,
+    private toastrService: NbToastrService,
     private windowService: NbWindowService,
     private router: Router,
     ) {}
@@ -195,6 +195,10 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
+    setTimeout(() =>   this.toastrService.show('Producto agregado correctamente',`Vender producto`, {
+      status: 'info',
+      icon: 'checkmark-outline',
+    }), 2000);
     
   }
 
