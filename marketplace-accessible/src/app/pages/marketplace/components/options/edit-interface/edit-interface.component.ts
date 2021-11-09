@@ -12,7 +12,6 @@ import { ScreenSizeService } from '../../../services/screen-size.service';
 export class EditInterfaceComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
   currentTheme = 'default';
-  checked: string;
   fontSize : number;
   disableUp : boolean
   disableDown : boolean
@@ -23,8 +22,6 @@ export class EditInterfaceComponent implements OnInit {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    this.checked = this.themeService.currentTheme;
-    
      //---- theme 
      this.themeService
      .onThemeChange()
@@ -45,7 +42,7 @@ export class EditInterfaceComponent implements OnInit {
   }
   changeTheme(themeName: string) {
     setTimeout(() => this.themeService.changeTheme(themeName), 100);
-    this.checked = themeName;
+    this.currentTheme = themeName;
   }
 
  

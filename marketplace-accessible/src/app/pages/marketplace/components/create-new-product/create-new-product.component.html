@@ -1,9 +1,9 @@
-<nb-card size="giant" [nbSpinner]="loading" nbSpinnerStatus="primary">
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
   <nb-card-body>
     <form [formGroup]="productForm">
    <!-- <p>{{ productForm.value | json }}</p> -->
 
-      <nb-stepper orientation="horizontal" >
+      <nb-stepper orientation="horizontal" disableStepNavigation >
         <nb-step [label]="labelOne">
           <ng-template #labelOne>Comienzo</ng-template>
           <div class="row">
@@ -27,6 +27,7 @@
           <ng-container>
             <div class="row" style="justify-content: center">
               <button
+              *ngIf="login"
                 nbButton
                 outline
                 shape="round"
@@ -35,15 +36,26 @@
               >
                 Comenzar
               </button>
+              <button
+              *ngIf="!login"
+              (click)="openWindowLogin()"
+                nbButton
+                outline
+                shape="round"
+                status="info"
+               
+              >
+                Comenzar
+              </button>
             </div>
           </ng-container>
         </nb-step>
         <nb-step [label]="labelTwo">
-          <ng-template #labelTwo>Titulo</ng-template>
+          <ng-template #labelTwo >Titulo</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Título del producto</h1>
-              <h6 class="lorem">
+              <h6 class="lorem" [style.fontSize.px]="fontSize">
                 Aquí debes colocar el titulo más adecuado para el producto que
                 estas ofreciendo.
               </h6>
@@ -52,6 +64,7 @@
                 <nb-icon *ngIf="!form.title.pristine && form.title.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
              
               <input
+              [style.fontSize.px]="fontSize"
                 nbInput
                 fullWidth
                 placeholder="Ejemplo: Televisor QLED marca LG"
@@ -68,7 +81,7 @@
               />
             </nb-form-field>
               <br />
-              <p
+              <p [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.title.pristine && form.title.errors?.required"
               >
@@ -147,6 +160,7 @@
             </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="
                   !form.description.pristine &&
@@ -192,15 +206,16 @@
           <ng-template #labelFour>Precio</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Precio del producto</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Precio del producto</h1>
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Aquí debes colocar el precio que tu estimes conveniente para el
                 producto que estas ofreciendo.
-              </p>
+              </h6>
               <nb-form-field>
                 <nb-icon *ngIf="form.price.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
                 <nb-icon *ngIf="!form.price.pristine && form.price.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
               <input
+              [style.fontSize.px]="fontSize"
                 placeholder="Ejemplo : 19000"
                 nbInput
                 fullWidth
@@ -218,6 +233,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.price.pristine && form.price.errors?.required"
               >
@@ -260,15 +276,16 @@
           <ng-template #labelFive>Cantidad</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Cantidad</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Cantidad</h1>
+              <h6 class="lorem" [style.fontSize.px]="fontSize">
                 Aquí debes colocar la cantidad disponible actual que tiene para
                 ofrecer para el producto que estas ofreciendo.
-              </p>
+              </h6>
               <nb-form-field>
                 <nb-icon *ngIf="form.amount.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
                 <nb-icon *ngIf="!form.amount.pristine && form.amount.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
               <input
+              [style.fontSize.px]="fontSize"
                 placeholder="Seleccione la cantidad del producto a vender"
                 nbInput
                 fullWidth
@@ -286,6 +303,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.amount.pristine && form.amount.errors?.required"
               >
@@ -329,11 +347,11 @@
 
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">categoria(s) del producto</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">categoria(s) del producto</h1>
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Aquí debes colocar en que categoria se encuentra tu producto,
                 debes seleccionar al menos uno.
-              </p>
+              </h6>
               
               <nb-select
                 placeholder="Seleccione las categorias"
@@ -350,6 +368,7 @@
               >
               
                 <nb-option
+                [style.fontSize.px]="fontSize"
                   *ngFor="let category of categories; let i = index"
                   [value]="categories[i]"
                 >
@@ -359,11 +378,13 @@
               </nb-select>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="
                   !form.categories.pristine && form.categories.errors?.required
                 "
               >
+              <br>
                 La categoria del producto es requerida
               </p>
               <br />
@@ -404,11 +425,11 @@
 
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
-              <h1 style="cursor: default;">Imagenes del producto</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Imagenes del producto</h1>
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Aquí debes adjuntar las imágenes referenciales del producto que
                 estas ofreciendo.
-              </p>
+              </h6>
               <div class="container row">
    
                 <input
@@ -440,6 +461,7 @@
                 />
                 <br />
                 <p
+                [style.fontSize.px]="fontSize"
                   class="red"
                   *ngIf="!form.images.pristine && form.images.errors?.required"
                 >
@@ -457,8 +479,8 @@
                   Subir imagenes
                 </button>
               </div>
-
-              <p>Total de imagenes: {{ form.images.value?.length || 0 }} - {{imageMaxLength}}</p>
+                <br>
+              <p [style.fontSize.px]="fontSize">Total de imagenes: {{ form.images.value?.length || 0 }} - {{imageMaxLength}}</p>
            
               <hr />
 
@@ -477,10 +499,11 @@
                       <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
                         <label style="float: left;" class="label col-form-label mr-4">Nombre de la imagen</label>
                         <br>
-                        <h6 style="float: left; text-align: left;" >{{ file.get("name")?.value }}</h6>
+                        <h6 [style.fontSize.px]="fontSize" style="float: left; text-align: left;" >{{ file.get("name")?.value }}</h6>
                         <label style="float: left;" class="label col-form-label mr-4">Descripción de la imagen</label>
                         <br>
                           <textarea
+                          [style.fontSize.px]="fontSize"
                             placeholder="Ejemplo: La imagen agregada muestra un televisor, con el menú de aplicaciones"
                             nbInput
                             rows="3"
@@ -500,6 +523,7 @@
                           </textarea>
                           <br />
                           <p
+                          [style.fontSize.px]="fontSize"
                             class="red"
                             *ngIf="
                               !file.get('description')?.pristine &&

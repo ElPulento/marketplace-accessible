@@ -27,9 +27,9 @@ export class HeaderLoginComponent implements OnInit {
 
   loading = false;
   itemsLogin = [
-    { title: 'Editar interfaz' },
     { title: 'Ver mi perfil' },
     { title: 'Favoritos' },
+    { title: 'Información' },
     { title: 'Cerrar sesión' },
   ];
 
@@ -55,8 +55,8 @@ export class HeaderLoginComponent implements OnInit {
         map(({ item: { title } }) => title)
       )
       .subscribe((title) => {
-        if (title == 'Editar interfaz') {
-          this.router.navigateByUrl(`marketplace/edit-interface`);
+        if (title == 'Información') {
+          this.router.navigateByUrl(`marketplace/information`);
         }
         if (title == 'Ver mi perfil') {
           this.router.navigateByUrl(`marketplace/view-profile`);

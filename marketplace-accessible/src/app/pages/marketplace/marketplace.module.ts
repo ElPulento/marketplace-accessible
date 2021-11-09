@@ -47,6 +47,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { EditInterfaceComponent } from './components/options/edit-interface/edit-interface.component';
 import { FavoritesComponent } from './components/options/favorites/favorites.component';
 import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
+import { ModalLoginComponent } from './components/create-new-product/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ViewProfileComponent } from './components/options/view-profile/view-pro
     EditInterfaceComponent,
     FavoritesComponent,
     ViewProfileComponent,
+    ModalLoginComponent,
    
   ],
   imports: [

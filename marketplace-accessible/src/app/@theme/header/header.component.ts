@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     private headerService: HeaderService
   ) {}
 
-  items = [ { title: 'Iniciar Sesión' }, { title: 'Registrarse' }, { title: 'Editar interfaz' }];
+  items = [ { title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -39,9 +39,6 @@ export class HeaderComponent implements OnInit {
         map(({ item: { title } }) => title)
       )
       .subscribe((title) => {
-        if (title == 'Editar interfaz') {
-          this.router.navigateByUrl(`marketplace/edit-interface`);
-        }
         if (title == 'Iniciar Sesión') {
           this.router.navigateByUrl(`auth/login`);
         }

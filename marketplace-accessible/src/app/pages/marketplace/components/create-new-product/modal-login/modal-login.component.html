@@ -1,0 +1,46 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+  <nb-card-body>
+    <h1 class="center">Necesita iniciar sesión</h1>
+    <div class="row">
+      <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
+        
+        <h6 [style.fontSize.px]="fontSize" class="lorem">
+          Antes de publicar un producto debe iniciar sesión con su cuenta.
+        </h6>
+        <img
+          src="assets/images/login.png"
+          alt="Imagen referencial de inicio de sesión"
+          width="200px"
+          height="200px"
+        />
+        <br />
+      </div>
+    </div>
+    <hr />
+    <ng-container class="col-3">
+      <div class="row" style="justify-content: center">
+        <button
+          style="margin: 5px"
+          (click)="goToLogin()"
+          nbButton
+          status="primary"
+        >
+          <nb-icon icon="arrow-forward-outline"></nb-icon>
+          Ir a Iniciar sesión
+        </button>
+      </div>
+
+      <div class="row" style="justify-content: center">
+        <button
+          style="margin: 5px"
+          (click)="goToMain()"
+          nbButton
+          status="danger"
+        >
+          <nb-icon icon="arrow-back-outline"></nb-icon>
+          Volver a inicio
+        </button>
+      </div>
+    </ng-container>
+  </nb-card-body>
+</nb-card>

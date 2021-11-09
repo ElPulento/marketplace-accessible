@@ -5,7 +5,9 @@ import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
 import * as restrictions from '../../models/restrictions/new-product.restrictions';
+import { HeaderService } from '../../services/header.service';
 import { ScreenSizeService } from '../../services/screen-size.service';
+import { ModalLoginComponent } from './modal-login/modal-login.component';
 @Component({
   selector: 'app-create-new-product',
   templateUrl: './create-new-product.component.html',
@@ -71,6 +73,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   maximize: boolean;
   fullScreen: boolean;
   fontSize: number;
+  login: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -78,6 +81,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     private windowService: NbWindowService,
     private router: Router,
     private screenSizeService : ScreenSizeService,
+    private loginService : HeaderService,
     ) {}
 
   ngOnDestroy(): void {
@@ -118,6 +122,9 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.screenSizeService.change.subscribe((fontSize) => {
      this.fontSize = fontSize;
    });
+   // login
+   this.login = this.loginService.loginHeader;
+   console.log(this.login,'esta logeado?')
   }
 
   private initializeForms() {
@@ -146,6 +153,18 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.windowService.open(
       this.deleteTemplate,
       { title: 'Eliminar imagen', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
+
+  openWindowLogin(){
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+   this.windowService.open(
+      ModalLoginComponent,
+      { title: 'Iniciar sesión', hasBackdrop: true, buttons: buttonsConfig },
     );
   }
 
