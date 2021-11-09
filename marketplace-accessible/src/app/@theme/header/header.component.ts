@@ -13,7 +13,7 @@ import { HeaderService } from '../../pages/marketplace/services/header.service';
 })
 export class HeaderComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
-
+ 
   currentTheme = 'default';
   checked: string;
   constructor(
@@ -24,12 +24,13 @@ export class HeaderComponent implements OnInit {
     private headerService: HeaderService
   ) {}
 
-  items = [ { title: 'Editar interfaz' }, { title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
+  items = [ { title: 'Iniciar Sesión' }, { title: 'Registrarse' }, { title: 'Editar interfaz' }];
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
   ngOnInit() {
+    this.currentTheme = this.themeService.currentTheme
     this.checked = this.themeService.currentTheme;
     this.nbMenuService
       .onItemClick()

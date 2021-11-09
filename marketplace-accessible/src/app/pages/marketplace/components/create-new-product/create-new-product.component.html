@@ -9,11 +9,11 @@
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1 style="cursor: default;">Vender producto</h1>
-              <p class="lorem">
+              <h6 class="lorem" [style.fontSize.px]="fontSize">
                 Por favor, recuerda ser concreto y preciso a la hora de detallar
                 la información del producto, ayúdanos a contribuir a que este
                 sea un espacio más accesible para todos ♡.
-              </p>
+              </h6>
               <img
                 src="assets/images/vender.png"
                 alt="Imagen referencial de compra y venta de productos"
@@ -42,11 +42,11 @@
           <ng-template #labelTwo>Titulo</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Título del producto</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Título del producto</h1>
+              <h6 class="lorem">
                 Aquí debes colocar el titulo más adecuado para el producto que
                 estas ofreciendo.
-              </p>
+              </h6>
               <nb-form-field>
                 <nb-icon *ngIf="form.title.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
                 <nb-icon *ngIf="!form.title.pristine && form.title.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
@@ -115,18 +115,19 @@
           <ng-template #labelThree>Descripción del producto</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Descripción del producto</h1>
-              <p class="lorem">
+              <h1 [style.fontSize.px]="fontSize" style="cursor: default;">Descripción del producto</h1>
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Aquí debes colocar siendo concreto y preciso los detalles y
                 caracteristicas del producto que estas ofreciendo, sin olvidar
                 ningun detalle importante que pueda ayudar al posible comprador
                 a elegir tu producto.
-              </p>
+              </h6>
               <nb-form-field>
                 <nb-icon *ngIf="form.description.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
                 <nb-icon *ngIf="!form.description.pristine && form.description.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
                 
               <textarea
+              [style.fontSize.px]="fontSize"
                 nbInput
                 fullWidth
                 rows="8"

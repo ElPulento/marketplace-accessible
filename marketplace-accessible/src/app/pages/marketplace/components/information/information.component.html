@@ -2,40 +2,43 @@
   <nb-card-body>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-        <h1 style="cursor: default;">Información</h1>
+        <h1>Información</h1>
         <nb-accordion>
           <nb-accordion-item>
-            <nb-accordion-item-header>
+            <nb-accordion-item-header [style.fontSize.px]="fontSize">
               ¿Quines somos?
             </nb-accordion-item-header>
-            <nb-accordion-item-body>
+            <nb-accordion-item-body >
+              <h6 [style.fontSize.px]="fontSize">
               MARKETPLACE es un sitio web para vender y comprar diversos
               artículos, desde un videojuego para tu consola, hasta el nuevo
               auto de tus sueños, aunque esto no estaría completo sin una
               interfaz y detalles accesibles para usuarios con previa
               experiencia en sitios web tipo Marketplace y personas con TEA.
+              </h6>
             </nb-accordion-item-body>
           </nb-accordion-item>
 
           <nb-accordion-item>
-            <nb-accordion-item-header> ¿Que es TEA? </nb-accordion-item-header>
+            <nb-accordion-item-header [style.fontSize.px]="fontSize"> ¿Que es TEA? </nb-accordion-item-header>
             <nb-accordion-item-body>
+              <h6 [style.fontSize.px]="fontSize">
               El Trastornos del Espectro Autista (TEA) es una discapacidad del
               desarrollo que puede provocar problemas sociales, comunicacionales
               y conductuales significativos. Dentro de un sitio web tipo
               Marketplace pueden presentar problemas a la hora de obtener la
               información de un producto, comunicarse con el vendedor o
               determinar que acciones esta realizando en cada momento (e.j:
-              cuando está publicando un artículo para vender). Es por ello que
-              es importante que cada vez que des información sobre algún
-              producto seas claro a la hora de detallar a que se esta
-              refiriendo, para evitar confusiones que lleven a la no compra del
+              cuando está publicando un artículo para vender).
+             Es por ello que
+              es importante ser claro a la hora de detallar los productos, para evitar confusiones que lleven a la no compra del
               artículo.
+            </h6>
             </nb-accordion-item-body>
           </nb-accordion-item>
 
           <nb-accordion-item>
-            <nb-accordion-item-header>
+            <nb-accordion-item-header [style.fontSize.px]="fontSize" >
               ¿Que significa cada color en nuestra página?
             </nb-accordion-item-header>
             <nb-accordion-item-body>
@@ -149,10 +152,11 @@
           </nb-accordion-item>
 
           <nb-accordion-item>
-            <nb-accordion-item-header>
+            <nb-accordion-item-header [style.fontSize.px]="fontSize">
               ¿Que buscamos?
             </nb-accordion-item-header>
-            <nb-accordion-item-body>
+            <nb-accordion-item-body >
+              <h6 [style.fontSize.px]="fontSize">
               Como equipo buscamos generar una nueva forma de comprar y vender
               artículos en un sitio web, en donde nadie se sienta discriminado y
               pueda satisfacer sus necesidades fácilmente, donde la información
@@ -162,6 +166,7 @@
               sitio web a comprender las necesidades de otras personas y
               comprender que todos merecemos una buena experiencia al comprar y
               vender artículos por internet.
+            </h6>
             </nb-accordion-item-body>
           </nb-accordion-item>
         </nb-accordion>

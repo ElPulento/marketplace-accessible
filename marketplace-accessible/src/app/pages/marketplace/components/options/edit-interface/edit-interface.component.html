@@ -1,41 +1,31 @@
-<nb-card size="giant">
+<nb-card size="giant" >
   <nb-card-body>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6">
         <h1 style="cursor: default">Personalización</h1>
         <nb-card accent="info">
-          <nb-card-header>Cambiar color de la página</nb-card-header>
+          <nb-card-header [style.fontSize.px]="fontSize" >Cambiar color de la página</nb-card-header>
           <nb-card-body>
-            <nb-radio-group [(ngModel)]="themes">
-              <nb-radio (click)="changeTheme('default')" value="default"
-                >Modo claro</nb-radio
+            <nb-radio-group >
+              <nb-radio (click)="changeTheme('default')" value="default" [checked]="currentTheme === 'default'"
+                ><p style="margin-top: 15%;" [style.fontSize.px]="fontSize">  <nb-icon icon="sun-outline"></nb-icon> Modo claro </p></nb-radio
               >
               <nb-radio
+            
                 (click)="changeTheme('dark')"
                 value="dark"
-                checked="true"
-                >Modo oscuro</nb-radio
-              >
+                [checked]="currentTheme === 'dark'"> <p style="margin-top: 15%;" [style.fontSize.px]="fontSize">  <nb-icon icon="moon-outline" ></nb-icon> Modo oscuro </p> </nb-radio>
             </nb-radio-group>
           </nb-card-body>
         </nb-card>
 
         <nb-card accent="info">
-          <nb-card-header>Cambiar tamaño de la página</nb-card-header>
+          <nb-card-header [style.fontSize.px]="fontSize">Cambiar tamaño de la página</nb-card-header>
           <nb-card-body>
-            <nb-actions size="small">
-              <nb-action class="control-item">Tamaño de pantalla</nb-action>
-              <nb-action
-                (click)="zoomDown()"
-                class="control-item"
-                icon="minus-circle-outline"
-              ></nb-action>
-              <nb-action
-                (click)="zoomUp()"
-                class="control-item"
-                icon="plus-circle-outline"
-              ></nb-action>
-            </nb-actions>
+           
+            <button  nbButton  status="primary" (click)="changeFont('+')" style="margin: 10px;" [disabled]="disableUp" > <nb-icon icon="plus-circle-outline"  ></nb-icon> Aumentar</button>
+            <button  nbButton status="danger" (click)="changeFont('-')" style="margin: 10px;" [disabled]="disableDown" > <nb-icon icon="minus-circle-outline" ></nb-icon> Disminuir</button>
+            <button nbButton status="warning" (click)="changeFont('')" style="margin: 10px;" > <nb-icon icon="refresh-outline" ></nb-icon> Tamaño original</button>
           </nb-card-body>
         </nb-card>
       </div>

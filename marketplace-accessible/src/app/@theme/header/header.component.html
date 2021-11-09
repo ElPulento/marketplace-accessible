@@ -204,7 +204,7 @@
         <ul class="menu_items" id="mode" style="margin-top: 5px">
           <li>
             <nb-toggle
-              *ngIf="checked === 'default'"
+              *ngIf="currentTheme === 'default'"
               (click)="changeTheme('dark')"
             >
             <p class="textColor">
@@ -214,7 +214,7 @@
             </nb-toggle
             >
             <nb-toggle
-              *ngIf="checked === 'dark'"
+              *ngIf="currentTheme === 'dark'"
               checked="true"
               (click)="changeTheme('default')"
             >

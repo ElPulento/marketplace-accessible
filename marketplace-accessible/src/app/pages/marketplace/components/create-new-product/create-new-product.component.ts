@@ -5,6 +5,7 @@ import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
 import * as restrictions from '../../models/restrictions/new-product.restrictions';
+import { ScreenSizeService } from '../../services/screen-size.service';
 @Component({
   selector: 'app-create-new-product',
   templateUrl: './create-new-product.component.html',
@@ -69,12 +70,14 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
+  fontSize: number;
 
   constructor(
     private fb: FormBuilder,
     private toastrService: NbToastrService,
     private windowService: NbWindowService,
     private router: Router,
+    private screenSizeService : ScreenSizeService,
     ) {}
 
   ngOnDestroy(): void {
@@ -110,6 +113,11 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.fullScreen = false;
     this.minimize = false;
     this.maximize = false;
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
   }
 
   private initializeForms() {

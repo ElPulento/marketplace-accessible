@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { ScreenSizeService } from '../../../services/screen-size.service';
 
 @Component({
   selector: 'edit-interface',
@@ -12,25 +13,19 @@ export class EditInterfaceComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
   currentTheme = 'default';
   checked: string;
-  themes = [
-    {
-      value: 'default',
-      name: 'Modo claro',
-    },
-    {
-      value: 'dark',
-      name: 'Modo oscuro',
-    },
-    
-  ];
-
+  fontSize : number;
+  disableUp : boolean
+  disableDown : boolean
   constructor(
     private themeService: NbThemeService,
+    private screenSizeService : ScreenSizeService,
   ) { }
 
   ngOnInit() {
+    this.currentTheme = this.themeService.currentTheme;
     this.checked = this.themeService.currentTheme;
-     //----
+    
+     //---- theme 
      this.themeService
      .onThemeChange()
      .pipe(
@@ -38,6 +33,14 @@ export class EditInterfaceComponent implements OnInit {
        takeUntil(this.destroy$)
      )
      .subscribe((themeName) => (this.currentTheme = themeName));
+     //---- font size
+     this.disableUp = this.screenSizeService.disableUp
+     this.disableDown = this.screenSizeService.disableDown
+     this.fontSize = this.screenSizeService.fontSize
+     this.screenSizeService.change.subscribe((fontSize) => {
+      this.fontSize = fontSize;
+    //  console.log(fontSize, 'font size');
+    });
 
   }
   changeTheme(themeName: string) {
@@ -45,27 +48,28 @@ export class EditInterfaceComponent implements OnInit {
     this.checked = themeName;
   }
 
-  zoom = 100;
-  onzoom(event: any) {
-    if (this.zoom != null) console.log(event);
-    this.zoom = event.target.value;
-    document.body.style.zoom = this.zoom + '%';
+ 
+  changeFont(operator){
+   if (operator === '+'){
+     this.screenSizeService.increase()
+     this.disableUp = this.screenSizeService.disableUp
+     this.disableDown = this.screenSizeService.disableDown
+   }
+  else if (operator === '-'){
+    this.screenSizeService.decrease()
+    this.disableDown = this.screenSizeService.disableDown
+    this.disableUp = this.screenSizeService.disableUp
   }
-  zoomUp() {
-    if (this.zoom <= 200) {
-    this.zoom += 5;
-    
-      console.log('zoom es: ', this.zoom);
-      document.body.style.zoom = this.zoom + '%';
-    }
+  else if (operator === ''){
+    this.screenSizeService.reset()
+    this.disableDown = this.screenSizeService.disableDown
+    this.disableUp = this.screenSizeService.disableUp
   }
-  zoomDown() {
-    if (this.zoom >= 100) {
-    this.zoom -= 5;
-    
-      console.log('zoom es: ', this.zoom);
-      document.body.style.zoom = this.zoom + '%';
-    }
+   
   }
+
+ 
+
+
 
 }
