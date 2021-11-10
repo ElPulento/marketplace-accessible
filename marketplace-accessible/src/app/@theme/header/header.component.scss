@@ -70,8 +70,9 @@ div.container {
 }
 
 .menu_items li:hover, li:active {
-  background-color: rgba(0, 0, 0, .1);
-  transition: .2s;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, .2);
+  transition: .1s;
 }
 
 .btn_menu {
@@ -168,6 +169,11 @@ margin-right: 30px ;
 
   }
 
-  .active{
-    background-color: violet;
+  .active {
+    
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, .3);
+    transition: .2s;
+    margin: 0 5px;
+   // box-shadow: 2px 5px 5px rgb(20, 161, 255);
   }

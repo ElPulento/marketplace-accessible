@@ -14,6 +14,7 @@ export class AppComponent {
     private headerService : HeaderService,
     ) {}
     ngOnInit() {
+      //login
       this.headerService.change.subscribe(login => {
         this.login = login
         console.log(login, 'login header')

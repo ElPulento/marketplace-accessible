@@ -1,3 +1,4 @@
+
 <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
   <nb-card-body>
     <h1 class="center" >Necesita iniciar sesión</h1>
@@ -5,7 +6,7 @@
       <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
         
         <h6 [style.fontSize.px]="fontSize" class="lorem">
-          Antes de publicar un producto debe iniciar sesión con su cuenta.
+          Hola! para agregar a favoritos debe iniciar sesión con su cuenta.
         </h6>
         <img
           src="assets/images/login.png"
@@ -33,12 +34,12 @@
       <div class="row" style="justify-content: center">
         <button
           style="margin: 5px"
-          (click)="goToMain()"
+          (click)="goToBack()"
           nbButton
           status="danger"
         >
           <nb-icon icon="arrow-back-outline"></nb-icon>
-          Volver a inicio
+          Volver
         </button>
       </div>
     </ng-container>

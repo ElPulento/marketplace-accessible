@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService, NbWindowRef } from '@nebular/theme';
+import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 
 @Component({
   selector: 'modal-register',
@@ -9,13 +10,20 @@ import { NbToastrService, NbWindowRef } from '@nebular/theme';
 })
 export class ModalRegisterComponent implements OnInit {
   loading = false;
+  fontSize: number;
   constructor(
     private router: Router,
     protected windowRef: NbWindowRef,
     private toastrService: NbToastrService,
+    private screenSizeService : ScreenSizeService,
   ) { }
 
   ngOnInit() {
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
   }
 
   goToLogin(){

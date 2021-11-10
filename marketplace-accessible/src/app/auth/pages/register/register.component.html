@@ -10,10 +10,10 @@
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1 style="cursor: default;">Registrarse</h1>
-              <p class="lorem">
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 A continuación deberá llenar un formulario para tener una cuenta
                 propia en el marketplace
-              </p>
+              </h6>
 
               <img
                 src="assets/images/registro.png"
@@ -61,6 +61,7 @@
                 ></nb-icon>
                 <label class="label col-form-label mr-4">Nombre(s)</label>
                 <input
+                [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
                   placeholder="Ejemplo: Sebastián Andrés"
@@ -78,6 +79,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.name.pristine && form.name.errors?.required"
               >
@@ -123,6 +125,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.surname.pristine && form.surname.errors?.required"
               >
@@ -167,12 +170,12 @@
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
               <h1 style="cursor: default;">Descripción de tú perfil</h1>
-              <p class="lorem">
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Si deseas describir tú perfil con productos que vendes aqui
                 puedes escribir un resumen, en caso de que no vendas productos
                 puedes avanzar al siguiente punto del formulario sin llenar este
                 punto
-              </p>
+              </h6>
               <nb-form-field>
                 <nb-icon
                   *ngIf="form.description.valid"
@@ -255,6 +258,7 @@
                   pack="eva"
                 ></nb-icon>
                 <input
+                [style.fontSize.px]="fontSize"
                   fullWidth
                   nbInput
                   formControlName="date"
@@ -271,6 +275,7 @@
                 <br />
 
                 <p
+                [style.fontSize.px]="fontSize"
                   class="red"
                   *ngIf="!form.date.pristine && form.date.errors?.required"
                 >
@@ -338,6 +343,7 @@
                   >Dirección de residencia</label
                 >
                 <input
+                [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
                   placeholder="Ejemplo: Pasaje milan #20"
@@ -381,6 +387,7 @@
                 ></nb-icon>
                 <label class="label col-form-label mr-4">Ciudad </label>
                 <input
+                [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
                   placeholder="Ejemplo: Valparaiso"
@@ -398,6 +405,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.region.pristine && form.region.errors?.required"
               >
@@ -461,6 +469,7 @@
                   >Correo electrónico</label
                 >
                 <input
+                [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
                   placeholder="Ejemplo: nombre@gmail.com"
@@ -478,6 +487,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="!form.email.pristine && form.email.errors?.required"
               >
@@ -506,6 +516,7 @@
                   >Número de contacto
                 </label>
                 <input
+                [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
                   placeholder="Ejemplo: 998123456"
@@ -524,6 +535,7 @@
               </nb-form-field>
               <br />
               <p
+              [style.fontSize.px]="fontSize"
                 class="red"
                 *ngIf="
                   !form.contactNumber.pristine &&
@@ -573,13 +585,14 @@
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-6 col-lg-6">
               <h1 style="cursor: default;">Imagen del perfil</h1>
-              <p class="lorem">
+              <h6 [style.fontSize.px]="fontSize" class="lorem">
                 Si deseas tener una foto de perfil puedes agregarla, en caso
                 contrario puedes saltar este paso y terminar con el registro
                 presionando "Realizar registro"
-              </p>
+              </h6>
               <div class="container row">
                 <input
+                [style.fontSize.px]="fontSize"
                   fullWidth
                   nbInput
                   style="display: none"

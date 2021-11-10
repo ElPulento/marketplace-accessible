@@ -1,6 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+import { NbDialogService, NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+import { FavoritesService } from '../../services/favorites.service';
+import { HeaderService } from '../../services/header.service';
+import { QualificationService } from '../../services/qualification.service';
+import { ScreenSizeService } from '../../services/screen-size.service';
+import { ModalLoginFavoritesComponent } from './modal-login-favorites/modal-login-favorites.component';
 import { ModalQualificationComponent} from './modal-qualification/modal-qualification.component';
 @Component({
   selector: 'app-view-product',
@@ -12,15 +17,24 @@ export class ViewProductComponent implements OnInit {
   
   productId : string
   imagesCounter: number
-  favorites: boolean;
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
   starValue: HTMLElement;
+  fontSize: number;
+  favorites : boolean;
+  qualification : boolean;
+  loading : boolean;
+  login: boolean;
   constructor(
     private route: ActivatedRoute,
     private windowService: NbWindowService,
     private router : Router,
+    private screenSizeService : ScreenSizeService,
+    private favoritesService : FavoritesService,
+    private qualificationService : QualificationService,
+    private toastrService: NbToastrService,
+    private loginService : HeaderService,
    ) {}
 
   ngOnInit(): void {
@@ -30,16 +44,35 @@ export class ViewProductComponent implements OnInit {
   @ViewChild('chat', { read: TemplateRef }) chatTemplate: TemplateRef<HTMLElement>;
   @ViewChild('profile', { read: TemplateRef }) profileTemplate: TemplateRef<HTMLElement>;
   @ViewChild('qualification', { read: TemplateRef }) qualificationTemplate: TemplateRef<HTMLElement>;
-  
+
   initializableVariables(){
+    this.loading = false;
     this.productId = this.route.snapshot.paramMap.get('id');
     this.imagesCounter = 0;
-    this.favorites = false;
     this.minimize = false;
     this.maximize = false;
     this.fullScreen = true;
     this.starValue = document.getElementById("radio1");;
     console.log(this.starValue, ' star')
+     //---- font size
+     this.fontSize = this.screenSizeService.fontSize
+     this.screenSizeService.change.subscribe((fontSize) => {
+      this.fontSize = fontSize;
+    });
+    //favorites
+    this.favorites = this.favoritesService.IsFavorite(this.productId)
+    this.favoritesService.change.subscribe(favorites => {
+      this.favorites = favorites
+    })
+    //qualification
+    this.qualification = this.qualificationService.IsQualified(this.productId)
+    this.qualificationService.change.subscribe(qualification => {
+      this.qualification = qualification
+    })
+    // login
+   this.login = this.loginService.loginHeader;
+ 
+   
 
   }
   openWindowChat() {
@@ -76,6 +109,17 @@ export class ViewProductComponent implements OnInit {
       { title: 'Calificar vendedor', hasBackdrop: true, buttons: buttonsConfig },
     );
   }
+  openWindowLogin(){
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: this.minimize,
+      maximize: this.maximize,
+      fullScreen: this.fullScreen,
+    }
+   this.windowService.open(
+      ModalLoginFavoritesComponent,
+      { title: 'Iniciar sesión', hasBackdrop: true, buttons: buttonsConfig },
+    );
+  }
 
 
   star(value){
@@ -92,12 +136,29 @@ export class ViewProductComponent implements OnInit {
     this.imagesCounter-=1;
   }
 
-  addFavorites(){
-    this.favorites = true
+  addFavorites(productId){
+    this.loading = true;
+    setTimeout(() =>  this.loading = false, 1000);
+    setTimeout(() => this.favoritesService.addFavorites(productId), 1000);
+    setTimeout(() =>  this.favorites = this.favoritesService.favorites, 1000);
+    setTimeout(() =>   this.toastrService.show('El producto se agregó a favoritos correctamente ',`Agregar a favoritos`, {
+      status: 'info',
+      icon: 'checkmark-outline',
+      preventDuplicates: true,
+    }), 1000);
+    console.log(this.favoritesService.listFavorites , 'favoritos añadidos')
   }
 
-  deleteFavorites(){
-    this.favorites = false;
+  deleteFavorites(productId){
+    this.loading = true;
+    setTimeout(() =>  this.loading = false, 1000);
+    setTimeout(() => this.favoritesService.deleteFavorites(productId), 1000);
+    setTimeout(() =>  this.favorites = this.favoritesService.favorites, 1000);
+    setTimeout(() =>   this.toastrService.show('El producto se eliminó de favoritos correctamente ',`Quitar de favoritos`, {
+      status: 'danger',
+      icon: 'close-outline',
+      preventDuplicates: true,
+    }), 1000);
   }
   messages: any[] = [
     {

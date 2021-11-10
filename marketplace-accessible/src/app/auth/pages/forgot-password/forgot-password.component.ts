@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { HeaderService } from '../../../pages/marketplace/services/header.service';
+import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 
 @Component({
   selector: 'forgot-password',
@@ -16,12 +17,14 @@ export class ForgotPasswordComponent implements OnInit {
   passLoadingSpinner!: boolean;
   passForm!: FormGroup;
   passHeader: boolean;
+  fontSize: number;
  
   constructor(
     private fb: FormBuilder,
     private toastrService: NbToastrService,
     private router : Router,
     private headerService : HeaderService,
+    private screenSizeService : ScreenSizeService,
     ) {}
 
   ngOnDestroy(): void {
@@ -35,6 +38,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   private initializeVariables() {
     this.passLoadingSpinner = false;
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
   }
 
   private initializeForms() {

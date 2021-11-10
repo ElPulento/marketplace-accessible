@@ -4,13 +4,14 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 container">
           <h1 style="cursor: default;">Iniciar Sesión</h1>
-          <p class="sub-title">Hola! Ingresa con tu correo electrónico y contraseña.</p>
+          <h6 [style.fontSize.px]="fontSize" class="sub-title">Hola! Ingresa con tu correo electrónico y contraseña.</h6>
           
           <nb-form-field>
             <label style="float: left;" class="label col-form-label mr-4">Correo electrónico</label>
             <nb-icon style="margin-top: 2rem" *ngIf="form.email.valid" nbSuffix icon="checkmark-outline" pack="eva"></nb-icon>
             <nb-icon style="margin-top: 2rem" *ngIf="!form.email.pristine && form.email.errors?.required" nbSuffix icon="close-outline" pack="eva"></nb-icon>
             <input
+              [style.fontSize.px]="fontSize"
               nbInput
               fullWidth
               min="8"
@@ -27,6 +28,7 @@
           </nb-form-field>
           <br />
           <p
+            [style.fontSize.px]="fontSize"
             class="red"
             *ngIf="!form.email.pristine && form.email.errors?.required"
           >
@@ -39,6 +41,7 @@
           <nb-form-field>
             <label style="float: left;" class="label col-form-label mr-4">Contraseña</label>
             <input
+              [style.fontSize.px]="fontSize"
               fullWidth
               type="password"
               formControlName="password"
@@ -66,14 +69,16 @@
 
           </nb-form-field>
           <br>
-          <a style="float: right; font-size: medium;" class="text-link" routerLink="./forgot-password">¿Olvidaste la contraseña?</a>
+          <a [style.fontSize.px]="fontSize" style="float: right; font-size: medium;" class="text-link" routerLink="./forgot-password">¿Olvidaste la contraseña?</a>
           
           
           <br />
           <p
+          [style.fontSize.px]="fontSize"
             class="red"
             *ngIf="!form.password.pristine && form.password.errors?.required"
           >
+          <br>
             La contraseña es requerida, con un mínimo de 8 caracteres
           </p>
           <br />
@@ -90,7 +95,7 @@
             </button>
           </div>
           <br>
-          <section style="font-size: medium;" aria-label="Register" class="another-action"> ¿Aún no tienes creada una cuenta? <a  class="text-link" routerLink="../register">Registrar</a></section>
+          <section [style.fontSize.px]="fontSize" style="font-size: medium;" aria-label="Register" class="another-action"> ¿Aún no tienes creada una cuenta? <a [style.fontSize.px]="fontSize"  class="text-link" routerLink="../register">Registrar</a></section>
         </div>
         
       </div>

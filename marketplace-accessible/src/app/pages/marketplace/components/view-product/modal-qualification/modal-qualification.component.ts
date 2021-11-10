@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService, NbWindowRef } from '@nebular/theme';
+import { FavoritesService } from '../../../services/favorites.service';
+import { QualificationService } from '../../../services/qualification.service';
 
 @Component({
   selector: 'modal-qualification',
@@ -12,24 +14,43 @@ export class ModalQualificationComponent implements OnInit {
   starValue: HTMLElement;
   i : number;
   loading = false;
+  qualification: boolean;
+  productId: string;
+  isQualified : boolean;
+  star2: number;
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     protected windowRef: NbWindowRef,
     private toastrService: NbToastrService,
+    private qualificationService : QualificationService,
+    private favoritesService : FavoritesService,
   ) { }
 
   ngOnInit() {
+    this.productId = this.favoritesService.id;
+    console.log( this.productId, 'product id')
+    //qualification
+    this.isQualified = this.qualificationService.IsQualified(this.productId);
+    console.log( this.isQualified, 'esta califiacado?')
+    this.qualification = this.qualificationService.IsQualified(this.productId)
+    this.qualificationService.change.subscribe(qualification => {
+      this.qualification = qualification
+    })
+    this.star2 = this.qualificationService.starValue;
   }
 
   goToBack(){
     this.loading = true;
-    setTimeout(() => this.loading = false, 2000);
-    setTimeout(() => this.windowRef.close(), 2000);
+    setTimeout(() => this.loading = false, 1000);
+    setTimeout(() => this.qualificationService.addQualification(this.productId, this.i), 1000);
+    setTimeout(() =>  this.qualification = this.qualificationService.qualification, 1000);
+    setTimeout(() => this.windowRef.close(), 1000);
     setTimeout(() =>   this.toastrService.show('Se ha guardado la calificación correctamente',`Calificar atencion del vendedor`, {
       status: 'info',
       icon: 'checkmark-outline',
       preventDuplicates: true,
-    }), 2000);
+    }), 1000);
     
     
   }
@@ -37,6 +58,7 @@ export class ModalQualificationComponent implements OnInit {
   star(value){
     this.i = value;
     this.starValue = value;
+    console.log(this.starValue, 'starValue')
     return this.starValue;
 
   }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { HeaderService } from '../../../pages/marketplace/services/header.service';
+import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 
 @Component({
   selector: '<app-login>',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginLoadingSpinner!: boolean;
   loginForm!: FormGroup;
   loginHeader: boolean;
+  fontSize: number;
  
  
   
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private toastrService: NbToastrService,
     private router : Router,
     private headerService : HeaderService,
+    private screenSizeService : ScreenSizeService,
     ) {}
 
   ngOnDestroy(): void {
@@ -41,6 +44,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private initializeVariables() {
     this.loginLoadingSpinner = false;
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
   }
 
   private initializeForms() {

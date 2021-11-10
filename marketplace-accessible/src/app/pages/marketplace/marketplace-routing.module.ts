@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'edit-interface', component: EditInterfaceComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'view-profile', component: ViewProfileComponent },
-  { path: '', component: MainPageComponent },
+  { path: 'main', component: MainPageComponent },
+  { path: '**', component: MainPageComponent },
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NB_WINDOW, NbMenuService, NbToastrService, NbThemeService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { FavoritesService } from '../../pages/marketplace/services/favorites.service';
 import { HeaderService } from '../../pages/marketplace/services/header.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class HeaderLoginComponent implements OnInit {
     private headerService: HeaderService,
     private toastrService: NbToastrService,
     private themeService: NbThemeService,
+    private favoritesService : FavoritesService,
     
   ) {}
 
@@ -66,6 +68,7 @@ export class HeaderLoginComponent implements OnInit {
         }
         if (title == 'Cerrar sesión') {
           this.loading = true;
+          this.favoritesService.deleteAllFavorites()
           setTimeout(() => (this.loading = false), 2000);
           setTimeout(() => this.headerService.login(), 2000);
           setTimeout(() => this.router.navigateByUrl(``), 2000);
@@ -84,6 +87,7 @@ export class HeaderLoginComponent implements OnInit {
           );
         }
       });
+      
       
   }
   changeTheme(themeName: string) {

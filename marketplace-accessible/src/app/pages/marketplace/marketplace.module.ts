@@ -48,6 +48,7 @@ import { EditInterfaceComponent } from './components/options/edit-interface/edit
 import { FavoritesComponent } from './components/options/favorites/favorites.component';
 import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
 import { ModalLoginComponent } from './components/create-new-product/modal-login/modal-login.component';
+import { ModalLoginFavoritesComponent } from './components/view-product/modal-login-favorites/modal-login-favorites.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ModalLoginComponent } from './components/create-new-product/modal-login
     FavoritesComponent,
     ViewProfileComponent,
     ModalLoginComponent,
+    ModalLoginFavoritesComponent,
    
   ],
   imports: [

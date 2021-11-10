@@ -34,15 +34,15 @@
               >Descripción de la imagen {{ this.imagesCounter + 1 }}</label
             >
             <br />
-            <h6>{{ product.images[this.imagesCounter].description }}</h6>
+            <h6 [style.fontSize.px]="fontSize">{{ product.images[this.imagesCounter].description }}</h6>
           </div>
           <br />
-          <p *ngIf="product.images.length !== 1">
+          <h6 [style.fontSize.px]="fontSize" *ngIf="product.images.length !== 1">
             Total de imagenes : {{ product.images.length }} imágenes
-          </p>
-          <p *ngIf="product.images.length === 1">
+          </h6>
+          <h6 [style.fontSize.px]="fontSize" *ngIf="product.images.length === 1">
             Total de imagenes : {{ product.images.length }} imagen
-          </p>
+          </h6>
           <ng-container>
             <div class="row">
               <div>
@@ -80,19 +80,33 @@
         <div class="col-12 col-sm-12 col-md-7 col-lg-4" style="float: right">
           <label class="label col-form-label mr-4">Nombre del producto</label>
           <br />
-          <h2>{{ product.title }}</h2>
+          <h3>{{ product.title }}</h3>
           <br />
           <label class="label col-form-label mr-4">Precio del producto</label>
           <br />
-          <h2>${{ product.price }}</h2>
+          <h3>${{ product.price }}</h3>
           <br />
           <label class="label col-form-label mr-4">Favoritos</label>
           <br />
 
           <button
+          [nbSpinner]="loading" nbSpinnerStatus="primary"
             fullWidth
-            *ngIf="favorites === false"
-            (click)="addFavorites()"
+            *ngIf="favorites === false && login"
+            (click)="addFavorites(this.productId)"
+            type="button"
+            status="danger"
+            size="medium"
+            nbButton
+          >
+            <nb-icon icon="heart-outline"></nb-icon>
+            Agregar a favoritos
+          </button>
+          <button
+          [nbSpinner]="loading" nbSpinnerStatus="primary"
+            fullWidth
+            *ngIf="favorites === false && !login"
+            (click)="openWindowLogin()"
             type="button"
             status="danger"
             size="medium"
@@ -103,9 +117,10 @@
           </button>
 
           <button
+          [nbSpinner]="loading" nbSpinnerStatus="primary"
             fullWidth
-            *ngIf="favorites === true"
-            (click)="deleteFavorites()"
+            *ngIf="favorites === true && login"
+            (click)="deleteFavorites(this.productId)"
             type="button"
             status="danger"
             size="medium"
@@ -166,7 +181,7 @@
             >Descripción del producto</label
           >
           <br />
-          <h6>{{ product.description }}</h6>
+          <h6 [style.fontSize.px]="fontSize">{{ product.description }}</h6>
         </div>
       </div>
     </ng-container>

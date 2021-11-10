@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { NbCalendarRange, NbDateService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
+import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -36,12 +37,14 @@ export class RegisterComponent implements OnInit {
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
+  fontSize: number;
 
   constructor(
     private fb: FormBuilder,
     private toastr: NbToastrService,
     private windowService: NbWindowService,
     private router: Router,
+    private screenSizeService : ScreenSizeService,
   
     ) {}
 
@@ -81,6 +84,11 @@ export class RegisterComponent implements OnInit {
     this.imageMaxLength = 1
     this.imageIsRequired = false
     this.createLoadingSpinner = false
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
   }
 
   private initializeForms() {

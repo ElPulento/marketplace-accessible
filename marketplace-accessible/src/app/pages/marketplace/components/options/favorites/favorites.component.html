@@ -1,3 +1,47 @@
-<p>
-  favorites works!
-</p>
+<nb-card >
+  
+ 
+  <nb-card-body [nbSpinner]="getProductSpinnerLoading">
+    <h1>Favoritos</h1>
+    <div
+      style="justify-content: space-around"
+      *ngIf="listFavorites.length > 0; else noProducts"
+    >
+      <ng-container *ngFor="let product of listProducts; let i = index">
+        <ng-container *ngFor="let favorites of listFavorites; let j = index">
+        <nb-card accent="info" *ngIf="product.id === favorites" style="margin: 10px">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <img
+                  [src]="product.images[0].name"
+                  alt=""
+                  width="200px"
+                  height="200px"
+                />
+              </div>
+              <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                <h1 style="cursor: default;" >{{ product.title }}</h1>
+                <hr />
+                <h1 style="cursor: default;">${{ product.price }}</h1>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                <button (click)="deleteFavorites(favorites)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 4rem;">
+                  <nb-icon icon="heart"></nb-icon>
+                  Quitar de favoritos
+                </button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+    </ng-container>
+    </div>
+    <ng-template #noProducts>
+      <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
+        <h1 style="cursor: default;">No tiene productos agregados a favoritos :(</h1>
+      </div>
+    </ng-template>
+  </nb-card-body>
+</nb-card>
