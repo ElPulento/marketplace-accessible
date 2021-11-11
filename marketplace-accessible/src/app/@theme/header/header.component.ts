@@ -5,6 +5,7 @@ import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NbThemeService } from '@nebular/theme';
 import { HeaderService } from '../../pages/marketplace/services/header.service';
+import { ProductsService } from '../../pages/marketplace/services/products.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,9 @@ export class HeaderComponent implements OnInit {
     private nbMenuService: NbMenuService,
     @Inject(NB_WINDOW) private window,
     private themeService: NbThemeService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private productsService : ProductsService,
+
   ) {}
 
   items = [ { title: 'Iniciar Sesión' }, { title: 'Registrarse' }];
@@ -60,7 +63,9 @@ export class HeaderComponent implements OnInit {
     this.checked = themeName;
   }
 
+
   goToListProduct() {
+    this.productsService.allCategories()
     this.router.navigateByUrl(`marketplace/list-products`);
   }
 

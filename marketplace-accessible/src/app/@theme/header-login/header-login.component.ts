@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { FavoritesService } from '../../pages/marketplace/services/favorites.service';
 import { HeaderService } from '../../pages/marketplace/services/header.service';
+import { ProductsService } from '../../pages/marketplace/services/products.service';
+import { ProfileService } from '../../pages/marketplace/services/profile.service';
 
 @Component({
   selector: 'header-login',
@@ -16,6 +18,8 @@ export class HeaderLoginComponent implements OnInit {
   login = true;
   currentTheme = 'default';
   checked: string;
+  name: string;
+  surname: string;
   constructor(
     private router: Router,
     private nbMenuService: NbMenuService,
@@ -24,6 +28,8 @@ export class HeaderLoginComponent implements OnInit {
     private toastrService: NbToastrService,
     private themeService: NbThemeService,
     private favoritesService : FavoritesService,
+    private productsService : ProductsService,
+    private profileService : ProfileService,
     
   ) {}
 
@@ -69,8 +75,9 @@ export class HeaderLoginComponent implements OnInit {
         if (title == 'Cerrar sesión') {
           this.loading = true;
           this.favoritesService.deleteAllFavorites()
+          this.profileService.recentLogged = null;
           setTimeout(() => (this.loading = false), 2000);
-          setTimeout(() => this.headerService.login(), 2000);
+          setTimeout(() => this.headerService.signOff(), 2000);
           setTimeout(() => this.router.navigateByUrl(``), 2000);
           setTimeout(
             () =>
@@ -87,6 +94,17 @@ export class HeaderLoginComponent implements OnInit {
           );
         }
       });
+      if ( this.profileService.IsLogged(this.profileService.recentLogged)){
+          for ( let i =0 ; i<this.profileService.listLogged.length ; i++){
+            if ( this.profileService.dataProfile[i].email === this.profileService.recentLogged ){
+              this.name = this.profileService.dataProfile[i].name;
+              this.surname = this.profileService.dataProfile[i].surname;
+            }
+          }
+      }else {
+        this.name = "Nombre";
+        this.surname = "Usuario";
+      }
       
       
   }
@@ -96,6 +114,7 @@ export class HeaderLoginComponent implements OnInit {
   }
 
   goToListProduct() {
+    this.productsService.allCategories()
     this.router.navigateByUrl(`marketplace/list-products`);
   }
 

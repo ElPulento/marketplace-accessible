@@ -1,13 +1,27 @@
 <nb-card >
-    <nb-card-header >  Listado de productos </nb-card-header>
+  <nb-card-header class="title">
+ 
+    <nb-actions size="small" class="buttonClose">
+       <nb-action
+         (click)="goToListCategories()"
+         style="text-align: left"
+         icon="arrow-back-outline"
+         [nbTooltip]="'Ir a categorias de productos '"
+         nbTooltipStatus="info"
+       ></nb-action>
+     </nb-actions>
    
+   </nb-card-header>
+    
     <nb-card-body [nbSpinner]="getProductSpinnerLoading">
+      <h1 style="margin-left: 1rem;"> Listado de productos</h1>
       <div
         style="justify-content: space-around"
         *ngIf="listProducts.length > 0; else noProducts"
       >
         <ng-container *ngFor="let product of listProducts; let i = index">
-          <nb-card accent="info" *ngIf="product.isActive" style="margin: 10px">
+          <ng-container  *ngFor="let categories of listProducts[i].categories; let j = index">
+          <nb-card accent="info" *ngIf="categories === category"  style="margin: 10px">
             <nb-card-body>
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -34,6 +48,37 @@
             </nb-card-body>
           </nb-card>
         </ng-container>
+      </ng-container>
+
+      <ng-container *ngFor="let product of listProducts; let i = index">
+        <nb-card accent="info" *ngIf="category === 'all'"  style="margin: 10px">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <img
+                  [src]="product.images[0].name"
+                  alt=""
+                  width="200px"
+                  height="200px"
+                />
+              </div>
+              <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                <h1 style="cursor: default;" >{{ product.title }}</h1>
+                <hr />
+                <h1 style="cursor: default;">${{ product.price }}</h1>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                <button (click)="goToViewProduct(product.id)" nbButton status="info" style="float: center; margin-top: 4rem;">
+                  <nb-icon icon="eye-outline"></nb-icon>
+                  Ver producto
+                </button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+   
       </div>
       <ng-template #noProducts>
         <div *ngIf="!getProductSpinnerLoading" style="text-align: center">

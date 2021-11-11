@@ -40,43 +40,43 @@
     </div>
 
     <div class="row space">
-      <a routerLink="../list-products">
-        <img
-          class="categories"
-          src="assets/images/electronica.png"
-          alt="Productos de categoría electronica"
-          width="300px"
-          height="400px"
-        />
-      </a>
-
-      <a routerLink="../list-products">
       <img
-        class="categories"
-        src="assets/images/vehiculos.png"
-        alt="Productos de categoría vehículos"
-        width="300px"
-        height="400px"
-      />
-    </a>
-    <a routerLink="../list-products">
-      <img
-        class="categories"
-        src="assets/images/vestuario.png"
-        alt="Productos de categoría vestuario"
-        width="300px"
-        height="400px"
-      />
-    </a>
-    <a routerLink="../list-products">
-      <img
+        (click)="goToListProduct('Videojuegos')"
         class="categories"
         src="assets/images/videojuegos.png"
         alt="Productos de categoría videojuegos"
         width="300px"
         height="400px"
       />
-      </a>
+      
+      <img
+        (click)="goToListProduct('Electronica')"
+        class="categories"
+        src="assets/images/electronica.png"
+        alt="Productos de categoría electronica"
+        width="300px"
+        height="400px"
+      />
+
+      <img
+        (click)="goToListProduct('Vehiculos')"
+        class="categories"
+        src="assets/images/vehiculos.png"
+        alt="Productos de categoría vehículos"
+        width="300px"
+        height="400px"
+      />
+
+      <img
+        (click)="goToListProduct('Vestuario')"
+        class="categories"
+        src="assets/images/vestuario.png"
+        alt="Productos de categoría vestuario"
+        width="300px"
+        height="400px"
+      />
+
+      
     </div>
     
     <br />

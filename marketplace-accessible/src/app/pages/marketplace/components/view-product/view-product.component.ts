@@ -246,7 +246,7 @@ goToListProduct() {
       description: 'Consola nintendo switch nueva',
       amount: 5,
       price: '250.000',
-      categories: ['vehiculos'],
+      categories: ['Vehiculos'],
       images: [
         {
           name: 'assets/images/nintendoSwitch.jpg',

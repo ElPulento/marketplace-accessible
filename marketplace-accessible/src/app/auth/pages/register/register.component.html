@@ -2,7 +2,7 @@
   <nb-card-header>Registrar perfil</nb-card-header>
   <nb-card-body>
     <form [formGroup]="productForm">
-      <!-- <p>{{ productForm.value | json }}</p> -->
+    <!--   <p>{{ productForm.value | json }}</p> -->
 
       <nb-stepper orientation="horizontal" disableStepNavigation>
         <nb-step [label]="labelOne">
@@ -43,7 +43,7 @@
           <ng-template #labelTwo>Nombre y apellido</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Nombres y apellidos</h1>
+              <h1 style="cursor: default;">Nombre y apellidos</h1>
               <nb-form-field>
                 <nb-icon
                   style="margin-top: 2rem"
@@ -59,12 +59,12 @@
                   icon="close-outline"
                   pack="eva"
                 ></nb-icon>
-                <label class="label col-form-label mr-4">Nombre(s)</label>
+                <label class="label col-form-label mr-4">Nombre</label>
                 <input
                 [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
-                  placeholder="Ejemplo: Sebastián Andrés"
+                  placeholder="Ejemplo: Sebastián"
                   type="name"
                   formControlName="name"
                   [status]="
@@ -83,7 +83,7 @@
                 class="red"
                 *ngIf="!form.name.pristine && form.name.errors?.required"
               >
-                El/Los nombres son requeridos
+                El nombrees requeridos
               </p>
              
 

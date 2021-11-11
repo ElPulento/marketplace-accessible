@@ -41,6 +41,12 @@
     <ng-template #noProducts>
       <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
         <h1 style="cursor: default;">No tiene productos agregados a favoritos :(</h1>
+        <br>
+        <button (click)="goToListProduct()" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="primary" style="float: center; margin-top: 4rem;">
+          
+          Ir al listado de productos
+          <nb-icon icon="arrow-forward-outline"></nb-icon>
+        </button>
       </div>
     </ng-template>
   </nb-card-body>

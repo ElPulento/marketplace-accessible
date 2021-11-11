@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
+import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -16,8 +17,12 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   page!: number;
   rows!: number;
   getProductSpinnerLoading!: boolean;
+  category : string;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private productsService : ProductsService,
+    ) {}
 
   ngOnInit(): void {
     this.initializeVariables();
@@ -35,6 +40,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.rows = 5;
     this.getProductSpinnerLoading = false;
+    this.category = this.productsService.category;
   }
 
   public reloadMyOrganizationssList() {
@@ -43,6 +49,9 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   }
   goToViewProduct(id : string) {
     this.router.navigateByUrl(`marketplace/view-product/${id}`);
+  }
+  goToListCategories(){
+    this.router.navigateByUrl(`marketplace/categories`);
   }
 
   listProducts = [

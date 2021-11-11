@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService, NbWindowRef } from '@nebular/theme';
+import { ProfileService } from '../../../pages/marketplace/services/profile.service';
 import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class ModalRegisterComponent implements OnInit {
     protected windowRef: NbWindowRef,
     private toastrService: NbToastrService,
     private screenSizeService : ScreenSizeService,
+    private profileService : ProfileService,
   ) { }
 
   ngOnInit() {

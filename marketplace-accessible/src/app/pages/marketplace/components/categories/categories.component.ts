@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'categories',
@@ -26,9 +28,17 @@ export class CategoriesComponent implements OnInit {
 
   ]
 
-  constructor() { }
+  constructor(
+    private router : Router,
+    private productsService : ProductsService,
+  ) { }
 
   ngOnInit() {
+  }
+
+  goToListProduct(category) {
+    this.productsService.category = category;
+    this.router.navigateByUrl(`marketplace/list-products`);
   }
 
 }

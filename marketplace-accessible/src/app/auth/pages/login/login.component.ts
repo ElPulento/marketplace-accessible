@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { HeaderService } from '../../../pages/marketplace/services/header.service';
+import { ProfileService } from '../../../pages/marketplace/services/profile.service';
 import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
   loginHeader: boolean;
   fontSize: number;
- 
+  emailInput : string;
  
   
 
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router : Router,
     private headerService : HeaderService,
     private screenSizeService : ScreenSizeService,
+    private profileService : ProfileService,
     ) {}
 
   ngOnDestroy(): void {
@@ -84,16 +86,33 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   private index: number = 0;
   login(){
-    
+  
     this.loading = true;
+    this.emailInput = this.loginForm.get('email').value;
+    
+    const flag  = this.profileService.IsLogged(this.emailInput);
+    console.log(this.emailInput , 'input')
+    console.log(this.profileService.listLogged , 'guardado')
+    console.log(flag , 'flag')
+    if (!flag){
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() => this.headerService.login(), 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
-    setTimeout(() =>   this.toastrService.show('Inicio de sesión correcto',`Iniciar sesión`, {
+    setTimeout(() =>   this.toastrService.show('Inicio de sesión con cuenta de ejemplo',`Iniciar sesión`, {
+      status: 'warning',
+      icon: 'checkmark-outline',
+      preventDuplicates: true,
+    }), 2000);
+  }else {
+    setTimeout(() => this.loading = false, 2000);
+    setTimeout(() => this.headerService.login(), 2000);
+    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
+    setTimeout(() =>   this.toastrService.show('Inicio de sesión con correcto',`Iniciar sesión`, {
       status: 'info',
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 2000);
+  }
   
     
   }

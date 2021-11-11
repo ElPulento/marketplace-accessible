@@ -7,6 +7,7 @@ import { NbCalendarRange, NbDateService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
 import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
+import { ProfileService } from '../../../pages/marketplace/services/profile.service';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -45,6 +46,7 @@ export class RegisterComponent implements OnInit {
     private windowService: NbWindowService,
     private router: Router,
     private screenSizeService : ScreenSizeService,
+    private profileService : ProfileService,
   
     ) {}
 
@@ -128,6 +130,9 @@ export class RegisterComponent implements OnInit {
 	}
 
   openWindowModal(){
+    console.log(this.productForm.value,'aaaaa')
+   this.profileService.addProfile(this.productForm.get('email').value, this.productForm.value)
+    console.log( this.profileService.recentLogged, 'email ', this.productForm.value, 'form value')
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,

@@ -1,0 +1,55 @@
+import { EventEmitter, Injectable, Output } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProfileService {
+  isLogged = false;
+  listLogged : string[] = [];
+  recentLogged : string;
+  dataProfile  = [];
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() change2: EventEmitter<number> = new EventEmitter();
+  @Output() change3: EventEmitter<string> = new EventEmitter();
+  @Output() change4: EventEmitter<string[]> = new EventEmitter();
+  
+  constructor(
+    
+  ) {}
+
+  IsLogged(id : string){
+    for ( var i = 0 ; i < this.listLogged.length ; i++){
+      if (this.listLogged[i] === id){
+        this.isLogged = true;
+        this.recentLogged = id;
+        this.change3.emit(this.recentLogged);
+        this.change.emit(this.isLogged);
+        return this.isLogged;
+      }
+    }
+    this.isLogged = false;
+    this.change.emit(this.isLogged);
+    return this.isLogged;
+  }
+
+
+  addProfile(id : string , data : string) {
+    this.isLogged = true;
+    this.change.emit(this.isLogged);
+    this.listLogged.push(id)
+    this.recentLogged = id;
+    this.change3.emit(this.recentLogged);
+    this.dataProfile.push(data)
+    console.log( this.dataProfile, 'data profile')
+  
+  }
+  deleteProfile(id : string) {
+    this.isLogged = false;
+    this.change.emit(this.isLogged);
+    const i = this.listLogged.indexOf( id );
+ 
+    if ( i !== -1 ) {
+      this.listLogged.splice( i, 1 );
+    }
+  }
+}

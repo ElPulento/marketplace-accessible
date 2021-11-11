@@ -10,7 +10,11 @@ export class HeaderService {
   constructor() {}
 
   login() {
-    this.loginHeader = !this.loginHeader;
+    this.loginHeader = true;
+    this.change.emit(this.loginHeader);
+  }
+  signOff(){
+    this.loginHeader = false;
     this.change.emit(this.loginHeader);
   }
 }

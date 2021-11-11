@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { FavoritesService } from '../../../services/favorites.service';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'favorites',
@@ -17,6 +19,8 @@ export class FavoritesComponent implements OnInit {
   constructor(
     private favoritesService : FavoritesService,
     private toastrService: NbToastrService,
+    private router: Router,
+    private productsService : ProductsService,
   ) { }
 
   ngOnInit() {
@@ -42,6 +46,12 @@ export class FavoritesComponent implements OnInit {
       icon: 'close-outline',
       preventDuplicates: true,
     }), 1000);
+  }
+  goToListProduct() {
+    this.loading = true;
+    this.productsService.allCategories()
+    setTimeout(() =>  this.router.navigateByUrl(`marketplace/list-products`), 1000);
+    
   }
 
   

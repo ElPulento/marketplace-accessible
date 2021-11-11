@@ -2,51 +2,50 @@
   <nb-card-body>
     <div class="row">
       <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-        <h1 style="cursor: default;">Explora nuestras categorías!</h1>
+        <h1 style="cursor: default">Explora nuestras categorías!</h1>
         <br />
       </div>
     </div>
 
     <div class="row space">
-      <a routerLink="../list-products">
-        <img
-          class="categories"
-          src="assets/images/electronica.png"
-          alt="Productos de categoría electronica"
-          width="300px"
-          height="400px"
-        />
-      </a>
-
-      <a routerLink="../list-products">
       <img
+      (click)="goToListProduct('Videojuegos')"
+      class="categories"
+      src="assets/images/videojuegos.png"
+      alt="Productos de categoría videojuegos"
+      width="300px"
+      height="400px"
+    />
+      <img
+        (click)="goToListProduct('Electronica')"
+        class="categories"
+        src="assets/images/electronica.png"
+        alt="Productos de categoría electronica"
+        width="300px"
+        height="400px"
+      />
+
+      <img
+        (click)="goToListProduct('Vehiculos')"
         class="categories"
         src="assets/images/vehiculos.png"
         alt="Productos de categoría vehículos"
         width="300px"
         height="400px"
       />
-    </a>
-    <a routerLink="../list-products">
+
       <img
+        (click)="goToListProduct('Vestuario')"
         class="categories"
         src="assets/images/vestuario.png"
         alt="Productos de categoría vestuario"
         width="300px"
         height="400px"
       />
-    </a>
-    <a routerLink="../list-products">
-      <img
-        class="categories"
-        src="assets/images/videojuegos.png"
-        alt="Productos de categoría videojuegos"
-        width="300px"
-        height="400px"
-      />
-      </a>
-    </div>
+
     
+    </div>
+
     <br />
   </nb-card-body>
 </nb-card>
