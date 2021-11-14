@@ -42,7 +42,7 @@ export class HeaderLoginComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.checked = this.themeService.currentTheme;
+    this.currentTheme = this.themeService.currentTheme;
     this.headerService.change.subscribe((login) => {
       this.login = login;
       console.log(login, 'login header');

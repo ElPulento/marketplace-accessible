@@ -43,7 +43,7 @@
           <ng-template #labelTwo>Nombre y apellido</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Nombre y apellidos</h1>
+              <h1 style="cursor: default;">Nombre y apellido</h1>
               <nb-form-field>
                 <nb-icon
                   style="margin-top: 2rem"
@@ -83,7 +83,7 @@
                 class="red"
                 *ngIf="!form.name.pristine && form.name.errors?.required"
               >
-                El nombrees requeridos
+                El nombre es requerido
               </p>
              
 
@@ -106,11 +106,11 @@
                   icon="close-outline"
                   pack="eva"
                 ></nb-icon>
-                <label class="label col-form-label mr-4">Apellido(s)</label>
+                <label class="label col-form-label mr-4">Apellido</label>
                 <input
                   nbInput
                   fullWidth
-                  placeholder="Ejemplo: Valdés Reveco"
+                  placeholder="Ejemplo: Valdés"
                   type="surname"
                   formControlName="surname"
                   [status]="
@@ -129,7 +129,7 @@
                 class="red"
                 *ngIf="!form.surname.pristine && form.surname.errors?.required"
               >
-                El/Los apellidos son requeridos
+                El apellido es requerido
               </p>
               
 
@@ -262,8 +262,9 @@
                   fullWidth
                   nbInput
                   formControlName="date"
-                  placeholder="Ejemplo: 11.01.1999"
+                  placeholder="Ejemplo: 11-01-1999"
                   [nbDatepicker]="dateTimePicker"
+                  [max]="minDate"
                   [status]="
                     !form.date.pristine && form.date.errors?.required
                       ? 'danger'
@@ -272,6 +273,7 @@
                       : 'success'
                   "
                 />
+                <nb-datepicker #dateTimePicker [max]="minDate"  ></nb-datepicker>
                 <br />
 
                 <p
@@ -446,10 +448,10 @@
           </div>
         </nb-step>
         <nb-step [label]="labelsix">
-          <ng-template #labelsix>Datos de contacto</ng-template>
+          <ng-template #labelsix>Datos del perfil</ng-template>
           <div class="row">
             <div class="container col-12 col-sm-12 col-md-5 col-lg-5">
-              <h1 style="cursor: default;">Datos de contacto</h1>
+              <h1 style="cursor: default;">Datos del perfil</h1>
               <nb-form-field>
                 <nb-icon
                   style="margin-top: 2rem"
@@ -495,6 +497,53 @@
               </p>
               <br />
               <nb-form-field>
+               
+                <label class="label col-form-label mr-4">Contraseña</label>
+                <input
+                placeholder="Contraseña"
+                  [style.fontSize.px]="fontSize"
+                  fullWidth
+                  type="password"
+                  formControlName="password"
+                  [type]="getInputType()"
+                  nbInput
+                  [status]="
+                    !form.password.pristine && form.password.errors?.required
+                      ? 'danger'
+                      : form.password.errors
+                      ? 'basic'
+                      : 'success'
+                  "
+                />
+                <button style="margin-top: 2rem" ghost nbSuffix nbButton (click)="toggleShowPassword()">
+                  <nb-icon
+                    [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                    pack="eva"
+                    [attr.aria-label]="
+                      showPassword ? 'hide password' : 'show password'
+                    "
+                  >
+                  </nb-icon>
+                </button>
+              
+    
+              </nb-form-field>
+              <br />
+              <p
+              [style.fontSize.px]="fontSize"
+                class="red"
+                *ngIf="!form.password.pristine && form.password.errors?.required"
+              >
+                La contraseña es requerida
+              </p>
+              <p
+              [style.fontSize.px]="fontSize"
+                *ngIf="form.password.errors && !form.password.errors?.required"
+              >
+                La contraseña necesita un mínimo de 8 caracteres
+              </p>
+              <br>
+              <nb-form-field>
                 <nb-icon
                   style="margin-top: 2rem"
                   *ngIf="form.contactNumber.valid"
@@ -519,6 +568,9 @@
                 [style.fontSize.px]="fontSize"
                   nbInput
                   fullWidth
+                  maxlength = "9"
+                  min = "1"
+                  max = "999999999"
                   placeholder="Ejemplo: 998123456"
                   type="number"
                   formControlName="contactNumber"
@@ -530,7 +582,6 @@
                       ? 'basic'
                       : 'success'
                   "
-                  [maxlength]="contactNumberMaxLength"
                 />
               </nb-form-field>
               <br />
@@ -543,6 +594,12 @@
                 "
               >
                 El número de contacto es requerido
+              </p>
+              <p
+              [style.fontSize.px]="fontSize"
+                *ngIf="form.contactNumber.errors && !form.contactNumber.errors?.required"
+              >
+                El contacto debe ser un número valido de no más de 9 caracteres
               </p>
 
               <ng-container>

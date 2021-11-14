@@ -16,44 +16,10 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
 export class CreateNewProductComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<any>();
   @ViewChild('delete', { read: TemplateRef }) deleteTemplate: TemplateRef<HTMLElement>;
-
-
-  // Emit an event when a file has been picked. Here we return the file itself
 	@Output() onChange: EventEmitter<File> = new EventEmitter<File>();
 	@Input() isEnabled = true;
 
 
-
-	// If the input has changed(file picked) we project the file into the img previewer
-	updateSource($event: Event) {
-		// We access he file with $event.target['files'][0]
-   
-	
-    const reader = new FileReader();
-		reader.onload = (e: any) => {
-			// Simply set e.target.result as our <img> src in the layout
-		this.source = e.target.result;
-		//this.onChange.emit($event.target['files'][0]);
-		};
-		// This will process our file and get it's attributes/data
-		reader.readAsDataURL($event.target['files'][0]);
-   this.imagesCont=+1;
-	}
-  //  <img [src]="source" width="200" height="200" />
-
-	// Uses FileReader to read the file from the input
-	@Input() source: string = '';
-	projectImage(file: File) {
-		const reader = new FileReader();
-		reader.onload = (e: any) => {
-			// Simply set e.target.result as our <img> src in the layout
-			this.source = e.target.result;
-		this.onChange.emit(file);
-		};
-		// This will process our file and get it's attributes/data
-		reader.readAsDataURL(file);
-   
-	}
 
   titleMaxLength: number;
   titleIsRequired!: boolean;
@@ -171,7 +137,6 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   imageChange(image) {
 		this.actualImg = image;
 	}
-  //<img-picker (onChange)="imageChange($event)"></img-picker>
   get imagesArray(): FormArray {
 		return this.productForm.get('images') as FormArray;
 	}
@@ -185,7 +150,6 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 		if (images) {
 			if (images.length > this.imageMaxLength) {
         console.log('No puede subir más de 5 imagenes')
-			//	this.toastr.showErrorToast();
 			} else {
 				for (let index = 0; index < images.length; index++) {
 					const file = images[index];

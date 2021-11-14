@@ -1,27 +1,82 @@
-<nb-card >
+<nb-card>
   <nb-card-header class="title">
- 
     <nb-actions size="small" class="buttonClose">
-       <nb-action
-         (click)="goToListCategories()"
-         style="text-align: left"
-         icon="arrow-back-outline"
-         [nbTooltip]="'Ir a categorias de productos '"
-         nbTooltipStatus="info"
-       ></nb-action>
-     </nb-actions>
-   
-   </nb-card-header>
-    
-    <nb-card-body [nbSpinner]="getProductSpinnerLoading">
-      <h1 style="margin-left: 1rem;"> Listado de productos</h1>
-      <div
-        style="justify-content: space-around"
-        *ngIf="listProducts.length > 0; else noProducts"
+      <nb-action
+        (click)="goToListCategories()"
+        style="text-align: left"
+        icon="arrow-back-outline"
+        [nbTooltip]="'Ir a categorias de productos '"
+        nbTooltipStatus="info"
+      ></nb-action>
+    </nb-actions>
+  </nb-card-header>
+
+  <nb-card-body [nbSpinner]="getProductSpinnerLoading">
+    <h1 style="margin-left: 1rem">Listado de productos</h1>
+    <nb-accordion class="shadow">
+      <nb-accordion-item expanded="true">
+        <nb-accordion-item-header> <h4>Filtros</h4></nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4"  style="text-align: center;">
+              <label for="tag" class="label col-form-label">
+                Nombre del producto
+              </label>
+              <br />
+              <input nbInput type="search" [(ngModel)]="search" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
+              <label for="tag" class="label col-form-label"> Categoría </label>
+              <br />
+              <input *ngIf="category !=='all'" [value]="category" [placeholder]="category" nbInput type="search" [(ngModel)]="cate" />
+              <input *ngIf="category ==='all'"  nbInput type="search" [(ngModel)]="cate" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
+              <label for="tag" class="label col-form-label"> Precio mínimo </label>
+              <br />
+              <input nbInput type="search" [(ngModel)]="price" />
+            </div>
+      <!--      <div class="col-12 col-sm-12 col-md-3 col-lg-3"style="text-align: center;">
+              <label for="tag" class="label col-form-label"> Precio Máximo </label>
+              <br />
+              <input nbInput type="search" [(ngModel)]="priceMax" />
+            </div>
+      -->
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-12" style="text-align: center">
+              <button [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" (click)="removeFilters()">
+                <nb-icon icon="close-outline"></nb-icon> Remover filtros
+              </button>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+
+    <div *ngIf="(listProducts | filter: search | filterPrice : price | filterCategories : cate ).length <1">
+      <h1 style="text-align: center;">No se encontraron productos :(</h1>
+      </div>
+
+    <div
+      style="justify-content: space-around"
+      *ngIf="listProducts.length > 0; else noProducts"
+    >
+      <ng-container
+        *ngFor="
+          let product of listProducts | filter: search | filterPrice : price | filterCategories  : cate  as folder;
+          let i = index
+        "
       >
-        <ng-container *ngFor="let product of listProducts; let i = index">
-          <ng-container  *ngFor="let categories of listProducts[i].categories; let j = index">
-          <nb-card accent="info" *ngIf="categories === category"  style="margin: 10px">
+        <ng-container
+          *ngFor="let categories of listProducts[i].categories; let j = index"
+        >
+          <nb-card
+            accent="info"
+            *ngIf="categories === category"
+            style="margin: 10px"
+          >
             <nb-card-body>
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -33,13 +88,18 @@
                   />
                 </div>
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5">
-                  <h1 style="cursor: default;" >{{ product.title }}</h1>
+                  <h1 style="cursor: default">{{ product.title }}</h1>
                   <hr />
-                  <h1 style="cursor: default;">${{ product.price }}</h1>
+                  <h1 style="cursor: default" >${{ parseInt(product.price) }}</h1>
                 </div>
                 <div class="col-1"></div>
                 <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                  <button (click)="goToViewProduct(product.id)" nbButton status="info" style="float: center; margin-top: 4rem;">
+                  <button
+                    (click)="goToViewProduct(product.id)"
+                    nbButton
+                    status="info"
+                    style="float: center; margin-top: 4rem"
+                  >
                     <nb-icon icon="eye-outline"></nb-icon>
                     Ver producto
                   </button>
@@ -50,8 +110,13 @@
         </ng-container>
       </ng-container>
 
-      <ng-container *ngFor="let product of listProducts; let i = index">
-        <nb-card accent="info" *ngIf="category === 'all'"  style="margin: 10px">
+      <ng-container
+        *ngFor="
+          let product of listProducts | filter: search | filterPrice : price | filterCategories : cate as folder;
+          let i = index
+        "
+      >
+        <nb-card accent="info" *ngIf="category === 'all'" style="margin: 10px">
           <nb-card-body>
             <div class="row">
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -63,13 +128,18 @@
                 />
               </div>
               <div class="col-12 col-sm-12 col-md-5 col-lg-5">
-                <h1 style="cursor: default;" >{{ product.title }}</h1>
+                <h1 style="cursor: default">{{ product.title }}</h1>
                 <hr />
-                <h1 style="cursor: default;">${{ product.price }}</h1>
+                <h1 style="cursor: default">{{ product.price | currency: 'USD':true:'2.0'}}</h1>
               </div>
               <div class="col-1"></div>
               <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                <button (click)="goToViewProduct(product.id)" nbButton status="info" style="float: center; margin-top: 4rem;">
+                <button
+                  (click)="goToViewProduct(product.id)"
+                  nbButton
+                  status="info"
+                  style="float: center; margin-top: 4rem"
+                >
                   <nb-icon icon="eye-outline"></nb-icon>
                   Ver producto
                 </button>
@@ -78,13 +148,11 @@
           </nb-card-body>
         </nb-card>
       </ng-container>
-   
+    </div>
+    <ng-template #noProducts>
+      <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
+        <h1 style="cursor: default">No hay productos encontrados :(</h1>
       </div>
-      <ng-template #noProducts>
-        <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
-          <h1 style="cursor: default;">No hay productos encontrados :(</h1>
-        </div>
-      </ng-template>
-    </nb-card-body>
-  </nb-card>
-  
+    </ng-template>
+  </nb-card-body>
+</nb-card>

@@ -49,6 +49,10 @@ import { FavoritesComponent } from './components/options/favorites/favorites.com
 import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
 import { ModalLoginComponent } from './components/create-new-product/modal-login/modal-login.component';
 import { ModalLoginFavoritesComponent } from './components/view-product/modal-login-favorites/modal-login-favorites.component';
+import { FilterPipe } from '../pipes/filterProducts.pipe';
+import { FilterCategoriesPipe } from '../pipes/filterCategories.pipe';
+import { FilterPricePipe } from '../pipes/filterPrice.pipe';
+import { FilterPriceMaxPipe } from '../pipes/filterPriceMax.pipe';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { ModalLoginFavoritesComponent } from './components/view-product/modal-lo
     ViewProfileComponent,
     ModalLoginComponent,
     ModalLoginFavoritesComponent,
+    FilterPipe,
+    FilterCategoriesPipe,
+    FilterPricePipe,
+    FilterPriceMaxPipe,
    
   ],
   imports: [

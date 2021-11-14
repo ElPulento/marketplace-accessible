@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
 import { ScreenSizeService } from '../../../pages/marketplace/services/screen-size.service';
 import { ProfileService } from '../../../pages/marketplace/services/profile.service';
+import { eo, es } from 'date-fns/locale';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
   maximize: boolean;
   fullScreen: boolean;
   fontSize: number;
+  minDate: Date;
 
   constructor(
     private fb: FormBuilder,
@@ -86,6 +88,7 @@ export class RegisterComponent implements OnInit {
     this.imageMaxLength = 1
     this.imageIsRequired = false
     this.createLoadingSpinner = false
+    this.minDate = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
     //---- font size
     this.fontSize = this.screenSizeService.fontSize
     this.screenSizeService.change.subscribe((fontSize) => {
@@ -121,6 +124,10 @@ export class RegisterComponent implements OnInit {
       ]),
       date: this.fb.control('', Validators.required),
       email: this.fb.control('', Validators.required ,),
+      password: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
       images: this.fb.array([]),
       isActive: this.fb.control(false, Validators.required),
     });
@@ -128,6 +135,17 @@ export class RegisterComponent implements OnInit {
   get imagesArray(): FormArray {
 		return this.productForm.get('images') as FormArray;
 	}
+  showPassword = false;
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   openWindowModal(){
     console.log(this.productForm.value,'aaaaa')

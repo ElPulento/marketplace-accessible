@@ -68,9 +68,10 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     SharedModule,
     NbCalendarModule,
     NbDateFnsDateModule.forChild({
-			format: 'DD-MM-yyyy',
-			parseOptions: { locale: eo },
-			formatOptions: { locale: eo },
+      format : "dd-MM-yyyy",
+      parseOptions: { locale: eo },
+      formatOptions: { locale: eo },
+		
 		}),
     NbWindowModule.forChild(),
     NbToastrModule,

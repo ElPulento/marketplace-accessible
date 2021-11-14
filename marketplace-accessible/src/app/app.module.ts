@@ -21,6 +21,7 @@ import {
   NbToggleModule,
   NbSpinnerModule,
   NbUserModule,
+  NbTimepickerModule,
 } from '@nebular/theme';
 import { HeaderComponent } from './@theme/header/header.component';
 import { HeaderLoginComponent } from './@theme/header-login/header-login.component'
@@ -67,13 +68,16 @@ import { eo, es } from 'date-fns/locale';
     NbWindowModule.forRoot(),
     NbDatepickerModule.forRoot(),
     NbDateFnsDateModule.forRoot({
-      format: 'dd.MM.yyyy'
+      format : "dd-MM-yyyy",
+      parseOptions: { locale: eo },
+			formatOptions: { locale: eo },
     }),
     NbDialogModule.forRoot(),
     NbToggleModule,
     NbSpinnerModule,
     NbToastrModule.forRoot(),
     NbUserModule,
+    NbTimepickerModule.forRoot(),
   ],
   exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],

@@ -4,6 +4,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileService {
+  pass : boolean;;
   isLogged = false;
   listLogged : string[] = [];
   recentLogged : string;
@@ -31,6 +32,35 @@ export class ProfileService {
     this.change.emit(this.isLogged);
     return this.isLogged;
   }
+
+  updateProfile(id : string , data : string ){
+    for (let i = 0 ; i < this.listLogged.length ; i++ ){
+      if (this.listLogged[i] === this.dataProfile[0].email){
+        this.listLogged[i] = id;
+        this.dataProfile = [];
+        this.recentLogged = id;
+        this.change3.emit(this.recentLogged);
+        this.dataProfile.push(data)
+        this.change4.emit(this.dataProfile);
+      }
+    }
+  }
+
+  passCorrect(id : string ,pass : string){
+    for (let i = 0 ; i < this.listLogged.length ; i++ ){
+      if (pass === this.dataProfile[0].password && id === this.dataProfile[0].email){
+        this.pass = true;
+        this.change.emit(this.pass);
+        return true;
+      }else{
+        this.pass = false;
+        this.change.emit(this.pass);
+        return false;
+      }
+    }
+  }
+
+ 
 
 
   addProfile(id : string , data : string) {

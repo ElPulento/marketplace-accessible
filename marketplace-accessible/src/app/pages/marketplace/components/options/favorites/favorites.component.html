@@ -3,6 +3,7 @@
  
   <nb-card-body [nbSpinner]="getProductSpinnerLoading">
     <h1>Favoritos</h1>
+    <hr>
     <div
       style="justify-content: space-around"
       *ngIf="listFavorites.length > 0; else noProducts"

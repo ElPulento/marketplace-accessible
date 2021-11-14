@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginHeader: boolean;
   fontSize: number;
   emailInput : string;
- 
+  pass : string;
   
 
 
@@ -89,11 +89,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   
     this.loading = true;
     this.emailInput = this.loginForm.get('email').value;
-    
+    this.pass = this.loginForm.get('password').value;
     const flag  = this.profileService.IsLogged(this.emailInput);
     console.log(this.emailInput , 'input')
     console.log(this.profileService.listLogged , 'guardado')
     console.log(flag , 'flag')
+    if( this.profileService.IsLogged(this.emailInput) && this.profileService.passCorrect(this.emailInput, this.pass) === false){
+      setTimeout(() => this.loading = false, 2000);
+      setTimeout(() =>   this.toastrService.show('La contraseña es incorrecta',`Iniciar sesión`, {
+        status: 'danger',
+        icon: 'close-outline',
+        preventDuplicates: true,
+      }), 2000);
+    
+    }else{
     if (!flag){
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() => this.headerService.login(), 2000);
@@ -103,17 +112,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 2000);
-  }else {
+
+  }else if(this.profileService.passCorrect(this.emailInput, this.pass)) {
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() => this.headerService.login(), 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
-    setTimeout(() =>   this.toastrService.show('Inicio de sesión con correcto',`Iniciar sesión`, {
+    setTimeout(() =>   this.toastrService.show('Inicio de sesión correcto!',`Iniciar sesión`, {
       status: 'info',
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 2000);
   }
-  
+}
     
   }
   get form() {

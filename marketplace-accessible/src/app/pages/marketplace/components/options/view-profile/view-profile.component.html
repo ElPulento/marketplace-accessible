@@ -1,3 +1,428 @@
-<p>
-  view-profile works!
-</p>
+<nb-card class="create-windows-class">
+  <nb-card-body>
+    <h1 style="margin-left: 1rem;"> Ver mi perfil</h1>
+    <hr>
+    <!--	{{ productForm.value | json }} -->
+    <form [formGroup]="productForm" *ngIf="productForm">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <nb-form-field>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="form.name.valid"
+              nbSuffix
+              icon="checkmark-outline"
+              pack="eva"
+            ></nb-icon>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="!form.name.pristine && form.name.errors?.required"
+              nbSuffix
+              icon="close-outline"
+              pack="eva"
+            ></nb-icon>
+            <label class="label col-form-label mr-4">Nombre</label>
+            <input
+              [style.fontSize.px]="fontSize"
+              nbInput
+              fullWidth
+              placeholder="Ejemplo: Sebastián"
+              type="name"
+              formControlName="name"
+              [status]="
+                !form.name.pristine && form.name.errors?.required
+                  ? 'danger'
+                  : form.name.errors
+                  ? 'basic'
+                  : 'success'
+              "
+              [maxlength]="nameMaxLength"
+            />
+          </nb-form-field>
+
+          <p
+            [style.fontSize.px]="fontSize"
+            class="red"
+            *ngIf="!form.name.pristine && form.name.errors?.required"
+          >
+            El nombre es requerido
+          </p>
+          <nb-form-field>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="form.surname.valid"
+              nbSuffix
+              icon="checkmark-outline"
+              pack="eva"
+            ></nb-icon>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="!form.surname.pristine && form.surname.errors?.required"
+              nbSuffix
+              icon="close-outline"
+              pack="eva"
+            ></nb-icon>
+            <label class="label col-form-label mr-4">Apellido</label>
+            <input
+              [style.fontSize.px]="fontSize"
+              nbInput
+              fullWidth
+              placeholder="Ejemplo: Valdés"
+              type="surname"
+              formControlName="surname"
+              [status]="
+                !form.surname.pristine && form.surname.errors?.required
+                  ? 'danger'
+                  : form.surname.errors
+                  ? 'basic'
+                  : 'success'
+              "
+              [maxlength]="surnameMaxLength"
+            />
+          </nb-form-field>
+          <p
+            [style.fontSize.px]="fontSize"
+            class="red"
+            *ngIf="!form.surname.pristine && form.surname.errors?.required"
+          >
+            El apellido es requerido
+          </p>
+
+          <br />
+          <nb-form-field>
+            <nb-icon
+              *ngIf="form.description.valid"
+              nbSuffix
+              icon="checkmark-outline"
+              pack="eva"
+            ></nb-icon>
+            <label class="label col-form-label mr-4">Descripción</label>
+            <textarea
+              nbInput
+              fullWidth
+              rows="4"
+              placeholder="Ejemplo: En este perfil vendemos productos tecnologicos a muy buen precio, ofrecemos televisores, celulares y otros productos tecnologicos.  "
+              type="description"
+              formControlName="description"
+              [status]="
+                !form.description.pristine && form.description.errors?.required
+                  ? 'basic'
+                  : form.description.errors || form.description.pristine
+                  ? 'basic'
+                  : 'success'
+              "
+              [maxlength]="descriptionMaxLength"
+            ></textarea>
+          </nb-form-field>
+          <nb-form-field>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="form.date.valid"
+              nbSuffix
+              icon="checkmark-outline"
+              pack="eva"
+            ></nb-icon>
+            <nb-icon
+              style="margin-top: rem"
+              *ngIf="!form.date.pristine && form.date.errors?.required"
+              nbSuffix
+              icon="close-outline"
+              pack="eva"
+            ></nb-icon>
+            <label class="label col-form-label mr-4">Fecha de nacimiento</label>
+            <input
+              [style.fontSize.px]="fontSize"
+              fullWidth
+              nbInput
+              formControlName="date"
+              placeholder="Ejemplo: 11-01-1999"
+              [nbDatepicker]="dateTimePicker"
+              [max]="minDate"
+              [status]="
+                !form.date.pristine && form.date.errors?.required
+                  ? 'danger'
+                  : form.date.errors
+                  ? 'basic'
+                  : 'success'
+              "
+            />
+            <nb-datepicker #dateTimePicker [max]="minDate"></nb-datepicker>
+            <br />
+
+            <p
+              [style.fontSize.px]="fontSize"
+              class="red"
+              *ngIf="!form.date.pristine && form.date.errors?.required"
+            >
+              La fecha de nacimiento es requerida, debes seguir el formato de
+              ejemplo
+            </p>
+            <nb-datepicker #dateTimePicker></nb-datepicker>
+          </nb-form-field>
+          <br />
+          <nb-form-field>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="form.address.valid"
+              nbSuffix
+              icon="checkmark-outline"
+              pack="eva"
+            ></nb-icon>
+            <nb-icon
+              style="margin-top: 2rem"
+              *ngIf="!form.address.pristine && form.address.errors?.required"
+              nbSuffix
+              icon="close-outline"
+              pack="eva"
+            ></nb-icon>
+            <label class="label col-form-label mr-4"
+              >Dirección de residencia</label
+            >
+            <input
+              [style.fontSize.px]="fontSize"
+              nbInput
+              fullWidth
+              placeholder="Ejemplo: Pasaje milan #20"
+              type="address"
+              formControlName="address"
+              [status]="
+                !form.address.pristine && form.address.errors?.required
+                  ? 'danger'
+                  : form.address.errors
+                  ? 'basic'
+                  : 'success'
+              "
+              [maxlength]="addressMaxLength"
+            />
+            <br />
+          </nb-form-field>
+          <p
+            class="red"
+            *ngIf="!form.address.pristine && form.address.errors?.required"
+          >
+            La dirección es requerida
+          </p>
+
+          <br />
+         
+        </div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.region.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="!form.region.pristine && form.region.errors?.required"
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4">Ciudad </label>
+          <input
+            [style.fontSize.px]="fontSize"
+            nbInput
+            fullWidth
+            placeholder="Ejemplo: Valparaiso"
+            type="region"
+            formControlName="region"
+            [status]="
+              !form.region.pristine && form.region.errors?.required
+                ? 'danger'
+                : form.region.errors
+                ? 'basic'
+                : 'success'
+            "
+            [maxlength]="regionMaxLength"
+          />
+          <br />
+        </nb-form-field>
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="!form.region.pristine && form.region.errors?.required"
+        >
+          La ciudad es requerida
+        </p>
+        <br />
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.email.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="!form.email.pristine && form.email.errors?.required"
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4">Correo electrónico</label>
+          <input
+            [style.fontSize.px]="fontSize"
+            nbInput
+            fullWidth
+            placeholder="Ejemplo: nombre@gmail.com"
+            type="email"
+            [email]="true"
+            formControlName="email"
+            [status]="
+              !form.email.pristine && form.email.errors?.required
+                ? 'danger'
+                : form.email.errors
+                ? 'basic'
+                : 'success'
+            "
+          />
+          <br />
+        </nb-form-field>
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="!form.email.pristine && form.email.errors?.required"
+        >
+          El correo electrónico es requerido
+        </p>
+        <br />
+        <nb-form-field>
+          <label class="label col-form-label mr-4">Contraseña</label>
+          <input
+            placeholder="Contraseña"
+            [style.fontSize.px]="fontSize"
+            fullWidth
+            type="password"
+            formControlName="password"
+            [type]="getInputType()"
+            nbInput
+            [status]="
+              !form.password.pristine && form.password.errors?.required
+                ? 'danger'
+                : form.password.errors
+                ? 'basic'
+                : 'success'
+            "
+          />
+          <button
+            style="margin-top: 2rem"
+            ghost
+            nbSuffix
+            nbButton
+            (click)="toggleShowPassword()"
+          >
+            <nb-icon
+              [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+              pack="eva"
+              [attr.aria-label]="
+                showPassword ? 'hide password' : 'show password'
+              "
+            >
+            </nb-icon>
+          </button>
+          <br />
+        </nb-form-field>
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="!form.password.pristine && form.password.errors?.required"
+        >
+          La contraseña es requerida
+        </p>
+        <p
+          [style.fontSize.px]="fontSize"
+          *ngIf="form.password.errors && !form.password.errors?.required"
+        >
+          La contraseña necesita un mínimo de 8 caracteres
+        </p>
+        <br />
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.contactNumber.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="
+              !form.contactNumber.pristine &&
+              form.contactNumber.errors?.required
+            "
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4">Número de contacto </label>
+          <input
+            [style.fontSize.px]="fontSize"
+            nbInput
+            fullWidth
+            maxlength="9"
+            min="1"
+            max="999999999"
+            placeholder="Ejemplo: 998123456"
+            type="number"
+            formControlName="contactNumber"
+            [status]="
+              !form.contactNumber.pristine &&
+              form.contactNumber.errors?.required
+                ? 'danger'
+                : form.contactNumber.errors
+                ? 'basic'
+                : 'success'
+            "
+          />
+          <br />
+        </nb-form-field>
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="
+            !form.contactNumber.pristine &&
+            form.contactNumber.errors?.required
+          "
+        >
+          El número de contacto es requerido
+        </p>
+        <p
+          [style.fontSize.px]="fontSize"
+          *ngIf="
+            form.contactNumber.errors && !form.contactNumber.errors?.required
+          "
+        >
+          El contacto debe ser un número valido de no más de 9 caracteres
+        </p>
+      </div>
+    </div>
+    </form>
+    <!--boton de guardar y continuar-->
+
+		<div class="ml-auto pt-3 m-3 mr-5">
+			<div style="float: right; margin: 10px">
+				<button
+					(click)=" updateInformation()"
+					type="button"
+					status="info"
+					size="medium"
+					nbButton
+					style="margin: 5px"
+          [nbSpinner]="loading"
+					[disabled]="!this.productForm.valid || loading"
+					
+				>
+					<nb-icon icon="save-outline"></nb-icon>
+					Actualizar datos
+				</button>
+			</div>
+		</div>
+	</nb-card-body>
+
+</nb-card>
