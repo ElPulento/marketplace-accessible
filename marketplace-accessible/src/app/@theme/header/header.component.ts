@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { NbThemeService } from '@nebular/theme';
 import { HeaderService } from '../../pages/marketplace/services/header.service';
 import { ProductsService } from '../../pages/marketplace/services/products.service';
+import { InputSearchService } from '../../pages/marketplace/services/inputSearch.service';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
  
   currentTheme = 'default';
   checked: string;
+  search : string;
   constructor(
     private router: Router,
     private nbMenuService: NbMenuService,
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit {
     private themeService: NbThemeService,
     private headerService: HeaderService,
     private productsService : ProductsService,
+    private inputSearch : InputSearchService,
 
   ) {}
 
@@ -33,6 +36,7 @@ export class HeaderComponent implements OnInit {
     this.destroy$.complete();
   }
   ngOnInit() {
+    this.search = this.inputSearch.search;
     this.currentTheme = this.themeService.currentTheme
     this.checked = this.themeService.currentTheme;
     this.nbMenuService
@@ -65,6 +69,8 @@ export class HeaderComponent implements OnInit {
 
 
   goToListProduct() {
+    this.inputSearch.search = this.search;
+    this.inputSearch.input(this.search);
     this.productsService.allCategories()
     this.router.navigateByUrl(`marketplace/list-products`);
   }

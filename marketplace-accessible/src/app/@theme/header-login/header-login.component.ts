@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { FavoritesService } from '../../pages/marketplace/services/favorites.service';
 import { HeaderService } from '../../pages/marketplace/services/header.service';
+import { InputSearchService } from '../../pages/marketplace/services/inputSearch.service';
 import { ProductsService } from '../../pages/marketplace/services/products.service';
 import { ProfileService } from '../../pages/marketplace/services/profile.service';
 
@@ -20,6 +21,7 @@ export class HeaderLoginComponent implements OnInit {
   checked: string;
   name: string;
   surname: string;
+  search : string;
   constructor(
     private router: Router,
     private nbMenuService: NbMenuService,
@@ -30,18 +32,25 @@ export class HeaderLoginComponent implements OnInit {
     private favoritesService : FavoritesService,
     private productsService : ProductsService,
     private profileService : ProfileService,
+    private inputSearch : InputSearchService,
     
   ) {}
 
   loading = false;
   itemsLogin = [
     { title: 'Ver mi perfil' },
+    { title: 'Ver mis productos'},
     { title: 'Favoritos' },
     { title: 'Información' },
     { title: 'Cerrar sesión' },
   ];
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   ngOnInit() {
+    this.search = this.inputSearch.search;
     this.currentTheme = this.themeService.currentTheme;
     this.headerService.change.subscribe((login) => {
       this.login = login;
@@ -68,6 +77,9 @@ export class HeaderLoginComponent implements OnInit {
         }
         if (title == 'Ver mi perfil') {
           this.router.navigateByUrl(`marketplace/view-profile`);
+        }
+        if (title == 'Ver mis productos') {
+          this.router.navigateByUrl(`marketplace/view-list-products`);
         }
         if (title == 'Favoritos') {
           this.router.navigateByUrl(`marketplace/favorites`);
@@ -114,6 +126,8 @@ export class HeaderLoginComponent implements OnInit {
   }
 
   goToListProduct() {
+    this.inputSearch.search = this.search;
+    this.inputSearch.input(this.search);
     this.productsService.allCategories()
     this.router.navigateByUrl(`marketplace/list-products`);
   }

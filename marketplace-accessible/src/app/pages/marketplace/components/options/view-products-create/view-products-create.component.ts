@@ -4,17 +4,18 @@ import { Router } from '@angular/router';
 import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
-import * as restrictions from '../../models/restrictions/new-product.restrictions';
-import { HeaderService } from '../../services/header.service';
-import { ProductsService } from '../../services/products.service';
-import { ScreenSizeService } from '../../services/screen-size.service';
-import { ModalLoginComponent } from './modal-login/modal-login.component';
+import * as restrictions from '../../../models/restrictions/new-product.restrictions';
+import { HeaderService } from '../../../services/header.service';
+import { ProductsService } from '../../../services/products.service';
+import { ScreenSizeService } from '../../../services/screen-size.service';
+
+
 @Component({
-  selector: 'app-create-new-product',
-  templateUrl: './create-new-product.component.html',
-  styleUrls: ['./create-new-product.component.scss'],
+  selector: 'view-products-create',
+  templateUrl: './view-products-create.component.html',
+  styleUrls: ['./view-products-create.component.scss']
 })
-export class CreateNewProductComponent implements OnInit, OnDestroy {
+export class ViewProductsCreateComponent implements OnInit {
   private destroy$ = new Subject<any>();
   @ViewChild('delete', { read: TemplateRef }) deleteTemplate: TemplateRef<HTMLElement>;
 	@Output() onChange: EventEmitter<File> = new EventEmitter<File>();
@@ -41,6 +42,14 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
   fullScreen: boolean;
   fontSize: number;
   login: boolean;
+  title: string
+  description: string;
+  amount: string;
+  price: string;
+  categories2: string;
+  images: string;
+  isActive: boolean;
+ 
 
   constructor(
     private fb: FormBuilder,
@@ -49,7 +58,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     private router: Router,
     private screenSizeService : ScreenSizeService,
     private loginService : HeaderService,
-    private productsService : ProductsService,
+    private productService : ProductsService,
     ) {}
 
   ngOnDestroy(): void {
@@ -93,22 +102,35 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
    // login
    this.login = this.loginService.loginHeader;
    console.log(this.login,'esta logeado?')
+
+   //profile
+   for ( let i =0 ; i<this.productService.listProduct.length ; i++){
+    if ( this.productService.productProfile[i].title === this.productService.listProduct[i].title ){
+      this.title = this.productService.productProfile[i].title
+      this.description = this.productService.productProfile[i].description
+      this.amount = this.productService.productProfile[i].amount
+      this.price = this.productService.productProfile[i].price
+      this.categories2 = this.productService.productProfile[i].categories
+      this.images = this.productService.productProfile[i].images
+      this.isActive = this.productService.productProfile[i].isActive
+    }
+  }
   }
 
   private initializeForms() {
     this.productForm = this.fb.group({
-      title: this.fb.control('', [
+      title: this.fb.control(this.title, [
         Validators.required,
         Validators.maxLength(this.titleMaxLength),
       ]),
-      description: this.fb.control('', [
+      description: this.fb.control(this.description, [
         Validators.required,
         Validators.maxLength(this.descriptionMaxLength),
       ]),
-      amount: this.fb.control('', Validators.required),
-      price: this.fb.control('', Validators.required),
-      categories: this.fb.control([], [Validators.required, Validators.minLength(1)]),
-      images: this.fb.array([]),
+      amount: this.fb.control(this.amount, Validators.required),
+      price: this.fb.control(this.price, Validators.required),
+      categories: this.fb.control(this.categories2, [Validators.required, Validators.minLength(1)]),
+      images: this.fb.array([this.images]),
       isActive: this.fb.control(false, Validators.required),
     });
   }
@@ -121,18 +143,6 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.windowService.open(
       this.deleteTemplate,
       { title: 'Eliminar imagen', hasBackdrop: true, buttons: buttonsConfig },
-    );
-  }
-
-  openWindowLogin(){
-    const buttonsConfig: NbWindowControlButtonsConfig = {
-      minimize: this.minimize,
-      maximize: this.maximize,
-      fullScreen: this.fullScreen,
-    }
-   this.windowService.open(
-      ModalLoginComponent,
-      { title: 'Iniciar sesión', hasBackdrop: true, buttons: buttonsConfig },
     );
   }
 
@@ -184,7 +194,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 
   loading = false;
   goToList(){
-    this.productsService.addProduct(this.productForm.value)
+    
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() =>  this.router.navigateByUrl(``), 2000);
@@ -196,18 +206,4 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     
   }
 
-  submit() {
-		let newProduct = this.productForm.value;
-		const formData = new FormData();
-
-		formData.set('title', newProduct.title);
-		formData.set('description', newProduct.description);
-		formData.set('price', newProduct.price);
-		formData.set('amount', newProduct.amount);
-		formData.set('type', newProduct.type);
-		formData.set('images', newProduct.images);
-
-		this.createLoadingSpinner = true;
-	
-	}
 }

@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { ColorsPageComponent } from './colors-page/colors-page.component';
 import { HeaderNebularComponent } from './header-nebular/header-nebular.component';
 import { ScreenSizeComponent } from './screen-size/screen-size.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ScreenSizeComponent } from './screen-size/screen-size.component';
     NbInputModule,
     NbSpinnerModule,
     NbToastrModule,
+    FormsModule,
   
   ],
   exports: [ColorsPageComponent,SidebarComponent, FooterComponent,ScreenSizeComponent]

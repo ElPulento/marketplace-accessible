@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
+import { InputSearchService } from '../../services/inputSearch.service';
 import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'app-list-products',
@@ -18,7 +19,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   rows!: number;
   getProductSpinnerLoading!: boolean;
   category : string;
-  search='';
+  search= this.inputSearch.search;
   price='';
   cate='';
   priceMax;
@@ -26,6 +27,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private productsService : ProductsService,
+    private inputSearch : InputSearchService,
     ) {}
 
   ngOnInit(): void {
@@ -55,6 +57,10 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.rows = 5;
     this.getProductSpinnerLoading = false;
     this.category = this.productsService.category;
+    this.inputSearch.change.subscribe((search) => {
+      this.search = search;
+    });
+   
   }
 
   public reloadMyOrganizationssList() {

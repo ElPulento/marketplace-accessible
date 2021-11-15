@@ -1,0 +1,56 @@
+<nb-card >
+  <nb-card-body [nbSpinner]="getProductSpinnerLoading">
+    <h1>Ver mis productos</h1>
+    <hr>
+    <div
+      style="justify-content: space-around"
+      *ngIf="listProducts.length > 0; else noProducts"
+    >
+      <ng-container *ngFor="let product of listProducts; let i = index">
+        <nb-card accent="info" style="margin: 10px">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <img
+                  src="assets/images/ver-producto.png"
+                  alt=""
+                  width="200px"
+                  height="200px"
+                />
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-5">
+                <h1 style="cursor: default;" >{{ product.title }}</h1>
+                <hr />
+                <h1 style="cursor: default;">${{ product.price }}</h1>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <button [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="info" style="float: center; margin-top: 2rem;">
+                  <nb-icon icon="eye-outline"></nb-icon>
+                  ver la información
+                </button>
+                <button (click)="deleteProduct(i)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 2rem;">
+                  <nb-icon icon="close-outline"></nb-icon>
+                  Eliminar producto
+                </button>
+                <br>
+               
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+
+    </div>
+    <ng-template #noProducts>
+      <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
+        <h1 style="cursor: default;">No tiene productos agregados :(</h1>
+        <br>
+        <button (click)="goToCreateProduct()" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="primary" style="float: center; margin-top: 4rem;">
+          
+          Ir a vender producto
+          <nb-icon icon="arrow-forward-outline"></nb-icon>
+        </button>
+      </div>
+    </ng-template>
+  </nb-card-body>
+</nb-card>

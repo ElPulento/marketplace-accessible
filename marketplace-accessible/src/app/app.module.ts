@@ -34,6 +34,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { eo, es } from 'date-fns/locale';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HeaderNebularComponent, HeaderLoginComponent],
@@ -78,6 +79,7 @@ import { eo, es } from 'date-fns/locale';
     NbToastrModule.forRoot(),
     NbUserModule,
     NbTimepickerModule.forRoot(),
+    FormsModule,
   ],
   exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
   providers: [],

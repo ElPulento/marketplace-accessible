@@ -53,6 +53,8 @@ import { FilterPipe } from '../pipes/filterProducts.pipe';
 import { FilterCategoriesPipe } from '../pipes/filterCategories.pipe';
 import { FilterPricePipe } from '../pipes/filterPrice.pipe';
 import { FilterPriceMaxPipe } from '../pipes/filterPriceMax.pipe';
+import { ViewProductsCreateComponent } from './components/options/view-products-create/view-products-create.component';
+import { ListProductsCreateComponent } from './components/options/list-products-create/list-products-create.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { FilterPriceMaxPipe } from '../pipes/filterPriceMax.pipe';
     FilterCategoriesPipe,
     FilterPricePipe,
     FilterPriceMaxPipe,
+    ViewProductsCreateComponent,
+    ListProductsCreateComponent,
    
   ],
   imports: [
