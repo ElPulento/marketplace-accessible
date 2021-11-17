@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { InputSearchService } from '../../services/inputSearch.service';
 import { ProductsService } from '../../services/products.service';
+import { ScreenSizeService } from '../../services/screen-size.service';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -23,11 +24,13 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   price='';
   cate='';
   priceMax;
+  fontSize: number;
 
   constructor(
     private router: Router,
     private productsService : ProductsService,
     private inputSearch : InputSearchService,
+    private screenSizeService : ScreenSizeService,
     ) {}
 
   ngOnInit(): void {
@@ -60,6 +63,11 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.inputSearch.change.subscribe((search) => {
       this.search = search;
     });
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize
+    this.screenSizeService.change.subscribe((fontSize) => {
+     this.fontSize = fontSize;
+   });
    
   }
 

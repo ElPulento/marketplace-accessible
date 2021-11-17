@@ -4,22 +4,21 @@
 <nav class="menu fixed-top">
   <label class="logo">Marketplace</label>
   <ul class="menu_items" id="mode">
-    <li>
+    <li class="row" style="justify-content: center;">
       <input
         nbInput
-        class="form-control mr-sm-2"
+        style="margin-left: 10px; display: flex; width: 300px ; height: 40px;"
         type="search"
         placeholder="Buscar Productos"
         aria-label="Search"
         [(ngModel)]="search"
       />
-    </li>
-    <li>
-      <button (click)="goToListProduct()" nbButton status="info" type="submit">
+      <button class="btn-sm" (click)="goToListProduct()" nbButton status="info" type="submit">
         <nb-icon icon="search-outline"></nb-icon>
         Buscar
       </button>
     </li>
+
     <li (click)="showMenu()"><a routerLink="">Inicio</a></li>
     <li (click)="showMenu()"><a routerLink="marketplace/create-product">Vender</a></li>
     <li (click)="showMenu()"><a routerLink="marketplace/information">Información</a></li>
@@ -74,12 +73,12 @@
     </div>
   </div>
   <div class="container">
-    <div class="column">
+    <div class="column ">
       <div style="float: right">
         <ul class="menu_items" id="mode" style="margin-top: 5px">
-          <li>
+          <li >
             <nb-toggle
-            class="row"
+            class="row menu_items"
               *ngIf="currentTheme === 'default'"
               (click)="changeTheme('dark')"
             >
@@ -90,7 +89,7 @@
             </nb-toggle
             >
             <nb-toggle
-            class="row"
+            class="row menu_items"
               *ngIf="currentTheme === 'dark'"
               checked="true"
               (click)="changeTheme('default')"

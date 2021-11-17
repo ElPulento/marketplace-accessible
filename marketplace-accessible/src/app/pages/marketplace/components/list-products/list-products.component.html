@@ -23,18 +23,18 @@
                 Nombre del producto
               </label>
               <br />
-              <input nbInput type="search" [(ngModel)]="search" />
+              <input [style.fontSize.px]="fontSize" nbInput type="search" [(ngModel)]="search" />
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
               <label for="tag" class="label col-form-label"> Categoría </label>
               <br />
-              <input *ngIf="category !=='all'" [value]="category" [placeholder]="category" nbInput type="search" [(ngModel)]="cate" />
-              <input *ngIf="category ==='all'"  nbInput type="search" [(ngModel)]="cate" />
+              <input [style.fontSize.px]="fontSize" *ngIf="category !=='all'" [value]="category" [placeholder]="category" nbInput type="search" [(ngModel)]="cate" />
+              <input [style.fontSize.px]="fontSize" *ngIf="category ==='all'"  nbInput type="search" [(ngModel)]="cate" />
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
               <label for="tag" class="label col-form-label"> Precio mínimo </label>
               <br />
-              <input nbInput type="search" [(ngModel)]="price" />
+              <input [style.fontSize.px]="fontSize" nbInput type="search" [(ngModel)]="price" />
             </div>
       <!--      <div class="col-12 col-sm-12 col-md-3 col-lg-3"style="text-align: center;">
               <label for="tag" class="label col-form-label"> Precio Máximo </label>
