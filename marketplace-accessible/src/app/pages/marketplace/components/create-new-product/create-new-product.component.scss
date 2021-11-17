@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
 .container {
   justify-content: center;
   text-align: center;
@@ -10,4 +12,11 @@
 }
 .red{
   color: #FF708D;
+}
+
+@include media-breakpoint-down(sm) {
+  .control-item-sm-down {
+    display: none;
+  }
+ 
 }

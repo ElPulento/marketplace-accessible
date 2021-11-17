@@ -130,6 +130,31 @@ export class HeaderLoginComponent implements OnInit {
     this.inputSearch.input(this.search);
     this.productsService.allCategories()
     this.router.navigateByUrl(`marketplace/list-products`);
+    document.getElementById('mode').classList.toggle('show');
+  }
+
+  signOff(){
+    this.loading = true;
+          this.favoritesService.deleteAllFavorites()
+          this.profileService.recentLogged = null;
+          setTimeout(() => (this.loading = false), 1000);
+          setTimeout(() => this.headerService.signOff(), 1000);
+          setTimeout(() => this.router.navigateByUrl(``), 1000);
+          setTimeout(
+            () =>
+              this.toastrService.show(
+                'Se ha cerrado sesión correctamente',
+                `Cerrar sesión`,
+                {
+                  status: 'info',
+                  icon: 'checkmark-outline',
+                  preventDuplicates: true,
+                }
+              ),
+            1000
+          );
+        
+          
   }
 
   showMenu() {

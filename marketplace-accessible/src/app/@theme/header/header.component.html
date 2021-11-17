@@ -1,131 +1,4 @@
-<!--<nav class="navbar navbar-expand-md  fixed-top navbar-light">
-  <a class="navbar-brand text" style="color: #ffffff" routerLink=""
-    >Marketplace accesible <nb-icon icon="shopping-cart-outline"> </nb-icon>
-  </a>
 
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse navbar-custom" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto container">
-      <form class="form-inline" style="float: left;">
-        <input
-          nbInput
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Buscar Productos"
-          aria-label="Search"
-        />
-        <button
-          (click)="goToListProduct()"
-          nbButton
-          status="info"
-          type="submit"
-        >
-          <nb-icon icon="search-outline"></nb-icon>
-        </button>
-      </form>
-
-      <li class="nav-item">
-        <a
-          class="nav-link text"
-          style="color: #ffffff"
-          routerLink="marketplace/create-product"
-          >Vender</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text" style="color: #ffffff" routerLink="auth/login"
-          >Iniciar sesion
-        </a>
-      </li>
-      <li class="nav-item">
-         <input [value]="zoom" (change)="onzoom($event)" />% 
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle text"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Tamaño de pantalla
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <div class="dropdown-item">
-            <div class="col-2">
-              <button
-                style="margin: 10px"
-                fullwidth
-                nbButton
-                status="success"
-                (click)="zoomUp()"
-              >
-                <nb-icon icon="maximize-outline"> </nb-icon>
-                Aumentar
-              </button>
-            </div>
-            <div class="col-2">
-              <button
-                style="margin: 10px"
-                fullwidth
-                nbButton
-                status="danger"
-                (click)="zoomDown()"
-              >
-                <nb-icon icon="minimize-outline"> </nb-icon>
-                Disminuir
-              </button>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <colors-page></colors-page>
-      </li>
-
-     
-    </ul>
-  </div>
-</nav>-->
-
-<!--<nav class="menu fixed-top">
-  <label class="logo">Marketplace</label>
-  <div class="container-fluid">
-    <div class="column">
-      <div class="col-lg-4">
-        <p>
-          <input type="search" name="busquedamusica" placeholder="Canción, autor, álbum...">
-          <input type="submit" value="Buscar">
-        </p>
-      </div>
-      <div class="col-lg-4">
-        <ul class="menu_items" id="mode">
-          <li><a routerLink="">Inicio</a></li>
-          <li><a routerLink="marketplace/create-product">Vender</a></li>
-          <li><a routerLink="">Información</a></li>
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-  <span class="btn_menu" (click)="showMenu()">
-    <i class="fa fa-bars"></i>
-  </span>
-  <p>nicolas</p>
-</nav>-->
 
 <!-- RESPONSIVE -->
 <nav class="menu fixed-top">
@@ -147,12 +20,12 @@
         Buscar
       </button>
     </li>
-    <li><a routerLink="">Inicio</a></li>
-    <li><a routerLink="marketplace/create-product">Vender</a></li>
-    <li><a routerLink="marketplace/information">Información</a></li>
-    <li><a routerLink="auth/login">Iniciar Sesión</a></li>
-    <li><a routerLink="auth/register">Registrarse</a></li>
-    <li><colors-page></colors-page></li>
+    <li (click)="showMenu()"><a routerLink="">Inicio</a></li>
+    <li (click)="showMenu()"><a routerLink="marketplace/create-product">Vender</a></li>
+    <li (click)="showMenu()"><a routerLink="marketplace/information">Información</a></li>
+    <li (click)="showMenu()"><a routerLink="marketplace/edit-interface">Personalización</a></li>
+    <li (click)="showMenu()"><a routerLink="auth/login">Iniciar Sesión</a></li>
+    <li (click)="showMenu()"><a routerLink="auth/register">Registrarse</a></li>
   </ul>
   <span class="btn_menu" (click)="showMenu()">
     <i class="fa fa-bars"></i>
@@ -161,7 +34,7 @@
 
 <!-- NORMAL -->
 <nav class="menu fixed-top">
-  <label class="logo">Marketplace</label>
+  <label class="logo"><a class="logo" routerLink="marketplace/main">Marketplace</a></label>
   <div class="container">
     <div class="column">
       <div>
@@ -206,6 +79,7 @@
         <ul class="menu_items" id="mode" style="margin-top: 5px">
           <li>
             <nb-toggle
+            class="row"
               *ngIf="currentTheme === 'default'"
               (click)="changeTheme('dark')"
             >
@@ -216,6 +90,7 @@
             </nb-toggle
             >
             <nb-toggle
+            class="row"
               *ngIf="currentTheme === 'dark'"
               checked="true"
               (click)="changeTheme('default')"

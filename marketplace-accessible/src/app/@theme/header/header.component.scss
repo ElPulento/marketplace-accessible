@@ -1,27 +1,10 @@
-.navbar-light {
-  background-color: rgb(139, 110, 177);
-}
+
 .text {
   color: aliceblue !important;
   font-family: "Montserrat";
   font-size: large;
   font-weight: 100;
   text-decoration: none;
-}
-.textZoom {
-  font-family: "Montserrat";
-  font-size: large;
-  font-weight: 100;
-  text-decoration: none;
-}
-
-.container2 {
-  justify-content:space-between;
-  align-items: flex-end;
-}
-
-.navbar-custom {
-  height: 70px;
 }
 
 .menu {
@@ -34,16 +17,15 @@
   box-shadow: 5px 0 10px rgba(0, 0, 0, .6 );
 }
 
-div.container {
-  margin: 0 0 0 0;
-}
+
 
 .logo {
-  color: #fff;
-  font-size: 35px;
-  padding:  0 50px 0 50px ;
+  color: #fff!important;
+  font-size: 30px;
+  padding:  0 0px 0 10px ;
   font-weight: bold;
-  font-family: "Roboto Slab";;
+  font-family: "Roboto Slab";
+  text-decoration: none!important;
 }
 
 .menu_items {
@@ -92,19 +74,10 @@ ul.menu_items {
   padding: 0 0 0 0;
 }
 
-//no
-@media screen and (max-width: 1400px){
-  .logo {
-    font-size: 30px;
-    padding-left: 35px;
-  }
-  .menu_items li a {
-    font-size: 16px;
-  }
-}
 
-//responsive
-@media screen and (max-width: 1400px) {
+
+//responsive mode
+@media screen and (max-width: 1200px) {
   .menu {
     height: 65px;
     justify-content: space-between;
@@ -143,15 +116,7 @@ ul.menu_items {
   }
 }
 
-@media screen and (max-width: 858px) and (orientation: landscape) {
-  .menu_items li {
-    margin: 5px 0 0 0;
-  }
-  .menu_items {
-    overflow: scroll;
-    height: calc(100% - 65px);
-  }
-}
+
 
 
 .align{
