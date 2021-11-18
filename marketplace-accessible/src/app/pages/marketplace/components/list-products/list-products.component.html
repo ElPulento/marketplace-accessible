@@ -12,7 +12,8 @@
   </nb-card-header>
 
   <nb-card-body [nbSpinner]="getProductSpinnerLoading">
-    <h1 style="margin-left: 1rem">Listado de productos</h1>
+    <h1 *ngIf="category ==='all'" style="margin-left: 1rem">Listado de productos</h1>
+    <h1 *ngIf="category !=='all'" style="margin-left: 1rem"> Listado de productos <br> categoría : {{category}}</h1>
     <nb-accordion class="shadow">
       <nb-accordion-item expanded="true">
         <nb-accordion-item-header> <h4>Filtros</h4></nb-accordion-item-header>
@@ -86,7 +87,7 @@
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <h1 style="cursor: default">{{ product.title }}</h1>
                 <hr />
-                <h1 style="cursor: default">{{ product.price | currency: 'USD':true:'2.0'}}</h1>
+                <h1 style="cursor: default">{{ product?.price | currency: 'USD':true:'2.0'}}</h1>
               </div>
               
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -126,7 +127,7 @@
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <h1 style="cursor: default">{{ product.title }}</h1>
                 <hr />
-                <h1 style="cursor: default">{{ product.price | currency: 'USD':true:'2.0'}}</h1>
+                <h1 style="cursor: default">{{ product?.price | currency: 'USD':true:'2.0'}}</h1>
               </div>
               
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">

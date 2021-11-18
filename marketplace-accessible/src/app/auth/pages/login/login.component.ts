@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.emailInput = this.loginForm.get('email').value;
     this.pass = this.loginForm.get('password').value;
     const flag  = this.profileService.IsLogged(this.emailInput);
-
     if( this.profileService.IsLogged(this.emailInput) && this.profileService.passCorrect(this.emailInput, this.pass) === false){
       setTimeout(() => this.loading = false, 2000);
       setTimeout(() =>   this.toastrService.show('La contraseña es incorrecta',`Iniciar sesión`, {
@@ -102,6 +101,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     
     }else{
     if (!flag){
+  /*
    setTimeout(() => this.loading = false, 2000);
    setTimeout(() => this.headerService.login(), 2000);
    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
@@ -110,14 +110,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 2000);
-  /*
+  */
     setTimeout(() => this.loading = false, 2000);
-    setTimeout(() =>   this.toastrService.show('El email no se encuentra registrado',`Iniciar sesión`, {
+    setTimeout(() =>   this.toastrService.show('El correo no se encuentra registrado',`Iniciar sesión`, {
       status: 'warning',
       icon: 'alert-triangle-outline',
       preventDuplicates: true,
     }), 2000);
-    */
+    
 
   }else if(this.profileService.passCorrect(this.emailInput, this.pass)) {
     setTimeout(() => this.loading = false, 2000);

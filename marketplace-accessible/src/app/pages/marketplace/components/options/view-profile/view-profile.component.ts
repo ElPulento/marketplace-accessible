@@ -31,7 +31,7 @@ export class ViewProfileComponent implements OnInit {
   imageIsRequired!: boolean;
   date = new Date();
   createLoadingSpinner!: boolean;
-  productForm!: FormGroup;
+  profileForm!: FormGroup;
   lastImagePicked!: FileList;
   minimize: boolean;
   maximize: boolean;
@@ -81,6 +81,7 @@ export class ViewProfileComponent implements OnInit {
 
 
   private initializeVariables() {
+    this.loading = false;
     this.nameMaxLength = 100;
     this.nameIsRequired = true
     this.surnameMaxLength = 100
@@ -138,7 +139,7 @@ this.surname = "Usuario";
   }
 
   private initializeForms() {
-    this.productForm = this.fb.group({
+    this.profileForm = this.fb.group({
       name: this.fb.control(this.name, [
         Validators.required,
         Validators.maxLength(this.nameMaxLength),
@@ -173,7 +174,7 @@ this.surname = "Usuario";
     });
   }
   get imagesArray(): FormArray {
-		return this.productForm.get('images') as FormArray;
+		return this.profileForm.get('images') as FormArray;
 	}
   showPassword = false;
 
@@ -224,11 +225,11 @@ this.surname = "Usuario";
 		this.imagesArray.removeAt(i);
 	}
   get form() {
-    return this.productForm.controls;
+    return this.profileForm.controls;
   }
   updateInformation(){
     this.loading = true;
-    setTimeout(() => this.profileService.updateProfile(this.productForm.get('email').value, this.productForm.value), 2000);
+    setTimeout(() => this.profileService.updateProfile(this.profileForm.get('email').value, this.profileForm.value), 2000);
     setTimeout(() => (this.loading = false), 2000);
    // setTimeout(() => this.router.navigateByUrl(``), 2000);
    setTimeout(() => (this.headerService.signOff()), 2000);

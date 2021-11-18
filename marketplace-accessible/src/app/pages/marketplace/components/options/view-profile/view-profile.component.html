@@ -3,7 +3,7 @@
     <h1 style="margin-left: 1rem;"> Ver mi perfil</h1>
     <hr>
     <!--	{{ productForm.value | json }} -->
-    <form [formGroup]="productForm" *ngIf="productForm">
+    <form [formGroup]="profileForm" *ngIf="profileForm">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
           <nb-form-field>
@@ -415,7 +415,7 @@
 					nbButton
 					style="margin: 5px"
           [nbSpinner]="loading"
-					[disabled]="!this.productForm.valid || loading"
+					[disabled]="!this.profileForm.valid || loading"
 					
 				>
 					<nb-icon icon="save-outline"></nb-icon>
