@@ -104,11 +104,11 @@ export class ViewProductsCreateComponent implements OnInit {
    });
    // login
    this.login = this.loginService.loginHeader;
-   console.log(this.login,'esta logeado?')
+ 
 
    //profile
    for ( let i =0 ; i<this.productService.listProduct.length ; i++){
-    if ( this.productService.listProduct[i].title === this.productService.listProduct[i].title ){
+    if ( this.productService.listProduct[i].title === this.productId ){
       this.title = this.productService.listProduct[i].title
       this.description = this.productService.listProduct[i].description
       this.amount = this.productService.listProduct[i].amount
@@ -164,7 +164,7 @@ export class ViewProductsCreateComponent implements OnInit {
 
 		if (images) {
 			if (images.length > this.imageMaxLength) {
-        console.log('No puede subir más de 5 imagenes')
+ 
 			} else {
 				for (let index = 0; index < images.length; index++) {
 					const file = images[index];

@@ -16,6 +16,7 @@ export class ProductsService {
         this.listProduct[i] = [];
         this.listProduct[i] = data;
         this.change2.emit(this.listProduct);
+        break;
       }
     }
   }
@@ -25,12 +26,11 @@ export class ProductsService {
     this.change2.emit(this.listProduct);
   }
 
-  deleteProduct(id : string) {
-    const i = this.listProduct.indexOf(id);
-    if ( i !== -1 ) {
-      this.listProduct.splice( i, 1 );
-    }
-    this.change2.emit(this.listProduct);
+  deleteProduct(i) {
+ 
+    this.listProduct.splice( i, 1 );
+
+   
   }
 
   videojuegos() {

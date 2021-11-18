@@ -29,10 +29,10 @@ export class ModalQualificationComponent implements OnInit {
 
   ngOnInit() {
     this.productId = this.favoritesService.id;
-    console.log( this.productId, 'product id')
+  
     //qualification
     this.isQualified = this.qualificationService.IsQualified(this.productId);
-    console.log( this.isQualified, 'esta califiacado?')
+
     this.qualification = this.qualificationService.IsQualified(this.productId)
     this.qualificationService.change.subscribe(qualification => {
       this.qualification = qualification
@@ -58,7 +58,7 @@ export class ModalQualificationComponent implements OnInit {
   star(value){
     this.i = value;
     this.starValue = value;
-    console.log(this.starValue, 'starValue')
+
     return this.starValue;
 
   }

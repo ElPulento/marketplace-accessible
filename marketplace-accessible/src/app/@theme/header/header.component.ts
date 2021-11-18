@@ -72,8 +72,6 @@ export class HeaderComponent implements OnInit {
     this.inputSearch.search = this.search;
     this.inputSearch.input(this.search);
     this.productsService.allCategories() 
-
-   
     this.router.navigateByUrl(`marketplace/list-products`);
     document.getElementById('mode').classList.toggle('show');
   }

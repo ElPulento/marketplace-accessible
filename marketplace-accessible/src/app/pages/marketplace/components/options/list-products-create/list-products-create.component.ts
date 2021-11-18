@@ -42,10 +42,10 @@ export class ListProductsCreateComponent implements OnInit {
   }
 
   
-  deleteProduct(i){
+  deleteProduct(id){
     this.loading = true;
     setTimeout(() =>  this.loading = false, 1000);
-    setTimeout(() => this.productsService.deleteProduct(i), 1000);
+    setTimeout(() => this.productsService.deleteProduct(id), 1000);
     setTimeout(() =>   this.toastrService.show('El producto se eliminó correctamente ',`Eliminar producto`, {
       status: 'danger',
       icon: 'close-outline',

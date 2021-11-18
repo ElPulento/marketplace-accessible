@@ -92,7 +92,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
    });
    // login
    this.login = this.loginService.loginHeader;
-   console.log(this.login,'esta logeado?')
+
   }
 
   private initializeForms() {
@@ -151,7 +151,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 
 		if (images) {
 			if (images.length > this.imageMaxLength) {
-        console.log('No puede subir más de 5 imagenes')
+  
 			} else {
 				for (let index = 0; index < images.length; index++) {
 					const file = images[index];

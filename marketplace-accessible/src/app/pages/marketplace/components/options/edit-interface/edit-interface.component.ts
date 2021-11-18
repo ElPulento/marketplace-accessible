@@ -36,7 +36,7 @@ export class EditInterfaceComponent implements OnInit {
      this.fontSize = this.screenSizeService.fontSize
      this.screenSizeService.change.subscribe((fontSize) => {
       this.fontSize = fontSize;
-    //  console.log(fontSize, 'font size');
+
     });
 
   }

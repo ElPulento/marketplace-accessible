@@ -37,7 +37,6 @@ export class FavoritesService {
     this.favorites = false;
     this.change.emit(this.favorites);
     const i = this.listFavorites.indexOf( id );
- 
     if ( i !== -1 ) {
       this.listFavorites.splice( i, 1 );
     }

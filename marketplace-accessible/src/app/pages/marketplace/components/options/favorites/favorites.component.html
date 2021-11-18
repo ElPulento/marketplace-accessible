@@ -21,14 +21,13 @@
                   height="200px"
                 />
               </div>
-              <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <h1 style="cursor: default;" >{{ product.title }}</h1>
                 <hr />
                 <h1 style="cursor: default;">${{ product.price }}</h1>
               </div>
-              <div class="col-1"></div>
-              <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                <button (click)="deleteFavorites(favorites)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 4rem;">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <button (click)="deleteFavorites(favorites)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: right; margin-top: 4rem;">
                   <nb-icon icon="heart"></nb-icon>
                   Quitar de favoritos
                 </button>

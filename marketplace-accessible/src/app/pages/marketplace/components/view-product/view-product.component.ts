@@ -53,7 +53,7 @@ export class ViewProductComponent implements OnInit {
     this.maximize = false;
     this.fullScreen = true;
     this.starValue = document.getElementById("radio1");;
-    console.log(this.starValue, ' star')
+ 
      //---- font size
      this.fontSize = this.screenSizeService.fontSize
      this.screenSizeService.change.subscribe((fontSize) => {
@@ -146,7 +146,7 @@ export class ViewProductComponent implements OnInit {
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 1000);
-    console.log(this.favoritesService.listFavorites , 'favoritos añadidos')
+    
   }
 
   deleteFavorites(productId){

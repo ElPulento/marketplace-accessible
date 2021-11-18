@@ -195,7 +195,7 @@ this.surname = "Usuario";
 
 		if (images) {
 			if (images.length > this.imageMaxLength) {
-        console.log('No puede subir más de 5 imagenes')
+     
 			//	this.toastr.showErrorToast();
 			} else {
 				for (let index = 0; index < images.length; index++) {

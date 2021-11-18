@@ -18,17 +18,18 @@
                   height="200px"
                 />
               </div>
-              <div class="col-12 col-sm-12 col-md-4 col-lg-5">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <h1 style="cursor: default;" >{{ product.title }}</h1>
                 <hr />
                 <h1 style="cursor: default;">${{ product.price }}</h1>
               </div>
-              <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <button (click)="goToViewProduct(product.title)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="info" style="float: center; margin-top: 2rem;">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <button (click)="goToViewProduct(product.title)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="info" style="float: center; margin-top: 2rem; margin-right: 1rem;">
                   <nb-icon icon="eye-outline"></nb-icon>
                   ver la información
                 </button>
-                <button (click)="deleteProduct(i)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 2rem;">
+                <br>
+                <button (click)="deleteProduct(i)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 2rem; margin-right: 1rem;">
                   <nb-icon icon="close-outline"></nb-icon>
                   Eliminar producto
                 </button>

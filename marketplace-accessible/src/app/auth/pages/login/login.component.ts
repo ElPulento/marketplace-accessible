@@ -91,9 +91,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.emailInput = this.loginForm.get('email').value;
     this.pass = this.loginForm.get('password').value;
     const flag  = this.profileService.IsLogged(this.emailInput);
-    console.log(this.emailInput , 'input')
-    console.log(this.profileService.listLogged , 'guardado')
-    console.log(flag , 'flag')
+
     if( this.profileService.IsLogged(this.emailInput) && this.profileService.passCorrect(this.emailInput, this.pass) === false){
       setTimeout(() => this.loading = false, 2000);
       setTimeout(() =>   this.toastrService.show('La contraseña es incorrecta',`Iniciar sesión`, {

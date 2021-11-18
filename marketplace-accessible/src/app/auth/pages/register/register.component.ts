@@ -148,9 +148,9 @@ export class RegisterComponent implements OnInit {
   }
 
   openWindowModal(){
-    console.log(this.productForm.value,'aaaaa')
+    
    this.profileService.addProfile(this.productForm.get('email').value, this.productForm.value)
-    console.log( this.profileService.recentLogged, 'email ', this.productForm.value, 'form value')
+
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,
@@ -170,7 +170,7 @@ export class RegisterComponent implements OnInit {
 
 		if (images) {
 			if (images.length > this.imageMaxLength) {
-        console.log('No puede subir más de 5 imagenes')
+
 			//	this.toastr.showErrorToast();
 			} else {
 				for (let index = 0; index < images.length; index++) {

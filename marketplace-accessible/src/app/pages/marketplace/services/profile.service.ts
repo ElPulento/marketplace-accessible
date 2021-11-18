@@ -70,7 +70,7 @@ export class ProfileService {
     this.recentLogged = id;
     this.change3.emit(this.recentLogged);
     this.dataProfile.push(data)
-    console.log( this.dataProfile, 'data profile')
+   
   
   }
   deleteProfile(id : string) {
