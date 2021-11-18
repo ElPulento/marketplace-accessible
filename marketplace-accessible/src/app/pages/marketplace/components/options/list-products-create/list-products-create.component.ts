@@ -58,6 +58,9 @@ export class ListProductsCreateComponent implements OnInit {
     setTimeout(() =>  this.router.navigateByUrl(`marketplace/create-product`), 1000);
     
   }
+  goToViewProduct(id : string) {
+    this.router.navigateByUrl(`marketplace/view-my-products/${id}`);
+  }
   reload(){
     this.ngOnInit();
     this.ngOnDestroy();

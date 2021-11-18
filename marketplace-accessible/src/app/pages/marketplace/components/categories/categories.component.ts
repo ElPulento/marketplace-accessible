@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InputSearchService } from '../../services/inputSearch.service';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -8,35 +9,18 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categories = [
-		{
-			name: 'Electrónica',
-		
-		},
-    {
-			name: 'Vehiculos',
-			
-		},
-    {
-			name: 'Vestuario',
-			
-		},
-    {
-			name: 'Videojuegos',
-		
-		},
-
-  ]
-
   constructor(
     private router : Router,
     private productsService : ProductsService,
+    private inputSearch : InputSearchService,
   ) { }
 
   ngOnInit() {
   }
 
   goToListProduct(category) {
+   const search = this.inputSearch.search = '';
+    this.inputSearch.input(search);
     this.productsService.category = category;
     this.router.navigateByUrl(`marketplace/list-products`);
   }

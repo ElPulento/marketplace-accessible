@@ -306,5 +306,22 @@ goToListProduct() {
       ],
       isActive: true,
     },
+    {
+      id: '7',
+      title: 'Iphone 12 pro 128gb',
+      description:
+        'Se vende celular Iphone 12 pro , nuevo y sellado, cualquier consulta escriba un mensaje',
+      amount: 5,
+      price: 900000,
+      categories: ['Electronica'],
+      images: [
+        {
+          name: 'assets/images/iphone.png',
+          description:
+            'Iphone azul, parte delantera y trasera ',
+        },
+      ],
+      isActive: true,
+    },
   ];
 }

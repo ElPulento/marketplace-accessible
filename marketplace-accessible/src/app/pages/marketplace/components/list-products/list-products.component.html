@@ -70,7 +70,7 @@
         "
       >
         <ng-container
-          *ngFor="let categories of listProducts[i].categories; let j = index"
+          *ngFor="let categories of product.categories; let j = index"
         >
           <nb-card
             accent="info"
@@ -90,7 +90,7 @@
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5">
                   <h1 style="cursor: default">{{ product.title }}</h1>
                   <hr />
-                  <h1 style="cursor: default" >${{ parseInt(product.price) }}</h1>
+                  <h1 style="cursor: default" >{{ product.price | currency: 'USD':true:'2.0'}}</h1>
                 </div>
                 <div class="col-1"></div>
                 <div class="col-12 col-sm-12 col-md-2 col-lg-2">

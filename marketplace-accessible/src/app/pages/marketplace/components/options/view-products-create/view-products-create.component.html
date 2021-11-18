@@ -244,7 +244,7 @@
 		<div class="ml-auto pt-3 m-3 mr-5">
 			<div style="float: right; margin: 10px">
 				<button
-			
+        (click)="updateInformation()"
 					type="button"
 					status="info"
 					size="medium"
@@ -252,7 +252,7 @@
 					style="margin: 5px"
           [nbSpinner]="loading"
 					[disabled]="!this.productForm.valid || loading"
-					
+		
 				>
 					<nb-icon icon="save-outline"></nb-icon>
 					Actualizar datos

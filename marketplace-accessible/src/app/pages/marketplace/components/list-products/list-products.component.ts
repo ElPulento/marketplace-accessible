@@ -20,7 +20,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   rows!: number;
   getProductSpinnerLoading!: boolean;
   category : string;
-  search= this.inputSearch.search;
+  search='';
   price='';
   cate='';
   priceMax;
@@ -59,7 +59,14 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.rows = 5;
     this.getProductSpinnerLoading = false;
-    this.category = this.productsService.category;
+    
+    this.category = this.productsService.category
+    if ( this.category !== 'all'){
+      this.cate = this.productsService.category
+    }
+    
+    console.log( this.category,'categoria')
+    console.log( this.cate,'cate')
     this.inputSearch.change.subscribe((search) => {
       this.search = search;
     });
@@ -82,20 +89,7 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`marketplace/categories`);
   }
  
-
-
-  applyFilter(filterValue) {
-    this.listProducts.filter((val) => {
-       return val.title.toLowerCase().indexOf(filterValue) > -1;
-    });
-   }
-   parseInt(e){
-     console.log(e, 'antes')
-    e = e.toString();
-    console.log(e, 'despues')
-    return e 
-   }
-
+ 
   listProducts = [
     {
       id: '1',
@@ -196,6 +190,23 @@ export class ListProductsComponent implements OnInit, OnDestroy {
           name: 'assets/images/televisorLg.jpg',
           description:
             'televisor LG mostrando una flor de cerca',
+        },
+      ],
+      isActive: true,
+    },
+    {
+      id: '7',
+      title: 'Iphone 12 pro 128gb',
+      description:
+        'Se vende celular Iphone 12 pro , nuevo y sellado, cualquier consulta escriba un mensaje',
+      amount: 5,
+      price: 900000,
+      categories: ['Electronica'],
+      images: [
+        {
+          name: 'assets/images/iphone.png',
+          description:
+            'Iphone azul, parte delantera y trasera ',
         },
       ],
       isActive: true,

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'favorites', component: FavoritesComponent },
   { path: 'view-list-products', component: ListProductsCreateComponent },
   { path: 'view-profile', component: ViewProfileComponent },
-  { path: 'view-my-products', component: ViewProductsCreateComponent },
+  { path: 'view-my-products/:id', component: ViewProductsCreateComponent },
   { path: 'main', component: MainPageComponent },
   { path: '**', component: MainPageComponent },
 ];

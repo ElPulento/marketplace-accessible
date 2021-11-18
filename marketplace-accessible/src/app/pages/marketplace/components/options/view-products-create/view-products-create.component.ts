@@ -205,5 +205,24 @@ export class ViewProductsCreateComponent implements OnInit {
     }), 2000);
     
   }
+  updateInformation(){
+    this.loading = true;
+    setTimeout(() => this.productService.updateProduct(this.productForm.value), 2000);
+    setTimeout(() => (this.loading = false), 2000);
+   setTimeout(() => (this.loading = false), 2000);
+    setTimeout(
+      () =>
+        this.toastrService.show(
+          'Se ha actualizado la información correctamente',
+          `Actualizar información`,
+          {
+            status: 'info',
+            icon: 'checkmark-outline',
+            preventDuplicates: true,
+          }
+        ),
+      2000
+    );
+  }
 
 }
