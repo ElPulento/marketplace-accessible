@@ -5,19 +5,17 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 })
 export class ProductsService {
   category = '';
-  productProfile  = []; // datos product
-  listProduct: any[] = []; // title id
+  listProduct = []; // title id
   @Output() change: EventEmitter<string> = new EventEmitter();
   @Output() change2: EventEmitter<string[]> = new EventEmitter();
   constructor() {}
 
-  updateProduct( data : string ){
+  updateProduct( data : string , id ){
     for (let i = 0 ; i < this.listProduct.length ; i++ ){
-      if (this.listProduct[i].title === this.productProfile[0].title){
+      if (this.listProduct[i].title === id){
+        this.listProduct[i] = [];
         this.listProduct[i] = data;
-        this.productProfile = [];
-        this.productProfile.push(data)
-        this.change2.emit(this.productProfile);
+        this.change2.emit(this.listProduct);
       }
     }
   }
@@ -25,12 +23,14 @@ export class ProductsService {
   addProduct( data : string) {
     this.listProduct.push(data)
     this.change2.emit(this.listProduct);
-    this.productProfile.push(data)
-    this.change2.emit(this.productProfile);
   }
-  deleteProduct( i) {
-      this.listProduct.splice( i, 1 );
 
+  deleteProduct(id : string) {
+    const i = this.listProduct.indexOf(id);
+    if ( i !== -1 ) {
+      this.listProduct.splice( i, 1 );
+    }
+    this.change2.emit(this.listProduct);
   }
 
   videojuegos() {

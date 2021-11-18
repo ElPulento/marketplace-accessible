@@ -28,6 +28,7 @@ export class ListProductsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.listProducts = this.productsService.listProduct;
+
     this.loading = false;
     //favorites
     this.favorites = this.favoritesService.IsFavorite(this.productId)
@@ -41,7 +42,7 @@ export class ListProductsCreateComponent implements OnInit {
   }
 
   
-  deleteProduct(i : number){
+  deleteProduct(i){
     this.loading = true;
     setTimeout(() =>  this.loading = false, 1000);
     setTimeout(() => this.productsService.deleteProduct(i), 1000);

@@ -187,7 +187,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     this.productsService.addProduct(this.productForm.value)
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
-    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
+    setTimeout(() =>  this.router.navigateByUrl(`marketplace/view-list-products`), 2000);
     setTimeout(() =>   this.toastrService.show('Producto agregado correctamente',`Vender producto`, {
       status: 'info',
       icon: 'checkmark-outline',

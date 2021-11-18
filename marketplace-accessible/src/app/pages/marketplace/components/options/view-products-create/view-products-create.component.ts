@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 import { NbBooleanInput } from '@nebular/theme/components/helpers';
 import { Subject } from 'rxjs';
@@ -49,6 +49,7 @@ export class ViewProductsCreateComponent implements OnInit {
   categories2: string;
   images: string;
   isActive: boolean;
+  productId: any;
  
 
   constructor(
@@ -59,6 +60,7 @@ export class ViewProductsCreateComponent implements OnInit {
     private screenSizeService : ScreenSizeService,
     private loginService : HeaderService,
     private productService : ProductsService,
+    private route : ActivatedRoute,
     ) {}
 
   ngOnDestroy(): void {
@@ -80,6 +82,7 @@ export class ViewProductsCreateComponent implements OnInit {
 
 
   private initializeVariables() {
+    this.productId = this.route.snapshot.paramMap.get('id');
     this.titleMaxLength = restrictions.titleMaxLength;
     this.titleIsRequired = restrictions.titleIsRequired;
     this.descriptionMaxLength = restrictions.descriptionMaxLength;
@@ -105,14 +108,14 @@ export class ViewProductsCreateComponent implements OnInit {
 
    //profile
    for ( let i =0 ; i<this.productService.listProduct.length ; i++){
-    if ( this.productService.productProfile[i].title === this.productService.listProduct[i].title ){
-      this.title = this.productService.productProfile[i].title
-      this.description = this.productService.productProfile[i].description
-      this.amount = this.productService.productProfile[i].amount
-      this.price = this.productService.productProfile[i].price
-      this.categories2 = this.productService.productProfile[i].categories
-      this.images = this.productService.productProfile[i].images
-      this.isActive = this.productService.productProfile[i].isActive
+    if ( this.productService.listProduct[i].title === this.productService.listProduct[i].title ){
+      this.title = this.productService.listProduct[i].title
+      this.description = this.productService.listProduct[i].description
+      this.amount = this.productService.listProduct[i].amount
+      this.price = this.productService.listProduct[i].price
+      this.categories2 = this.productService.listProduct[i].categories
+      this.images = this.productService.listProduct[i].images
+      this.isActive = this.productService.listProduct[i].isActive
     }
   }
   }
@@ -205,9 +208,13 @@ export class ViewProductsCreateComponent implements OnInit {
     }), 2000);
     
   }
+
+  backToListProduct(){
+    this.router.navigateByUrl(`marketplace/view-list-products`)
+  }
   updateInformation(){
     this.loading = true;
-    setTimeout(() => this.productService.updateProduct(this.productForm.value), 2000);
+    setTimeout(() => this.productService.updateProduct(this.productForm.value , this.productId), 2000);
     setTimeout(() => (this.loading = false), 2000);
    setTimeout(() => (this.loading = false), 2000);
     setTimeout(
@@ -223,6 +230,8 @@ export class ViewProductsCreateComponent implements OnInit {
         ),
       2000
     );
+    setTimeout(() =>  this.router.navigateByUrl(`marketplace/view-list-products`), 2000);
   }
+  
 
 }

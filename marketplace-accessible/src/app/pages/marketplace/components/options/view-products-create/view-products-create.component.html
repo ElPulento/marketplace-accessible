@@ -1,4 +1,15 @@
 <nb-card class="create-windows-class">
+  <nb-card-header class="title">
+    <nb-actions size="small" class="buttonClose">
+      <nb-action
+        (click)="backToListProduct()"
+        style="text-align: left"
+        icon="arrow-back-outline"
+        [nbTooltip]="'Volver al listado de mis productos '"
+        nbTooltipStatus="info"
+      ></nb-action>
+    </nb-actions>
+  </nb-card-header>
   <nb-card-body>
     <h1 style="margin-left: 1rem;"> Ver información de mi producto</h1>
     <hr>

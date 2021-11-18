@@ -28,8 +28,8 @@
             <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
               <label for="tag" class="label col-form-label"> Categoría </label>
               <br />
-              <input [style.fontSize.px]="fontSize" *ngIf="category !=='all'" [value]="category" [placeholder]="category" nbInput type="search" [(ngModel)]="cate" />
-              <input [style.fontSize.px]="fontSize" *ngIf="category ==='all'"  nbInput type="search" [(ngModel)]="cate" />
+             
+              <input [style.fontSize.px]="fontSize"  nbInput type="search" [(ngModel)]="cate" />
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4"style="text-align: center;">
               <label for="tag" class="label col-form-label"> Precio mínimo </label>
@@ -72,41 +72,37 @@
         <ng-container
           *ngFor="let categories of product.categories; let j = index"
         >
-          <nb-card
-            accent="info"
-            *ngIf="categories === category"
-            style="margin: 10px"
-          >
-            <nb-card-body>
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                  <img
-                    [src]="product.images[0].name"
-                    alt=""
-                    width="200px"
-                    height="200px"
-                  />
-                </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-5">
-                  <h1 style="cursor: default">{{ product.title }}</h1>
-                  <hr />
-                  <h1 style="cursor: default" >{{ product.price | currency: 'USD':true:'2.0'}}</h1>
-                </div>
-                <div class="col-1"></div>
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                  <button
-                    (click)="goToViewProduct(product.id)"
-                    nbButton
-                    status="info"
-                    style="float: center; margin-top: 4rem"
-                  >
-                    <nb-icon icon="eye-outline"></nb-icon>
-                    Ver producto
-                  </button>
-                </div>
+        <nb-card accent="info" *ngIf="categories === category" style="margin: 10px">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <img
+                  [src]="product.images[0].name"
+                  alt=""
+                  width="200px"
+                  height="200px"
+                />
               </div>
-            </nb-card-body>
-          </nb-card>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <h1 style="cursor: default">{{ product.title }}</h1>
+                <hr />
+                <h1 style="cursor: default">{{ product.price | currency: 'USD':true:'2.0'}}</h1>
+              </div>
+              
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <button
+                  (click)="goToViewProduct(product.id)"
+                  nbButton
+                  status="info"
+                  style="float: right; margin-top: 4rem"
+                >
+                  <nb-icon icon="eye-outline"></nb-icon>
+                  Ver producto
+                </button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
         </ng-container>
       </ng-container>
 
@@ -127,18 +123,18 @@
                   height="200px"
                 />
               </div>
-              <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <h1 style="cursor: default">{{ product.title }}</h1>
                 <hr />
                 <h1 style="cursor: default">{{ product.price | currency: 'USD':true:'2.0'}}</h1>
               </div>
-              <div class="col-1"></div>
-              <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+              
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <button
                   (click)="goToViewProduct(product.id)"
                   nbButton
                   status="info"
-                  style="float: center; margin-top: 4rem"
+                  style="float: right; margin-top: 4rem"
                 >
                   <nb-icon icon="eye-outline"></nb-icon>
                   Ver producto

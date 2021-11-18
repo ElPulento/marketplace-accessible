@@ -54,7 +54,6 @@ export class HeaderLoginComponent implements OnInit {
     this.currentTheme = this.themeService.currentTheme;
     this.headerService.change.subscribe((login) => {
       this.login = login;
-      console.log(login, 'login header');
     });
      //----
      this.themeService

@@ -17,7 +17,6 @@ export class AppComponent {
       //login
       this.headerService.change.subscribe(login => {
         this.login = login
-        console.log(login, 'login header')
       })
     }
 }

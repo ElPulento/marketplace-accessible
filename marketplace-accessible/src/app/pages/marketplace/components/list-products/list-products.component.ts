@@ -19,13 +19,12 @@ export class ListProductsComponent implements OnInit, OnDestroy {
   page!: number;
   rows!: number;
   getProductSpinnerLoading!: boolean;
-  category : string;
-  search='';
+  search= this.inputSearch.search;
   price='';
   cate='';
   priceMax;
   fontSize: number;
-
+  category = this.productsService.category;
   constructor(
     private router: Router,
     private productsService : ProductsService,
@@ -59,14 +58,6 @@ export class ListProductsComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.rows = 5;
     this.getProductSpinnerLoading = false;
-    
-    this.category = this.productsService.category
-    if ( this.category !== 'all'){
-      this.cate = this.productsService.category
-    }
-    
-    console.log( this.category,'categoria')
-    console.log( this.cate,'cate')
     this.inputSearch.change.subscribe((search) => {
       this.search = search;
     });

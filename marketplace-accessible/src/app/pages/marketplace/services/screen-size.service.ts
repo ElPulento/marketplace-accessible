@@ -18,7 +18,6 @@ export class ScreenSizeService {
     if (this.fontSize !== 10) {
       this.fontSize = this.fontSize - 1;
       this.change.emit(this.fontSize);
-      console.log(this.fontSize, 'Tamaño de fuente');
       this.disableDown = false;
       this.disableUp = false;
       this.change2.emit(this.disableDown);
@@ -36,8 +35,6 @@ export class ScreenSizeService {
       this.disableUp = false;
       this.disableDown = false;
       this.change2.emit(this.disableUp);
-
-      console.log(this.fontSize, 'Tamaño de fuente');
     } else {
       this.change2.emit(this.disableUp);
 
@@ -52,6 +49,5 @@ export class ScreenSizeService {
     this.disableUp = false;
     this.change2.emit(this.disableDown);
     this.change2.emit(this.disableUp);
-    console.log(this.fontSize, 'Tamaño de fuente');
   }
 }
