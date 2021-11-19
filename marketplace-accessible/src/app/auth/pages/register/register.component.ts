@@ -170,8 +170,6 @@ export class RegisterComponent implements OnInit {
 
 		if (images) {
 			if (images.length > this.imageMaxLength) {
-
-			//	this.toastr.showErrorToast();
 			} else {
 				for (let index = 0; index < images.length; index++) {
 					const file = images[index];
@@ -187,9 +185,7 @@ export class RegisterComponent implements OnInit {
 							);
 						};
 						reader.readAsDataURL(file);
-					} else {
-					//	this.toastr.showErrorToast();
-					}
+					} 
 				}
 			}
 		}

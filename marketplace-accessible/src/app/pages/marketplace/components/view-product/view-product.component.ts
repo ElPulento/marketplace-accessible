@@ -1,90 +1,93 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogService, NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+import {
+  NbDialogService,
+  NbToastrService,
+  NbWindowControlButtonsConfig,
+  NbWindowService,
+} from '@nebular/theme';
 import { FavoritesService } from '../../services/favorites.service';
 import { HeaderService } from '../../services/header.service';
 import { QualificationService } from '../../services/qualification.service';
 import { ScreenSizeService } from '../../services/screen-size.service';
 import { ModalLoginFavoritesComponent } from './modal-login-favorites/modal-login-favorites.component';
-import { ModalQualificationComponent} from './modal-qualification/modal-qualification.component';
+import { ModalQualificationComponent } from './modal-qualification/modal-qualification.component';
 @Component({
   selector: 'app-view-product',
   templateUrl: './view-product.component.html',
   styleUrls: ['./view-product.component.scss'],
 })
 export class ViewProductComponent implements OnInit {
-  
-  
-  productId : string
-  imagesCounter: number
+  productId: string;
+  imagesCounter: number;
   minimize: boolean;
   maximize: boolean;
   fullScreen: boolean;
   starValue: HTMLElement;
   fontSize: number;
-  favorites : boolean;
-  qualification : boolean;
-  loading : boolean;
+  favorites: boolean;
+  qualification: boolean;
+  loading: boolean;
   login: boolean;
   constructor(
     private route: ActivatedRoute,
     private windowService: NbWindowService,
-    private router : Router,
-    private screenSizeService : ScreenSizeService,
-    private favoritesService : FavoritesService,
-    private qualificationService : QualificationService,
+    private router: Router,
+    private screenSizeService: ScreenSizeService,
+    private favoritesService: FavoritesService,
+    private qualificationService: QualificationService,
     private toastrService: NbToastrService,
-    private loginService : HeaderService,
-   ) {}
+    private loginService: HeaderService
+  ) {}
 
   ngOnInit(): void {
-    this.initializableVariables()
-   
+    this.initializableVariables();
   }
-  @ViewChild('chat', { read: TemplateRef }) chatTemplate: TemplateRef<HTMLElement>;
-  @ViewChild('profile', { read: TemplateRef }) profileTemplate: TemplateRef<HTMLElement>;
-  @ViewChild('qualification', { read: TemplateRef }) qualificationTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('chat', { read: TemplateRef })
+  chatTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('profile', { read: TemplateRef })
+  profileTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('qualification', { read: TemplateRef })
+  qualificationTemplate: TemplateRef<HTMLElement>;
 
-  initializableVariables(){
+  initializableVariables() {
     this.loading = false;
     this.productId = this.route.snapshot.paramMap.get('id');
     this.imagesCounter = 0;
     this.minimize = false;
     this.maximize = false;
     this.fullScreen = true;
-    this.starValue = document.getElementById("radio1");;
- 
-     //---- font size
-     this.fontSize = this.screenSizeService.fontSize
-     this.screenSizeService.change.subscribe((fontSize) => {
+    this.starValue = document.getElementById('radio1');
+
+    //---- font size
+    this.fontSize = this.screenSizeService.fontSize;
+    this.screenSizeService.change.subscribe((fontSize) => {
       this.fontSize = fontSize;
     });
     //favorites
-    this.favorites = this.favoritesService.IsFavorite(this.productId)
-    this.favoritesService.change.subscribe(favorites => {
-      this.favorites = favorites
-    })
+    this.favorites = this.favoritesService.IsFavorite(this.productId);
+    this.favoritesService.change.subscribe((favorites) => {
+      this.favorites = favorites;
+    });
     //qualification
-    this.qualification = this.qualificationService.IsQualified(this.productId)
-    this.qualificationService.change.subscribe(qualification => {
-      this.qualification = qualification
-    })
+    this.qualification = this.qualificationService.IsQualified(this.productId);
+    this.qualificationService.change.subscribe((qualification) => {
+      this.qualification = qualification;
+    });
     // login
-   this.login = this.loginService.loginHeader;
- 
-   
-
+    this.login = this.loginService.loginHeader;
   }
   openWindowChat() {
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,
       fullScreen: this.fullScreen,
-    }
-    this.windowService.open(
-      this.chatTemplate,
-      { title: 'Chat con vendedor', hasBackdrop: true, buttons: buttonsConfig },
-    );
+    };
+    this.windowService.open(this.chatTemplate, {
+      title: 'Chat con vendedor',
+      hasBackdrop: true,
+      buttons: buttonsConfig,
+    });
   }
 
   openWindowProfile() {
@@ -92,99 +95,114 @@ export class ViewProductComponent implements OnInit {
       minimize: this.minimize,
       maximize: this.maximize,
       fullScreen: this.fullScreen,
-    }
-    this.windowService.open(
-      this.profileTemplate,
-      { title: 'Datos del vendedor', hasBackdrop: true, buttons: buttonsConfig },
-    );
+    };
+    this.windowService.open(this.profileTemplate, {
+      title: 'Datos del vendedor',
+      hasBackdrop: true,
+      buttons: buttonsConfig,
+    });
   }
-  openWindowQualification(){
+  openWindowQualification() {
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,
       fullScreen: this.fullScreen,
-    }
-    this.windowService.open(
-      ModalQualificationComponent,
-      { title: 'Calificar vendedor', hasBackdrop: true, buttons: buttonsConfig },
-    );
+    };
+    this.windowService.open(ModalQualificationComponent, {
+      title: 'Calificar vendedor',
+      hasBackdrop: true,
+      buttons: buttonsConfig,
+    });
   }
-  openWindowLogin(){
+  openWindowLogin() {
     const buttonsConfig: NbWindowControlButtonsConfig = {
       minimize: this.minimize,
       maximize: this.maximize,
       fullScreen: this.fullScreen,
-    }
-   this.windowService.open(
-      ModalLoginFavoritesComponent,
-      { title: 'Iniciar sesión', hasBackdrop: true, buttons: buttonsConfig },
-    );
+    };
+    this.windowService.open(ModalLoginFavoritesComponent, {
+      title: 'Iniciar sesión',
+      hasBackdrop: true,
+      buttons: buttonsConfig,
+    });
   }
 
-
-  star(value){
+  star(value) {
     this.starValue = value;
     return this.starValue;
-
   }
 
-
-  counterUp(){
-    this.imagesCounter+=1;
+  counterUp() {
+    this.imagesCounter += 1;
   }
-  counterDown(){
-    this.imagesCounter-=1;
+  counterDown() {
+    this.imagesCounter -= 1;
   }
 
-  addFavorites(productId){
+  addFavorites(productId) {
     this.loading = true;
-    setTimeout(() =>  this.loading = false, 1000);
+    setTimeout(() => (this.loading = false), 1000);
     setTimeout(() => this.favoritesService.addFavorites(productId), 1000);
-    setTimeout(() =>  this.favorites = this.favoritesService.favorites, 1000);
-    setTimeout(() =>   this.toastrService.show('El producto se agregó a favoritos correctamente ',`Agregar a favoritos`, {
-      status: 'info',
-      icon: 'checkmark-outline',
-      preventDuplicates: true,
-    }), 1000);
-    
+    setTimeout(() => (this.favorites = this.favoritesService.favorites), 1000);
+    setTimeout(
+      () =>
+        this.toastrService.show(
+          'El producto se agregó a favoritos correctamente ',
+          `Agregar a favoritos`,
+          {
+            status: 'info',
+            icon: 'checkmark-outline',
+            preventDuplicates: true,
+          }
+        ),
+      1000
+    );
   }
 
-  deleteFavorites(productId){
+  deleteFavorites(productId) {
     this.loading = true;
-    setTimeout(() =>  this.loading = false, 1000);
+    setTimeout(() => (this.loading = false), 1000);
     setTimeout(() => this.favoritesService.deleteFavorites(productId), 1000);
-    setTimeout(() =>  this.favorites = this.favoritesService.favorites, 1000);
-    setTimeout(() =>   this.toastrService.show('El producto se eliminó de favoritos correctamente ',`Quitar de favoritos`, {
-      status: 'danger',
-      icon: 'close-outline',
-      preventDuplicates: true,
-    }), 1000);
+    setTimeout(() => (this.favorites = this.favoritesService.favorites), 1000);
+    setTimeout(
+      () =>
+        this.toastrService.show(
+          'El producto se eliminó de favoritos correctamente ',
+          `Quitar de favoritos`,
+          {
+            status: 'danger',
+            icon: 'close-outline',
+            preventDuplicates: true,
+          }
+        ),
+      1000
+    );
   }
   messages: any[] = [
     {
       type: 'text',
       text: 'Hola! realiza tus consultas sobre el producto!',
       customMessageData: {
-     
         text: 'Hola! consulta tus preguntas sobre el producto',
       },
       reply: false,
       date: new Date(),
       user: {
         name: 'Vendedor',
-       
       },
     },
   ];
 
   sendMessage(event) {
-    const files = !event.files ? [] : event.files.map((file) => {
-      return {
-        url: file.src,
-        type: file.type,
-        icon: 'file-text-outline',
-      };
-    });
+    const files = !event.files
+      ? []
+      : event.files.map((file) => {
+          return {
+            url: file.src,
+            type: file.type,
+            icon: 'file-text-outline',
+          };
+        });
 
     this.messages.push({
       text: event.message,
@@ -198,15 +216,16 @@ export class ViewProductComponent implements OnInit {
     });
   }
 
-goToListProduct() {
-  this.router.navigateByUrl(`marketplace/list-products`);
-}
+  goToListProduct() {
+    this.router.navigateByUrl(`marketplace/list-products`);
+  }
 
   listProducts = [
     {
       id: '1',
       title: 'Mario kart 8 deluxe',
-      description: 'Compite con tus amigos en carreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.',
+      description:
+        'Compite con tus amigos en carreras o batallas en la versióndefinitiva de Mario Kart 8.\n¡Calienta motores en la versión definitiva de Mario Kart™ 8 y juega donde y cuando quieras! Compite con tus amigos en carreras o en el modo batalla, que incluye circuitos nuevos y otros ya conocidos. Juega en el modo local y en 1080p en partidas de hasta 4 jugadores en el modo televisor. Todos los circuitos de la versión de Wii U, incluyendo el contenido descargable, están disponibles.',
       price: '40.000',
       categories: ['Videojuegos'],
       images: [
@@ -283,8 +302,7 @@ goToListProduct() {
       images: [
         {
           name: 'assets/images/poleraNirvana.jpg',
-          description:
-            'Polera nirvana color negra, con el logo color amarillo',
+          description: 'Polera nirvana color negra, con el logo color amarillo',
         },
       ],
       isActive: true,
@@ -295,13 +313,12 @@ goToListProduct() {
       description:
         'El televisor LG OLED es un placer para la vista. Los píxeles autoiluminados permiten una calidad de imagen realmente espectacular y toda una serie de posibilidades de diseño, mientras que las últimas tecnologías de vanguardia ayudan a ofrecer niveles de maravilla sin precedentes. Esto es todo lo que te encanta de un televisor: superior en todos los sentidos.\n"Descripción proporcionada por la pagina de LG "',
       amount: 5,
-      price: "400.000",
+      price: '400.000',
       categories: ['Electronica'],
       images: [
         {
           name: 'assets/images/televisorLg.jpg',
-          description:
-            'televisor LG mostrando una flor de cerca',
+          description: 'televisor LG mostrando una flor de cerca',
         },
       ],
       isActive: true,
@@ -317,8 +334,7 @@ goToListProduct() {
       images: [
         {
           name: 'assets/images/iphone.png',
-          description:
-            'Iphone azul, parte delantera y trasera ',
+          description: 'Iphone azul, parte delantera y trasera ',
         },
       ],
       isActive: true,

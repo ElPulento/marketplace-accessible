@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NbToastrService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
+import {
+  NbToastrService,
+  NbWindowControlButtonsConfig,
+  NbWindowService,
+} from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { ProfileService } from '../../../services/profile.service';
 import { ScreenSizeService } from '../../../services/screen-size.service';
@@ -9,7 +13,7 @@ import { HeaderService } from '../../../services/header.service';
 @Component({
   selector: 'view-profile',
   templateUrl: './view-profile.component.html',
-  styleUrls: ['./view-profile.component.scss']
+  styleUrls: ['./view-profile.component.scss'],
 })
 export class ViewProfileComponent implements OnInit {
   private destroy$ = new Subject<any>();
@@ -38,9 +42,9 @@ export class ViewProfileComponent implements OnInit {
   fullScreen: boolean;
   fontSize: number;
   minDate: Date;
-  profile : string;
-  logged : boolean;
-  name: string
+  profile: string;
+  logged: boolean;
+  name: string;
   surname: string;
   description: string;
   fecha: string;
@@ -51,17 +55,15 @@ export class ViewProfileComponent implements OnInit {
   numero: string;
   loading = false;
 
-
   constructor(
     private fb: FormBuilder,
     private windowService: NbWindowService,
     private router: Router,
-    private screenSizeService : ScreenSizeService,
-    private profileService : ProfileService,
+    private screenSizeService: ScreenSizeService,
+    private profileService: ProfileService,
     private toastrService: NbToastrService,
-    private headerService : HeaderService,
-  
-    ) {}
+    private headerService: HeaderService
+  ) {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -71,71 +73,69 @@ export class ViewProfileComponent implements OnInit {
     this.initializeVariables();
     this.initializeForms();
   }
-  categories = [
-      'Videojuegos',
-     'Vestuario',
-     'Electronica',
-     'Vehiculos'
-    
-  ]
-
+  categories = ['Videojuegos', 'Vestuario', 'Electronica', 'Vehiculos'];
 
   private initializeVariables() {
     this.loading = false;
     this.nameMaxLength = 100;
-    this.nameIsRequired = true
-    this.surnameMaxLength = 100
-    this.surnameIsRequired = true
-    this.descriptionMaxLength = 500
-    this.descriptionIsRequired = false
-    this.addressMaxLength = 100,
-    this.addressIsRequired = true
-    this.regionIsRequired = true,
-    this.regionMaxLength = 100,
-    this.contactNumberIsRequired = true
-    this.contactNumberMaxLength = 9
-    this.dateIsRequired = true
-    this.imageMaxLength = 1
-    this.imageIsRequired = false
-    this.createLoadingSpinner = false
+    this.nameIsRequired = true;
+    this.surnameMaxLength = 100;
+    this.surnameIsRequired = true;
+    this.descriptionMaxLength = 500;
+    this.descriptionIsRequired = false;
+    (this.addressMaxLength = 100), (this.addressIsRequired = true);
+    (this.regionIsRequired = true),
+      (this.regionMaxLength = 100),
+      (this.contactNumberIsRequired = true);
+    this.contactNumberMaxLength = 9;
+    this.dateIsRequired = true;
+    this.imageMaxLength = 1;
+    this.imageIsRequired = false;
+    this.createLoadingSpinner = false;
     this.minDate = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
     //---- font size
-    this.fontSize = this.screenSizeService.fontSize
+    this.fontSize = this.screenSizeService.fontSize;
     this.screenSizeService.change.subscribe((fontSize) => {
-     this.fontSize = fontSize;
-   });
-   //profile
-   if ( this.profileService.IsLogged(this.profileService.recentLogged)){
-    for ( let i =0 ; i<this.profileService.listLogged.length ; i++){
-      if ( this.profileService.dataProfile[i].email === this.profileService.recentLogged ){
-        this.profile = this.profileService.dataProfile[i];
-        this.name = this.profileService.dataProfile[i].name
-        this.surname = this.profileService.dataProfile[i].surname ;
-        this.description = this.profileService.dataProfile[i].description ;
-        this.fecha = this.profileService.dataProfile[i].date ;
-        this.direccion = this.profileService.dataProfile[i].address;
-        this.ciudad = this.profileService.dataProfile[i].region ;
-        this.email = this.profileService.dataProfile[i].email ;
-        this.contraseña = this.profileService.dataProfile[i].password ;
-        this.numero = this.profileService.dataProfile[i].contactNumber;
-        this.logged = true;
+      this.fontSize = fontSize;
+    });
+    //profile
+    if (this.profileService.IsLogged(this.profileService.recentLogged)) {
+      for (let i = 0; i < this.profileService.listLogged.length; i++) {
+        if (
+          this.profileService.dataProfile[i].email ===
+          this.profileService.recentLogged
+        ) {
+          this.profile = this.profileService.dataProfile[i];
+          this.name = this.profileService.dataProfile[i].name;
+          this.surname = this.profileService.dataProfile[i].surname;
+          this.description = this.profileService.dataProfile[i].description;
+          this.fecha = this.profileService.dataProfile[i].date;
+          this.direccion = this.profileService.dataProfile[i].address;
+          this.ciudad = this.profileService.dataProfile[i].region;
+          this.email = this.profileService.dataProfile[i].email;
+          this.contraseña = this.profileService.dataProfile[i].password;
+          this.numero = this.profileService.dataProfile[i].contactNumber;
+          this.logged = true;
+        }
       }
+    } else {
+      this.logged = false;
     }
-}else {
-  this.logged = false;
-}
 
-if ( this.profileService.IsLogged(this.profileService.recentLogged)){
-  for ( let i =0 ; i<this.profileService.listLogged.length ; i++){
-    if ( this.profileService.dataProfile[i].email === this.profileService.recentLogged ){
-      this.name = this.profileService.dataProfile[i].name;
-      this.surname = this.profileService.dataProfile[i].surname;
+    if (this.profileService.IsLogged(this.profileService.recentLogged)) {
+      for (let i = 0; i < this.profileService.listLogged.length; i++) {
+        if (
+          this.profileService.dataProfile[i].email ===
+          this.profileService.recentLogged
+        ) {
+          this.name = this.profileService.dataProfile[i].name;
+          this.surname = this.profileService.dataProfile[i].surname;
+        }
+      }
+    } else {
+      this.name = 'Nombre';
+      this.surname = 'Usuario';
     }
-  }
-}else {
-this.name = "Nombre";
-this.surname = "Usuario";
-}
   }
 
   private initializeForms() {
@@ -164,18 +164,18 @@ this.surname = "Usuario";
         Validators.maxLength(this.contactNumberMaxLength),
       ]),
       date: this.fb.control(this.fecha, Validators.required),
-      email: this.fb.control(this.email, Validators.required ,),
+      email: this.fb.control(this.email, Validators.required),
       password: this.fb.control(this.contraseña, [
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(8),
       ]),
       images: this.fb.array([]),
       isActive: this.fb.control(false, Validators.required),
     });
   }
   get imagesArray(): FormArray {
-		return this.profileForm.get('images') as FormArray;
-	}
+    return this.profileForm.get('images') as FormArray;
+  }
   showPassword = false;
 
   getInputType() {
@@ -188,53 +188,55 @@ this.surname = "Usuario";
     this.showPassword = !this.showPassword;
   }
   createImageItem(data: any): FormGroup {
-		return this.fb.group(data);
-	}
+    return this.fb.group(data);
+  }
   detectFiles(event: any) {
-		let images: FileList = event.target.files;
-		this.lastImagePicked = images;
+    let images: FileList = event.target.files;
+    this.lastImagePicked = images;
 
-		if (images) {
-			if (images.length > this.imageMaxLength) {
-     
-			//	this.toastr.showErrorToast();
-			} else {
-				for (let index = 0; index < images.length; index++) {
-					const file = images[index];
-					let reader = new FileReader();
-					if (file.size < 5 * 1024 * 1024) {
-						reader.onload = (e: any) => {
-							this.imagesArray.push(
-								this.createImageItem({
+    if (images) {
+      if (images.length > this.imageMaxLength) {
+        //	this.toastr.showErrorToast();
+      } else {
+        for (let index = 0; index < images.length; index++) {
+          const file = images[index];
+          let reader = new FileReader();
+          if (file.size < 5 * 1024 * 1024) {
+            reader.onload = (e: any) => {
+              this.imagesArray.push(
+                this.createImageItem({
                   file,
-									name: file.name,
+                  name: file.name,
                   description: this.fb.control('', Validators.required),
-								}),
-							);
-						};
-						reader.readAsDataURL(file);
-					} else {
-					//	this.toastr.showErrorToast();
-          
-					}
-				}
-			}
-		}
-	}
-	removeFile(i: any) {
-		this.imagesArray.removeAt(i);
-	}
+                })
+              );
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      }
+    }
+  }
+  removeFile(i: any) {
+    this.imagesArray.removeAt(i);
+  }
   get form() {
     return this.profileForm.controls;
   }
-  updateInformation(){
+  updateInformation() {
     this.loading = true;
-    setTimeout(() => this.profileService.updateProfile(this.profileForm.get('email').value, this.profileForm.value), 2000);
+    setTimeout(
+      () =>
+        this.profileService.updateProfile(
+          this.profileForm.get('email').value,
+          this.profileForm.value
+        ),
+      2000
+    );
     setTimeout(() => (this.loading = false), 2000);
-   // setTimeout(() => this.router.navigateByUrl(``), 2000);
-   setTimeout(() => (this.headerService.signOff()), 2000);
-   setTimeout(() => (this.headerService.login()), 2000);
-   setTimeout(() => (this.loading = false), 2000);
+    setTimeout(() => this.headerService.signOff(), 2000);
+    setTimeout(() => this.headerService.login(), 2000);
+    setTimeout(() => (this.loading = false), 2000);
     setTimeout(
       () =>
         this.toastrService.show(
@@ -249,7 +251,4 @@ this.surname = "Usuario";
       2000
     );
   }
-
-
-
 }

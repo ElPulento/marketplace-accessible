@@ -19,17 +19,13 @@ import {
   NbToggleModule,
   NbUserModule,
 } from '@nebular/theme';
-
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ColorsPageComponent } from './colors-page/colors-page.component';
-import { HeaderNebularComponent } from './header-nebular/header-nebular.component';
-import { ScreenSizeComponent } from './screen-size/screen-size.component';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [SidebarComponent, ColorsPageComponent,FooterComponent, ScreenSizeComponent],
+  declarations: [ColorsPageComponent,FooterComponent],
   imports: [
     CommonModule,
     NbLayoutModule,
@@ -52,6 +48,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   
   ],
-  exports: [ColorsPageComponent,SidebarComponent, FooterComponent,ScreenSizeComponent]
+  exports: [ColorsPageComponent,FooterComponent]
 })
 export class ThemeModule {}

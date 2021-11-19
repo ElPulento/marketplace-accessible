@@ -29,7 +29,6 @@ import { FooterComponent } from './@theme/footer/footer.component';
 import { MarketplaceModule } from './pages/marketplace/marketplace.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './pages/shared/shared.module';
-import { HeaderNebularComponent } from './@theme/header-nebular/header-nebular.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
@@ -37,7 +36,7 @@ import { eo, es } from 'date-fns/locale';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HeaderNebularComponent, HeaderLoginComponent],
+  declarations: [AppComponent, HeaderComponent, HeaderLoginComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -81,7 +80,7 @@ import { FormsModule } from '@angular/forms';
     NbTimepickerModule.forRoot(),
     FormsModule,
   ],
-  exports: [HeaderComponent, FooterComponent, HeaderNebularComponent, HeaderLoginComponent],
+  exports: [HeaderComponent, FooterComponent,HeaderLoginComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

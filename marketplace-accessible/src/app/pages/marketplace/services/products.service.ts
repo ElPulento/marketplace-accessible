@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   category = '';
@@ -10,9 +10,9 @@ export class ProductsService {
   @Output() change2: EventEmitter<string[]> = new EventEmitter();
   constructor() {}
 
-  updateProduct( data : string , id ){
-    for (let i = 0 ; i < this.listProduct.length ; i++ ){
-      if (this.listProduct[i].title === id){
+  updateProduct(data: string, id) {
+    for (let i = 0; i < this.listProduct.length; i++) {
+      if (this.listProduct[i].title === id) {
         this.listProduct[i] = [];
         this.listProduct[i] = data;
         this.change2.emit(this.listProduct);
@@ -21,16 +21,13 @@ export class ProductsService {
     }
   }
 
-  addProduct( data : string) {
-    this.listProduct.push(data)
+  addProduct(data: string) {
+    this.listProduct.push(data);
     this.change2.emit(this.listProduct);
   }
 
   deleteProduct(i) {
- 
-    this.listProduct.splice( i, 1 );
-
-   
+    this.listProduct.splice(i, 1);
   }
 
   videojuegos() {
@@ -50,9 +47,8 @@ export class ProductsService {
     this.change.emit(this.category);
   }
 
-  allCategories(){
+  allCategories() {
     this.category = 'all';
     this.change.emit(this.category);
   }
-  
 }

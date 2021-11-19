@@ -14,25 +14,6 @@ export class MainPageComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {}
-  categories = [
-		{
-			name: 'Electrónica',
-		
-		},
-    {
-			name: 'Vehiculos',
-			
-		},
-    {
-			name: 'Vestuario',
-			
-		},
-    {
-			name: 'Videojuegos',
-		
-		},
-
-  ]
   goToListProduct(category) {
     this.productsService.category = category;
     this.router.navigateByUrl(`marketplace/list-products`);

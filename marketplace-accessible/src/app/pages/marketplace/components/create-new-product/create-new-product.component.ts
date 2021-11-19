@@ -167,9 +167,7 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
 							);
 						};
 						reader.readAsDataURL(file);
-					} else {
-					//	this.toastr.showErrorToast();
-					}
+					} 
 				}
 			}
 		}
@@ -196,18 +194,4 @@ export class CreateNewProductComponent implements OnInit, OnDestroy {
     
   }
 
-  submit() {
-		let newProduct = this.productForm.value;
-		const formData = new FormData();
-
-		formData.set('title', newProduct.title);
-		formData.set('description', newProduct.description);
-		formData.set('price', newProduct.price);
-		formData.set('amount', newProduct.amount);
-		formData.set('type', newProduct.type);
-		formData.set('images', newProduct.images);
-
-		this.createLoadingSpinner = true;
-	
-	}
 }
