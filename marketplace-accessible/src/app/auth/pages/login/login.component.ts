@@ -101,6 +101,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     
     }else{
     if (!flag){
+  /*
    setTimeout(() => this.loading = false, 2000);
    setTimeout(() => this.headerService.login(), 2000);
    setTimeout(() =>  this.router.navigateByUrl(``), 2000);
@@ -109,14 +110,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       icon: 'checkmark-outline',
       preventDuplicates: true,
     }), 2000);
-  /*
+ */
     setTimeout(() => this.loading = false, 2000);
     setTimeout(() =>   this.toastrService.show('El email no se encuentra registrado',`Iniciar sesión`, {
       status: 'warning',
       icon: 'alert-triangle-outline',
       preventDuplicates: true,
     }), 2000);
-  */
+  
 
   }else if(this.profileService.passCorrect(this.emailInput, this.pass)) {
     setTimeout(() => this.loading = false, 2000);
