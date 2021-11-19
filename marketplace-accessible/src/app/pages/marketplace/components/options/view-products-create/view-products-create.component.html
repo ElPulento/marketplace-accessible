@@ -108,151 +108,153 @@
           </p>
 
           <br />
-          <nb-form-field>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="form.price.valid"
-              nbSuffix
-              icon="checkmark-outline"
-              pack="eva"
-            ></nb-icon>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="!form.price.pristine && form.price.errors?.required"
-              nbSuffix
-              icon="close-outline"
-              pack="eva"
-            ></nb-icon>
-            <label class="label col-form-label mr-4">Precio</label>
-            <input
-              [style.fontSize.px]="fontSize"
-              placeholder="Ejemplo : 19000"
-              nbInput
-              fullWidth
-              min="1"
-              type="number"
-              formControlName="price"
-              [status]="
-                !form.price.pristine && form.price.errors?.required
-                  ? 'danger'
-                  : form.price.errors
-                  ? 'basic'
-                  : 'success'
-              "
-            />
-          </nb-form-field>
-          <br />
-          <p
-            [style.fontSize.px]="fontSize"
-            class="red"
-            *ngIf="!form.price.pristine && form.price.errors?.required"
-          >
-            El precio del producto es requerido
-          </p>
+          
 
-          <nb-form-field>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="form.amount.valid"
-              nbSuffix
-              icon="checkmark-outline"
-              pack="eva"
-            ></nb-icon>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="!form.amount.pristine && form.amount.errors?.required"
-              nbSuffix
-              icon="close-outline"
-              pack="eva"
-            ></nb-icon>
-            <label class="label col-form-label mr-4">Cantidad</label>
-            <input
-              [style.fontSize.px]="fontSize"
-              placeholder="Seleccione la cantidad del producto a vender"
-              nbInput
-              fullWidth
-              min="1"
-              type="number"
-              formControlName="amount"
-              [status]="
-                !form.amount.pristine && form.amount.errors?.required
-                  ? 'danger'
-                  : form.amount.errors
-                  ? 'basic'
-                  : 'success'
-              "
-            />
-          </nb-form-field>
-          <br />
-          <p
-            [style.fontSize.px]="fontSize"
-            class="red"
-            *ngIf="!form.amount.pristine && form.amount.errors?.required"
-          >
-            El monto del producto es requerido
-          </p>
-
-          <br />
-          <nb-form-field>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="form.categories.valid"
-              nbSuffix
-              icon="checkmark-outline"
-              pack="eva"
-            ></nb-icon>
-            <nb-icon
-              style="margin-top: 2rem"
-              *ngIf="
-                !form.categories.pristine && form.categories.errors?.required
-              "
-              nbSuffix
-              icon="close-outline"
-              pack="eva"
-            ></nb-icon>
-            <label class="label col-form-label mr-4"
-              >Categoría(s) del producto</label
-            >
-            <nb-select
-              placeholder="Seleccione las categorias"
-              formControlName="categories"
-              fullWidth
-              multiple
-              [status]="
-                !form.categories.pristine && form.categories.errors?.required
-                  ? 'danger'
-                  : form.categories.errors
-                  ? 'basic'
-                  : 'success'
-              "
-            >
-              <nb-option
-                [style.fontSize.px]="fontSize"
-                *ngFor="let category of categories; let i = index"
-                [value]="categories[i]"
-              >
-                {{ category }}
-              </nb-option>
-            </nb-select>
-            <br />
-            <p
-              [style.fontSize.px]="fontSize"
-              class="red"
-              *ngIf="
-                !form.categories.pristine && form.categories.errors?.required
-              "
-            >
-              <br />
-              La categoria del producto es requerida
-            </p>
-            <br />
-          </nb-form-field>
-
-          <br />
+          
         </div>
-      </div>
+      
       <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"></div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.price.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="!form.price.pristine && form.price.errors?.required"
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4">Precio</label>
+          <input
+            [style.fontSize.px]="fontSize"
+            placeholder="Ejemplo : 19000"
+            nbInput
+            fullWidth
+            min="1"
+            type="number"
+            formControlName="price"
+            [status]="
+              !form.price.pristine && form.price.errors?.required
+                ? 'danger'
+                : form.price.errors
+                ? 'basic'
+                : 'success'
+            "
+          />
+        </nb-form-field>
+        <br />
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="!form.price.pristine && form.price.errors?.required"
+        >
+          El precio del producto es requerido
+        </p>
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.amount.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="!form.amount.pristine && form.amount.errors?.required"
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4">Cantidad</label>
+          <input
+            [style.fontSize.px]="fontSize"
+            placeholder="Seleccione la cantidad del producto a vender"
+            nbInput
+            fullWidth
+            min="1"
+            type="number"
+            formControlName="amount"
+            [status]="
+              !form.amount.pristine && form.amount.errors?.required
+                ? 'danger'
+                : form.amount.errors
+                ? 'basic'
+                : 'success'
+            "
+          />
+        </nb-form-field>
+        <br />
+        <p
+          [style.fontSize.px]="fontSize"
+          class="red"
+          *ngIf="!form.amount.pristine && form.amount.errors?.required"
+        >
+          El monto del producto es requerido
+        </p>
+
+        <br />
+        <nb-form-field>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="form.categories.valid"
+            nbSuffix
+            icon="checkmark-outline"
+            pack="eva"
+          ></nb-icon>
+          <nb-icon
+            style="margin-top: 2rem"
+            *ngIf="
+              !form.categories.pristine && form.categories.errors?.required
+            "
+            nbSuffix
+            icon="close-outline"
+            pack="eva"
+          ></nb-icon>
+          <label class="label col-form-label mr-4"
+            >Categoría(s) del producto</label
+          >
+          <nb-select
+            placeholder="Seleccione las categorias"
+            formControlName="categories"
+            fullWidth
+            multiple
+            [status]="
+              !form.categories.pristine && form.categories.errors?.required
+                ? 'danger'
+                : form.categories.errors
+                ? 'basic'
+                : 'success'
+            "
+          >
+            <nb-option
+              [style.fontSize.px]="fontSize"
+              *ngFor="let category of categories; let i = index"
+              [value]="categories[i]"
+            >
+              {{ category }}
+            </nb-option>
+          </nb-select>
+          <br />
+          <p
+            [style.fontSize.px]="fontSize"
+            class="red"
+            *ngIf="
+              !form.categories.pristine && form.categories.errors?.required
+            "
+          >
+            <br />
+            La categoria del producto es requerida
+          </p>
+ 
+        </nb-form-field>
+      </div>
+    </div>
     </form>
 
     <div class="ml-auto pt-3 m-3 mr-5">
