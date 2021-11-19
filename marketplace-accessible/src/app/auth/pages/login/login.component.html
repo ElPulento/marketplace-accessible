@@ -86,7 +86,7 @@
           <div class="ml-auto">
             <button
               (click)="login()"
-              [disabled]="!form.email.valid || !form.password.valid"
+              [disabled]="!form.email.valid || !form.password.valid || loading"
               nbButton
               status="info"
               fullWidth

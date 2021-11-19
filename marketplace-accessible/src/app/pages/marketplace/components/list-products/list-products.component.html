@@ -47,7 +47,7 @@
           <br />
           <div class="row">
             <div class="col-12 col-md-12 col-lg-12" style="text-align: center">
-              <button [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" (click)="removeFilters()">
+              <button [nbSpinner]="loading" [disabled]="loading" nbSpinnerStatus="primary" nbButton status="danger" (click)="removeFilters()">
                 <nb-icon icon="close-outline"></nb-icon> Remover filtros
               </button>
             </div>

@@ -27,7 +27,7 @@
                 <h1 style="cursor: default;">${{ product.price }}</h1>
               </div>
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                <button (click)="open(dialog)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: right; margin-top: 4rem;">
+                <button (click)="open(dialog)" [disabled]="loading" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: right; margin-top: 4rem;">
                   <nb-icon icon="heart"></nb-icon>
                   Quitar de favoritos
                 </button>
@@ -41,7 +41,7 @@
                 <nb-card-footer>
                   <div class="row">
                   <button nbButton status="info" (click)="ref.close()">  <nb-icon icon="arrow-back-outline"></nb-icon> Volver</button>
-                  <button class="ml-auto" nbButton status="danger" [nbSpinner]="loading" nbSpinnerStatus="primary" (click)="ref.close()" (click)="deleteFavorites(favorites)">  <nb-icon icon="close-outline"></nb-icon>Eliminar</button>
+                  <button class="ml-auto" nbButton status="danger" [disabled]="loading" [nbSpinner]="loading" nbSpinnerStatus="primary" (click)="ref.close()" (click)="deleteFavorites(favorites)">  <nb-icon icon="close-outline"></nb-icon>Eliminar</button>
                 </div>
                 </nb-card-footer>
               </nb-card>
@@ -56,7 +56,7 @@
       <div *ngIf="!getProductSpinnerLoading" style="text-align: center">
         <h1 style="cursor: default;">No tiene productos agregados a favoritos :(</h1>
         <br>
-        <button (click)="goToListProduct()" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="primary" style="float: center; margin-top: 4rem;">
+        <button (click)="goToListProduct()" [nbSpinner]="loading" [disabled]="loading" nbSpinnerStatus="primary" nbButton status="primary" style="float: center; margin-top: 4rem;">
           
           Ir al listado de productos
           <nb-icon icon="arrow-forward-outline"></nb-icon>
