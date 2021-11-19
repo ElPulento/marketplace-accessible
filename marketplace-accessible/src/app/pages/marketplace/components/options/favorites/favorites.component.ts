@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { FavoritesService } from '../../../services/favorites.service';
 import { ProductsService } from '../../../services/products.service';
 
@@ -21,6 +21,7 @@ export class FavoritesComponent implements OnInit {
     private toastrService: NbToastrService,
     private router: Router,
     private productsService : ProductsService,
+    private dialogService: NbDialogService,
   ) { }
 
   ngOnInit() {
@@ -34,6 +35,9 @@ export class FavoritesComponent implements OnInit {
       this.favorites = favorites
     })
   }
+  open(dialog: TemplateRef<any>) {
+    this.dialogService.open(dialog, { context: '¿Quieres eliminar este producto de su listado de favoritos?' });
+  }
 
   
   deleteFavorites(productId){
@@ -46,6 +50,7 @@ export class FavoritesComponent implements OnInit {
       icon: 'close-outline',
       preventDuplicates: true,
     }), 1000);
+    setTimeout(() =>  this.open, 1000);
   }
   goToListProduct() {
     this.loading = true;
@@ -53,6 +58,7 @@ export class FavoritesComponent implements OnInit {
     setTimeout(() =>  this.router.navigateByUrl(`marketplace/list-products`), 1000);
     
   }
+  
 
   
   listProducts = [

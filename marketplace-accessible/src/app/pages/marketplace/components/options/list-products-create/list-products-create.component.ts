@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { FavoritesService } from '../../../services/favorites.service';
 import { ProductsService } from '../../../services/products.service';
@@ -24,6 +24,7 @@ export class ListProductsCreateComponent implements OnInit {
     private toastrService: NbToastrService,
     private router: Router,
     private productsService : ProductsService,
+    private dialogService: NbDialogService,
   ) { }
 
   ngOnInit() {
@@ -39,6 +40,9 @@ export class ListProductsCreateComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  openModal(dialogProducts: TemplateRef<any>) {
+    this.dialogService.open(dialogProducts, { context: '¿Quieres eliminar este producto de forma permanente?' });
   }
 
   

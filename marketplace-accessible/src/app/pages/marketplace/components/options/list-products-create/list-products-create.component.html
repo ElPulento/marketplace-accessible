@@ -29,7 +29,7 @@
                   ver la información
                 </button>
                 <br>
-                <button (click)="deleteProduct(i)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 2rem; margin-right: 1rem;">
+                <button (click)="openModal(dialogProducts)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: center; margin-top: 2rem; margin-right: 1rem;">
                   <nb-icon icon="close-outline"></nb-icon>
                   Eliminar producto
                 </button>
@@ -37,6 +37,20 @@
                
               </div>
             </div>
+
+            <ng-template #dialogProducts let-data let-ref="dialogRef">
+              <nb-card>
+                <nb-card-header>Eliminar producto</nb-card-header>
+                <nb-card-body>{{ data }}</nb-card-body>
+                <nb-card-footer>
+                  <div class="row">
+                  <button nbButton status="info" (click)="ref.close()">  <nb-icon icon="arrow-back-outline"></nb-icon> Volver</button>
+                  <button class="ml-auto" nbButton status="danger" [nbSpinner]="loading" nbSpinnerStatus="primary" (click)="ref.close()" (click)="deleteProduct(i)">  <nb-icon icon="close-outline"></nb-icon>Eliminar</button>
+                </div>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+
           </nb-card-body>
         </nb-card>
       </ng-container>

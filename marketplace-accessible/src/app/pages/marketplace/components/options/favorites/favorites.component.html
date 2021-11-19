@@ -27,12 +27,26 @@
                 <h1 style="cursor: default;">${{ product.price }}</h1>
               </div>
               <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                <button (click)="deleteFavorites(favorites)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: right; margin-top: 4rem;">
+                <button (click)="open(dialog)" [nbSpinner]="loading" nbSpinnerStatus="primary" nbButton status="danger" style="float: right; margin-top: 4rem;">
                   <nb-icon icon="heart"></nb-icon>
                   Quitar de favoritos
                 </button>
               </div>
             </div>
+
+            <ng-template #dialog let-data let-ref="dialogRef">
+              <nb-card>
+                <nb-card-header>Quitar de favoritos</nb-card-header>
+                <nb-card-body>{{ data }}</nb-card-body>
+                <nb-card-footer>
+                  <div class="row">
+                  <button nbButton status="info" (click)="ref.close()">  <nb-icon icon="arrow-back-outline"></nb-icon> Volver</button>
+                  <button class="ml-auto" nbButton status="danger" [nbSpinner]="loading" nbSpinnerStatus="primary" (click)="ref.close()" (click)="deleteFavorites(favorites)">  <nb-icon icon="close-outline"></nb-icon>Eliminar</button>
+                </div>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+
           </nb-card-body>
         </nb-card>
       </ng-container>
@@ -51,3 +65,4 @@
     </ng-template>
   </nb-card-body>
 </nb-card>
+
