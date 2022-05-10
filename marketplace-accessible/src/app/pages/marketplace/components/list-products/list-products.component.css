@@ -1,0 +1,13 @@
+img {
+    display: block;
+    height:390px;
+    width: 400px;
+  }
+
+.jumbotron{
+   background-color: #FFFFFF;
+}
+
+h1{
+    padding: 0.5cm;
+}

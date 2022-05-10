@@ -21,7 +21,9 @@
     "@angular/router": "~12.2.0",
     "@nebular/eva-icons": "8.0.0",
     "@nebular/theme": "^8.0.0",
+    "bootstrap": "^5.1.3",
     "eva-icons": "^1.1.2",
+    "node-modules": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
