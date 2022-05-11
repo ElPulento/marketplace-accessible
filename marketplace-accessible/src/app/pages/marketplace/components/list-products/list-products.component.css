@@ -4,6 +4,12 @@
     width: 400px;  
   }
 
+  .heading {
+    color: #ffffff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+
   .image {
     opacity: 1;
     display: block;
@@ -51,7 +57,7 @@
   }
 
 .jumbotron{
-   background-color: #FFFFFF;
+  background: url("https://cdn.discordapp.com/attachments/454085077568192515/973749304101597194/foto-mtb-fondo.jpg") center center / cover no-repeat;
 }
 
 h1{
