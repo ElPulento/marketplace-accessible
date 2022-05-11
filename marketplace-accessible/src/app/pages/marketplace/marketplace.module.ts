@@ -7,6 +7,7 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { BiciVolcanoComponent } from './components/bici-volcano/bici-volcano.component';
+import { BiciClassicComponent } from './components/bici-classic/bici-classic.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BiciVolcanoComponent } from './components/bici-volcano/bici-volcano.com
     ListProductsComponent,
     ViewProductComponent,
     MainPageComponent,
-    BiciVolcanoComponent
+    BiciVolcanoComponent,
+    BiciClassicComponent
   ],
   imports: [
     CommonModule,

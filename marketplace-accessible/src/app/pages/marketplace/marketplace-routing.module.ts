@@ -6,12 +6,14 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { BiciVolcanoComponent } from './components/bici-volcano/bici-volcano.component';
+import { BiciClassicComponent } from './components/bici-classic/bici-classic.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
   { path: 'view-product', component: ViewProductComponent },
   { path: 'list-products', component: ListProductsComponent },
   { path: 'volcano', component: BiciVolcanoComponent },
+  { path: 'classic', component: BiciClassicComponent },
   { path: '**', component: MainPageComponent },
 ];
 
