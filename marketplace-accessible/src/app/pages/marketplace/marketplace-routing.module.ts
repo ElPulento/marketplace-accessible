@@ -8,6 +8,7 @@ import { ViewProductComponent } from './components/view-product/view-product.com
 import { BiciVolcanoComponent } from './components/bici-volcano/bici-volcano.component';
 import { BiciClassicComponent } from './components/bici-classic/bici-classic.component';
 import { BiciOceanComponent } from './components/bici-ocean/bici-ocean.component';
+import { BiciSpiderComponent } from './components/bici-spider/bici-spider.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'volcano', component: BiciVolcanoComponent },
   { path: 'classic', component: BiciClassicComponent },
   { path: 'ocean', component: BiciOceanComponent },
+  { path: 'spider', component: BiciSpiderComponent },
   { path: '**', component: MainPageComponent },
 ];
 

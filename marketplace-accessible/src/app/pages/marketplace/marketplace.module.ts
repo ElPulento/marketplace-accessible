@@ -9,6 +9,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { BiciVolcanoComponent } from './components/bici-volcano/bici-volcano.component';
 import { BiciClassicComponent } from './components/bici-classic/bici-classic.component';
 import { BiciOceanComponent } from './components/bici-ocean/bici-ocean.component';
+import { BiciSpiderComponent } from './components/bici-spider/bici-spider.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { BiciOceanComponent } from './components/bici-ocean/bici-ocean.component
     MainPageComponent,
     BiciVolcanoComponent,
     BiciClassicComponent,
-    BiciOceanComponent
+    BiciOceanComponent,
+    BiciSpiderComponent
   ],
   imports: [
     CommonModule,
