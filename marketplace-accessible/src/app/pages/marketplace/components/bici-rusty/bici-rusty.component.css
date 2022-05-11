@@ -1,0 +1,45 @@
+.img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;  
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.heading {
+    color: #ffffff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.price {
+    font-size: 18px;
+    padding: 0.5cm;
+    text-align: center;
+}
+
+.desc {
+    font-size: 20px;
+    padding: 1cm;
+    line-height: 1.6;
+}
+
+.jumbotron{
+  background: url("https://cdn.discordapp.com/attachments/454085077568192515/973749304101597194/foto-mtb-fondo.jpg") center center / cover no-repeat;
+}
+
+h1 {
+    padding: 0.5cm;
+}
+
+.back-btn{
+    border-radius: 25px;
+    background-color: #047baa;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 16px 32px;
+}

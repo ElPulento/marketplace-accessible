@@ -11,6 +11,7 @@ import { BiciClassicComponent } from './components/bici-classic/bici-classic.com
 import { BiciOceanComponent } from './components/bici-ocean/bici-ocean.component';
 import { BiciSpiderComponent } from './components/bici-spider/bici-spider.component';
 import { BiciSkyComponent } from './components/bici-sky/bici-sky.component';
+import { BiciRustyComponent } from './components/bici-rusty/bici-rusty.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BiciSkyComponent } from './components/bici-sky/bici-sky.component';
     BiciClassicComponent,
     BiciOceanComponent,
     BiciSpiderComponent,
-    BiciSkyComponent
+    BiciSkyComponent,
+    BiciRustyComponent
   ],
   imports: [
     CommonModule,

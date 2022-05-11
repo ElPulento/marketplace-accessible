@@ -10,6 +10,7 @@ import { BiciClassicComponent } from './components/bici-classic/bici-classic.com
 import { BiciOceanComponent } from './components/bici-ocean/bici-ocean.component';
 import { BiciSpiderComponent } from './components/bici-spider/bici-spider.component';
 import { BiciSkyComponent } from './components/bici-sky/bici-sky.component';
+import { BiciRustyComponent } from './components/bici-rusty/bici-rusty.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'ocean', component: BiciOceanComponent },
   { path: 'spider', component: BiciSpiderComponent },
   { path: 'sky', component: BiciSkyComponent },
+  { path: 'rusty', component: BiciRustyComponent },
   { path: '**', component: MainPageComponent },
 ];
 
