@@ -8,6 +8,13 @@
     color: #ffffff;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
+    font-size: 50px;
+  }
+
+  .motto {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-style: italic;
   }
 
   .image {
@@ -50,7 +57,6 @@
   }
 
   .price {
-    
     font-size: 18px;
     padding: 0.5cm;
     text-align: center;
