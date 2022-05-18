@@ -20,7 +20,7 @@ function startExperiment() {
           return
       }
       var xprediction = data.x; //these x coordinates are relative to the viewport
-      console.log(xprediction);
+      // console.log(xprediction);
       return xprediction;
       // var yprediction = data.y; //these y coordinates are relative to the viewport
       // console.log(elapsedTime); //elapsed time is based on time since begin was called
@@ -36,6 +36,7 @@ function startExperiment() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     canvas.style.position = 'fixed';
+    
   };
   setup();
 
