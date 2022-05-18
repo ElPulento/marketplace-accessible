@@ -24,8 +24,39 @@
     
 </head>
   <body class="mat-typography">
+
+    <div id="mensaje"></div>
+    <div id="plotting_canvas"></div>
     <app-root></app-root>
+
+    <!-- WebGazer Matias -->
+
+    <script src="assets/lib/jquery-3.5.0.min.js"></script>
+    <script src="assets/lib/webgazer.js"></script>
+    <script src="assets/lib/plugins/eye-tracking.js"></script>
+    <script src="assets/main_task.js"></script>
     
+    
+    <script>
+      ensureWebcam(() => startExperiment());
+      
+      function ensureWebcam(callback) {
+          $('div').html('<p class="center", style="font-family:Arial, Helvetica, sans-serif">Checking webcam ...</p>');
+          window.navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+              stream.getTracks().forEach(track => track.stop());
+              callback();
+          })
+          .catch(function() {
+              alert('Cannot open webcam.\nIs it blocked? This app requires webcam.');
+              location.reload();
+          });
+      }
+  
+    </script>
+
+    <!-- Fin WebGazer Matias -->
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
