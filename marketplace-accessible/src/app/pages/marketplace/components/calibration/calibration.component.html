@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+This is an example HTML that shows how WebGazer can be used on a website.
+This file provides the additional features:
+  * An integrated, intuitive and sleek action bar with an informative "help" module accessible at all times
+  * Structured 9-point calibration system
+  * Accuracy measure of predictions based on calibration process
+  * Video feedback regarding face positioning
+  * Improved eye predictions visible to the user
+Instructions on use can be found in the README repository.
+-->
+
+<head>
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+    
+    <script src="assets/lib/jquery-3.5.0.min.js"></script>
+    <script src="assets/lib/webgazer.js"></script>
+
+    <script src="assets/lib/calibration/main.js"></script>
+    <script src="assets/lib/calibration/calibration.js"></script>
+    <script src="assets/lib/calibration/precision_calculation.js"></script>
+    <script src="assets/lib/calibration/precision_store_points.js"></script>
+
+    <script>
+        console.log("entre a maintask");
+        ensureWebcam(() => startExperiment());
+        
+        function ensureWebcam(callback) {
+            $('div').html('<p class="center", style="font-family:Arial, Helvetica, sans-serif">Checking webcam ...</p>');
+            window.navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                stream.getTracks().forEach(track => track.stop());
+                callback();
+            })
+            .catch(function() {
+                alert('Cannot open webcam.\nIs it blocked? This app requires webcam.');
+                location.reload();
+            });
+        }
+    
+      </script>
+
+<nav id="webgazerNavbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- The hamburger menu button -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar">Menu de calibración</span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <!-- Accuracy -->
+          <li id="Accuracy"><a>Not yet Calibrated</a></li>
+          <li><a onclick="Restart()" href="#">Recalibrate</a></li>
+          <li><a onclick="webgazer.applyKalmanFilter(!webgazer.params.applyKalmanFilter)" href="#">Toggle Kalman Filter</a></li>
+          <li><a onclick="" href="marketplace/main">Empezar experimento</a></li>
+                    
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+    <!-- Calibration points -->
+    <div class="calibrationDiv">
+        <input type="button" class="Calibration" id="Pt1"/>
+        <input type="button" class="Calibration" id="Pt2"/>
+        <input type="button" class="Calibration" id="Pt3"/>
+        <input type="button" class="Calibration" id="Pt4"/>
+        <input type="button" class="Calibration" id="Pt5"/>
+        <input type="button" class="Calibration" id="Pt6"/>
+        <input type="button" class="Calibration" id="Pt7"/>
+        <input type="button" class="Calibration" id="Pt8"/>
+        <input type="button" class="Calibration" id="Pt9"/>
+    </div>
+
+    <!-- Modal -->
+    <div id="helpModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <img src="assets/webgazer_media/calibration.png" width="100%" height="100%" alt="webgazer demo instructions" />
+            </div>
+            <div class="modal-footer">
+              <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">Close & load saved model </button>
+              <button type="button" id='start_calibration' class="btn btn-primary" data-dismiss="modal" onclick="Restart()">Calibrate</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+        
+
+

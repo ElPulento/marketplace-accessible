@@ -9,13 +9,13 @@ const nImageInst = 2;
 const realCaliDot = 1;
 
 
-function startExperiment() {
+function startCalibration() {
   console.log("entre a maintask");
 
   //start the webgazer tracker
   webgazer.setRegression('ridge') /* currently must set regression and tracker */
     .setTracker('clmtrackr')
-    .setGazeListener(function(data, elapsedTime) {
+    .setGazeListener(function(data, clock) {
       if (data == null) {
           return
       }
@@ -24,9 +24,10 @@ function startExperiment() {
       return xprediction;
       // var yprediction = data.y; //these y coordinates are relative to the viewport
       // console.log(elapsedTime); //elapsed time is based on time since begin was called
-    }).begin()
-    .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
-  
+    })
+    .begin()
+    .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
+    .saveDataAcrossSessions(true);
 
   //Set up the webgazer video feedback.
   var setup = function() {

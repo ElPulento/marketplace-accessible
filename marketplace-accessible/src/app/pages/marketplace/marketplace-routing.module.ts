@@ -11,6 +11,7 @@ import { FavoritesComponent } from './components/options/favorites/favorites.com
 import { ViewProfileComponent } from './components/options/view-profile/view-profile.component';
 import { ViewProductsCreateComponent } from './components/options/view-products-create/view-products-create.component';
 import { ListProductsCreateComponent } from './components/options/list-products-create/list-products-create.component';
+import { CalibrationComponent } from './components/calibration/calibration.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateNewProductComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'view-list-products', component: ListProductsCreateComponent },
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'view-my-products/:id', component: ViewProductsCreateComponent },
+  { path: 'calibration', component: CalibrationComponent },
   { path: 'main', component: MainPageComponent },
   { path: '**', component: MainPageComponent },
 ];

@@ -55,6 +55,7 @@ import { FilterPricePipe } from '../pipes/filterPrice.pipe';
 import { FilterPriceMaxPipe } from '../pipes/filterPriceMax.pipe';
 import { ViewProductsCreateComponent } from './components/options/view-products-create/view-products-create.component';
 import { ListProductsCreateComponent } from './components/options/list-products-create/list-products-create.component';
+import { CalibrationComponent } from './components/calibration/calibration.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ListProductsCreateComponent } from './components/options/list-products-
     FilterPriceMaxPipe,
     ViewProductsCreateComponent,
     ListProductsCreateComponent,
+    CalibrationComponent,
    
   ],
   imports: [
