@@ -11513,9 +11513,3 @@ function store_points(x, y, k) {
 
 }(window));
 
-/*
- * Gets the fifty most recent tracker predictions
- */
-webgazer.getStoredPoints = function() {
-  return [xPast50, yPast50];
-}

@@ -8,6 +8,21 @@ const nprac = 3;
 const nImageInst = 2;
 const realCaliDot = 1;
 
+/**************/
+/** Public variables */
+/**************/
+var store_predictions = false;
+
+var eye_data_x = new Array();
+var eye_data_y = new Array();
+
+var xPast50 = new Array(50);
+var yPast50 = new Array(50);
+
+function reset_eye_data(){
+  eye_data_x = new Array();
+  eye_data_y = new Array();
+}
 
 function startCalibration() {
 
@@ -19,6 +34,11 @@ function startCalibration() {
           return
       }
       var xprediction = data.x; //these x coordinates are relative to the viewport
+      var yprediction = data.y;
+
+      if(store_predictions){
+        store_gazepoints(xprediction, yprediction);
+      }
       // console.log(xprediction);
       return xprediction;
       // var yprediction = data.y; //these y coordinates are relative to the viewport
@@ -108,11 +128,12 @@ $(document).ready(function(){
 
             $(document).ready(function(){
 
-              store_points_variable(); // start storing the prediction points
-
+              store_predictions_variable(); // start storing the prediction points
+              
               sleep(5000).then(() => {
                   stop_storing_points_variable(); // stop storing the prediction points
-                  var past50 = webgazer.getStoredPoints(); // retrieve the stored points
+                  var past50 = getLast50Points(); // retrieve the stored points
+                  
                   var precision_measurement = calculatePrecision(past50);
                   var accuracyLabel = "<a>Accuracy | "+precision_measurement+"%</a>";
                   document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
@@ -194,8 +215,23 @@ function calculateAverage(precisionPercentages) {
  * Sets store_points to true, so all the occuring prediction
  * points are stored
  */
-function store_points_variable(){
-  webgazer.params.storingPoints = true;
+function store_predictions_variable(){
+  store_predictions = true;
+}
+
+function store_gazepoints(x, y){
+  eye_data_x.push(x);
+  eye_data_y.push(y);
+  console.log(x, y);
+}
+
+function getLast50Points(){
+  //console.log(eye_data_x, eye_data_y);
+
+  xPast50 = eye_data_x.slice(-50);
+  yPast50 = eye_data_y.slice(-50);
+
+  return [xPast50, yPast50];
 }
 
 /*
@@ -203,5 +239,5 @@ function store_points_variable(){
  * stored any more
  */
 function stop_storing_points_variable(){
-  webgazer.params.storingPoints = false;
+  store_predictions = false;
 }
