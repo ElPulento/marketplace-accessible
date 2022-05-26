@@ -35,6 +35,7 @@ function startCalibration() {
       }
       var xprediction = data.x; //these x coordinates are relative to the viewport
       var yprediction = data.y;
+      console.log(window.location.href);
 
       if(store_predictions){
         store_gazepoints(xprediction, yprediction);
