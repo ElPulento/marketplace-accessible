@@ -223,7 +223,6 @@ function store_predictions_variable(){
 function store_gazepoints(x, y){
   eye_data_x.push(x);
   eye_data_y.push(y);
-  console.log(x, y);
 }
 
 function getLast50Points(){
@@ -241,4 +240,10 @@ function getLast50Points(){
  */
 function stop_storing_points_variable(){
   store_predictions = false;
+}
+
+function export_eyedata_results(){
+  alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
+  return eye_data_x, eye_data_x.length();
+  
 }
