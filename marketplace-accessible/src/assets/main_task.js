@@ -13,15 +13,13 @@ const realCaliDot = 1;
 /**************/
 var store_predictions = false;
 
-var eye_data_x = new Array();
-var eye_data_y = new Array();
+var eye_data = new Array();
 
 var xPast50 = new Array(50);
 var yPast50 = new Array(50);
 
 function reset_eye_data(){
-  eye_data_x = new Array();
-  eye_data_y = new Array();
+    eye_data = new Array();
 }
 
 function startCalibration() {
@@ -35,10 +33,11 @@ function startCalibration() {
       }
       var xprediction = data.x; //these x coordinates are relative to the viewport
       var yprediction = data.y;
-      console.log(window.location.href);
-
+      
       if(store_predictions){
-        store_gazepoints(xprediction, yprediction);
+        let ruta = window.location.href;
+        let timestamp = getTimestamp();
+        store_gazepoints(xprediction, yprediction,ruta,timestamp);
       }
       // console.log(xprediction);
       return xprediction;
@@ -84,6 +83,23 @@ function ShowCalibrationPoint() {
 // sleep function because java doesn't have one, sourced from http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+function getTimestamp(){
+  let date = new Date();
+  const options = {
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    timeZone: 'America/Santiago',
+    timeZoneName: 'short'
+  };
+  
+  // sometimes you want to be very precise
+  options.fractionalSecondDigits = 2; //number digits for fraction-of-seconds
+
+  let timestamp = new Intl.DateTimeFormat('en-AU', options).format(date);
+
+  return timestamp;
 }
 
 /** PROCESO DE CALIBRACION
@@ -133,12 +149,12 @@ $(document).ready(function(){
               
               sleep(5000).then(() => {
                   stop_storing_points_variable(); // stop storing the prediction points
+                  console.log(eye_data);
                   var past50 = getLast50Points(); // retrieve the stored points
+                  console.log(past50);
                   
                   var precision_measurement = calculatePrecision(past50);
-                  var accuracyLabel = "<a>Accuracy | "+precision_measurement+"%</a>";
-                  document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
-                  
+                                    
                   alert('La precisión es de: ' + precision_measurement + '%');
               });
             });
@@ -220,18 +236,28 @@ function store_predictions_variable(){
   store_predictions = true;
 }
 
-function store_gazepoints(x, y){
-  eye_data_x.push(x);
-  eye_data_y.push(y);
+function store_gazepoints(x, y, ruta, timestamp){
+  let row = [x,y,ruta,timestamp];
+  eye_data.push(row);
 }
 
 function getLast50Points(){
-  //console.log(eye_data_x, eye_data_y);
+  
+  let col = getCol(eye_data, 0); //Get first column
+  xPast50 = col.slice(-50);
 
-  xPast50 = eye_data_x.slice(-50);
-  yPast50 = eye_data_y.slice(-50);
+  col = getCol(eye_data, 1);
+  yPast50 = col.slice(-50);
 
   return [xPast50, yPast50];
+}
+
+function getCol(matrix, col){
+  var column = [];
+  for(var i=0; i<matrix.length; i++){
+     column.push(matrix[i][col]);
+  }
+  return column; // return column data..
 }
 
 /*
@@ -244,6 +270,6 @@ function stop_storing_points_variable(){
 
 function export_eyedata_results(){
   alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
-  return eye_data_x, eye_data_x.length();
+  return;
   
 }
