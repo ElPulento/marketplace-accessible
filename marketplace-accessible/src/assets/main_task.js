@@ -18,9 +18,7 @@ var eye_data = new Array();
 var xPast50 = new Array(50);
 var yPast50 = new Array(50);
 
-function reset_eye_data(){
-    eye_data = new Array();
-}
+
 
 function startCalibration() {
 
@@ -64,6 +62,10 @@ function startCalibration() {
 
   PopUpInstruction();
 };
+
+function reset_eye_data(){
+  eye_data = new Array();
+}
 
 function PopUpInstruction(){
   // ClearCanvas();
@@ -150,18 +152,27 @@ $(document).ready(function(){
               sleep(5000).then(() => {
                   stop_storing_points_variable(); // stop storing the prediction points
                   console.log(eye_data);
-                  var past50 = getLast50Points(); // retrieve the stored points
-                  console.log(past50);
                   
+                  var past50 = getLast50Points(); // retrieve the stored points
+                                    
                   var precision_measurement = calculatePrecision(past50);
                                     
                   alert('La precisión es de: ' + precision_measurement + '%');
+
               });
+
             });
+            
       }
 
     });
+
 });
+
+function startExperiment(){
+  reset_eye_data();
+  store_predictions_variable();
+}
 
 
 /* PRECISION_CALCULATION.JS
@@ -270,6 +281,8 @@ function stop_storing_points_variable(){
 
 function export_eyedata_results(){
   alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
-  return;
+  stop_storing_points_variable();
+  console.log(eye_data);
+  return eye_data;
   
 }
