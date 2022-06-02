@@ -151,13 +151,13 @@ $(document).ready(function(){
               
               sleep(5000).then(() => {
                   stop_storing_points_variable(); // stop storing the prediction points
-                  console.log(eye_data);
-                  
+                                    
                   var past50 = getLast50Points(); // retrieve the stored points
                                     
                   var precision_measurement = calculatePrecision(past50);
                                     
                   alert('La precisión es de: ' + precision_measurement + '%');
+                  console.log('Model accuracy: ' + precision_measurement + '%');
 
               });
 
@@ -174,14 +174,19 @@ function startExperiment(){
 
   webgazer.showPredictionPoints(false); //hide gazedot
 
+  hideVideoCanvas();
+
+  alert('Has comenzado el intento.\nÉxito!');
+
+  store_predictions_variable(); //changes predictions variable to true
+}
+
+function hideVideoCanvas(){
   document.getElementById("renderCanvas").style.display = "none";
   document.getElementById("webgazerVideoFeed").style.display = "none";
   document.getElementById("webgazerVideoCanvas").style.display = "none";
   document.getElementById("webgazerFaceOverlay").style.display = "none";
   document.getElementById("webgazerFaceFeedbackBox").style.display = "none";
-
-
-  store_predictions_variable(); //changes predictions variable to true
 }
 
 
@@ -293,9 +298,9 @@ function export_eyedata_results(){
   alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
   stop_storing_points_variable();
 
-  //create_csv(eye_data);
+  create_csv(eye_data);
 
-    console.log(eye_data);
+  console.log(eye_data);
   return eye_data;
   
 }
