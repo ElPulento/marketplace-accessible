@@ -170,8 +170,18 @@ $(document).ready(function(){
 });
 
 function startExperiment(){
-  reset_eye_data();
-  store_predictions_variable();
+  reset_eye_data(); //resets eye_data array
+
+  webgazer.showPredictionPoints(false); //hide gazedot
+
+  document.getElementById("renderCanvas").style.display = "none";
+  document.getElementById("webgazerVideoFeed").style.display = "none";
+  document.getElementById("webgazerVideoCanvas").style.display = "none";
+  document.getElementById("webgazerFaceOverlay").style.display = "none";
+  document.getElementById("webgazerFaceFeedbackBox").style.display = "none";
+
+
+  store_predictions_variable(); //changes predictions variable to true
 }
 
 
@@ -283,9 +293,9 @@ function export_eyedata_results(){
   alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
   stop_storing_points_variable();
 
-  create_csv(eye_data);
+  //create_csv(eye_data);
 
-  console.log(eye_data);
+    console.log(eye_data);
   return eye_data;
   
 }
