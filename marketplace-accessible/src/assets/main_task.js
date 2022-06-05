@@ -18,6 +18,7 @@ var eye_data = new Array();
 var xPast50 = new Array(50);
 var yPast50 = new Array(50);
 
+var RecordingExperiment = false;
 
 
 function startCalibration() {
@@ -174,6 +175,9 @@ function startExperiment(){
 
   webgazer.showPredictionPoints(false); //hide gazedot
 
+  RecordingExperiment = true; //change flag
+  toggle_header_btn();
+
   hideVideoCanvas();
 
   alert('Has comenzado el intento.\nÉxito!');
@@ -295,6 +299,8 @@ function stop_storing_points_variable(){
 }
 
 function export_eyedata_results(){
+  RecordingExperiment = false; // change flag for btn header
+  toggle_header_btn(); // esconder boton terminar y mostrar el btn start
   alert('Has terminado el experimento.\nGracias por participar, recuerde avisar al examinador.');
   stop_storing_points_variable();
 
@@ -324,4 +330,17 @@ function create_csv(eye_data){
   link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link); 
   link.click();
+}
+
+function toggle_header_btn(){
+  var startBtn = document.getElementById('start-btn');
+  var endBtn = document.getElementById('end-btn');
+
+  if (!RecordingExperiment){
+    startBtn.style.display = 'block';
+    endBtn.style.display = 'none';
+  }else{
+    startBtn.style.display = 'none';
+    endBtn.style.display = 'block';
+  }
 }
