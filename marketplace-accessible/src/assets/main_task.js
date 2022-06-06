@@ -83,16 +83,36 @@ function ShowCalibrationPoint() {
   $("#Pt5").hide(); // initially hides the middle button
 }
 
-function HideCalibrationPoints() {
-  $("#Pt1").hide();
-  $("#Pt2").hide();
-  $("#Pt3").hide();
-  $("#Pt4").hide();
-  $("#Pt5").hide();
-  $("#Pt6").hide();
-  $("#Pt7").hide();
-  $("#Pt8").hide();
-  $("#Pt9").hide(); // hide all calibration points
+function toggleCalibrationPoints() {
+  // $("#Pt1").hide();
+  // $("#Pt2").hide();
+  // $("#Pt3").hide();
+  // $("#Pt4").hide();
+  // $("#Pt5").hide();
+  // $("#Pt6").hide();
+  // $("#Pt7").hide();
+  // $("#Pt8").hide();
+  // $("#CalibrationPoints").hide(); // hide all calibration points
+
+  var calPoints = document.getElementById('CalibrationPoints');
+
+  if (calPoints.style.display == 'none'){
+    calPoints.style.display = 'block';
+  }else{
+    calPoints.style.display = 'none';
+  }
+
+}
+
+function hideWallpaperHome(){
+ 
+  var wallpaper = document.getElementById('wallpaper');
+
+    if (wallpaper.style.display == 'none'){
+      wallpaper.style.display = 'block';
+    }else if(wallpaper.style.display == 'block'){
+      wallpaper.style.display = 'none';
+    }
 }
 
 // sleep function because java doesn't have one, sourced from http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
@@ -127,6 +147,9 @@ var PointCalibrate = 0;
 var CalibrationPoints={};
 
 $(document).ready(function(){
+
+  hideWallpaperHome();
+  toggleCalibrationPoints();
 
      $(".Calibration").click(function(){ // click event on the calibration buttons
 
@@ -183,13 +206,18 @@ $(document).ready(function(){
 });
 
 function startExperiment(){
+
+  RecordingExperiment = true; //change flag
+
+  hideWallpaperHome();
+
   reset_eye_data(); //resets eye_data array
 
-  HideCalibrationPoints();
+  toggleCalibrationPoints();
 
   webgazer.showPredictionPoints(false); //hide gazedot
 
-  RecordingExperiment = true; //change flag
+  
   toggle_header_btn();
 
   hideVideoCanvas();
