@@ -83,6 +83,18 @@ function ShowCalibrationPoint() {
   $("#Pt5").hide(); // initially hides the middle button
 }
 
+function HideCalibrationPoints() {
+  $("#Pt1").hide();
+  $("#Pt2").hide();
+  $("#Pt3").hide();
+  $("#Pt4").hide();
+  $("#Pt5").hide();
+  $("#Pt6").hide();
+  $("#Pt7").hide();
+  $("#Pt8").hide();
+  $("#Pt9").hide(); // hide all calibration points
+}
+
 // sleep function because java doesn't have one, sourced from http://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
@@ -172,6 +184,8 @@ $(document).ready(function(){
 
 function startExperiment(){
   reset_eye_data(); //resets eye_data array
+
+  HideCalibrationPoints();
 
   webgazer.showPredictionPoints(false); //hide gazedot
 
@@ -268,7 +282,7 @@ function store_predictions_variable(){
 
 function store_gazepoints(x, y, ruta, timestamp){
   let row = [x,y,ruta,timestamp];
-  eye_data.push(row);
+  eye_data.push(row); //stores x, y coordinates of gazepoint, current route and timestamp into an 2d array
 }
 
 function getLast50Points(){
