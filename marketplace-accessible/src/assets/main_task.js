@@ -356,6 +356,9 @@ function export_eyedata_results(){
 function create_csv(eye_data){
   let csvContent = "data:text/csv;charset=utf-8,";
 
+  let headers = ["X", "Y", "Ruta", "Timestamp"];
+  csvContent += headers + "\r\n";
+
   eye_data.forEach(function(rowArray) {
       let row = rowArray.join(",");
       csvContent += row + "\r\n";
