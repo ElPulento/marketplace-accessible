@@ -215,7 +215,7 @@ function startExperiment(){
 
   toggleCalibrationPoints();
 
-  webgazer.showPredictionPoints(false); //hide gazedot
+  webgazer.showPredictionPoints(true); //hide gazedot
 
   
   toggle_header_btn();
